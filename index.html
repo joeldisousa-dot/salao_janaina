@@ -12,393 +12,1360 @@
 
 <style>
 
+/* =========================================================
+   SALÃO JANAINA — VISUAL PREMIUM
+   Apenas CSS — nenhuma função JavaScript foi alterada
+   ========================================================= */
+
+:root {
+  --primary: #8b3f68;
+  --primary-dark: #642b4b;
+  --primary-light: #c978a3;
+  --primary-soft: #f7eaf1;
+
+  --accent: #d9a06f;
+  --accent-soft: #fbf1e8;
+
+  --bg: #f7f4f6;
+  --surface: #ffffff;
+  --surface-soft: #fcfafb;
+
+  --text: #292329;
+  --text-soft: #746b72;
+  --text-muted: #9b9298;
+
+  --border: #ebe4e8;
+  --danger: #b42332;
+  --danger-soft: #fff0f1;
+
+  --success: #247a4a;
+  --success-soft: #eaf7ef;
+
+  --shadow-sm:
+    0 2px 8px rgba(67, 31, 51, .04);
+
+  --shadow:
+    0 10px 35px rgba(67, 31, 51, .08);
+
+  --shadow-lg:
+    0 25px 70px rgba(42, 20, 32, .16);
+
+  --radius: 18px;
+  --radius-sm: 11px;
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
 * {
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f8f5f7;
-  color: #333;
+html {
+  scroll-behavior: smooth;
 }
 
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(201, 120, 163, .09),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      #faf8f9 0%,
+      #f5f1f4 100%
+    );
+
+  color: var(--text);
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
 header {
-  background: linear-gradient(135deg,#8e4168,#c66d9c);
+  position: relative;
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #5f2948 0%,
+      #873c65 45%,
+      #b75f8b 100%
+    );
+
   color: white;
-  padding: 25px 20px;
+
+  padding: 34px 20px 38px;
+
   text-align: center;
+
+  box-shadow:
+    0 8px 30px rgba(95, 41, 72, .20);
+}
+
+header::before {
+  content: "";
+  position: absolute;
+
+  width: 260px;
+  height: 260px;
+
+  top: -150px;
+  right: -80px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255,255,255,.08);
+}
+
+header::after {
+  content: "";
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  bottom: -120px;
+  left: -60px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255,255,255,.06);
 }
 
 header h1 {
+  position: relative;
+  z-index: 1;
+
   margin: 0;
-  font-size: 27px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 34px;
+  font-weight: 600;
+
+  letter-spacing: -.5px;
+
+  text-shadow:
+    0 2px 10px rgba(0,0,0,.12);
 }
 
 header p {
-  margin: 7px 0 0;
-  opacity: .9;
+  position: relative;
+  z-index: 1;
+
+  margin: 8px 0 0;
+
+  font-size: 14px;
+
+  color: rgba(255,255,255,.82);
+
+  letter-spacing: .5px;
 }
+
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
 
 .container {
   width: 100%;
-  max-width: 1000px;
-  margin: 25px auto;
-  padding: 0 15px;
+  max-width: 1080px;
+
+  margin: 0 auto;
+
+  padding:
+    34px 22px
+    50px;
 }
+
+
+/* =========================================================
+   TOPO
+   ========================================================= */
 
 .topo {
   display: flex;
+
   justify-content: space-between;
   align-items: center;
-  gap: 15px;
-  margin-bottom: 20px;
+
+  gap: 20px;
+
+  margin-bottom: 25px;
 }
 
 .topo h2 {
+  position: relative;
+
   margin: 0;
-  color: #713253;
+
+  color: var(--text);
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 30px;
+  font-weight: 600;
+
+  letter-spacing: -.4px;
 }
+
+.topo h2::after {
+  content: "";
+
+  display: block;
+
+  width: 38px;
+  height: 3px;
+
+  margin-top: 8px;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--primary),
+      var(--accent)
+    );
+}
+
+
+/* =========================================================
+   BOTÕES
+   ========================================================= */
 
 button {
   border: 0;
+  outline: none;
+
   cursor: pointer;
+
   font-family: inherit;
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    background .18s ease,
+    opacity .18s ease;
+}
+
+button:active {
+  transform: scale(.98);
 }
 
 .btn-principal {
-  background: #8e4168;
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  min-height: 48px;
+
+  padding: 0 20px;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      #a64f7c
+    );
+
   color: white;
-  padding: 13px 20px;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: bold;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  letter-spacing: .1px;
+
+  box-shadow:
+    0 8px 20px rgba(139,63,104,.20);
 }
 
 .btn-principal:hover {
-  background: #713253;
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary-dark),
+      var(--primary)
+    );
+
+  box-shadow:
+    0 12px 26px rgba(139,63,104,.28);
+
+  transform: translateY(-1px);
 }
 
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
 .card {
-  background: white;
-  border-radius: 16px;
-  padding: 20px;
+  position: relative;
+
+  background:
+    rgba(255,255,255,.94);
+
+  border:
+    1px solid rgba(235,228,232,.9);
+
+  border-radius:
+    var(--radius);
+
+  padding: 24px;
+
   margin-bottom: 20px;
-  box-shadow: 0 3px 15px rgba(0,0,0,.07);
+
+  box-shadow:
+    var(--shadow);
+
+  backdrop-filter:
+    blur(10px);
+
+  -webkit-backdrop-filter:
+    blur(10px);
 }
 
 .card h3 {
-  margin-top: 0;
-  color: #713253;
+  margin:
+    0 0 20px;
+
+  color: var(--text);
+
+  font-size: 17px;
+  font-weight: 700;
+
+  letter-spacing: -.2px;
 }
+
+.card h3::before {
+  content: "";
+
+  display: inline-block;
+
+  width: 4px;
+  height: 17px;
+
+  margin-right: 9px;
+
+  vertical-align: -2px;
+
+  border-radius: 5px;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--primary),
+      var(--primary-light)
+    );
+}
+
+
+/* =========================================================
+   FILTRO
+   ========================================================= */
 
 .filtro {
   display: flex;
-  align-items: center;
-  gap: 12px;
+
+  align-items: flex-end;
+
+  gap: 15px;
+
   flex-wrap: wrap;
 }
 
+
+/* =========================================================
+   LABELS
+   ========================================================= */
+
 label {
   display: block;
-  font-size: 14px;
-  font-weight: bold;
-  margin-bottom: 7px;
-  color: #555;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  margin-bottom: 8px;
+
+  color: var(--text-soft);
+
+  text-transform: uppercase;
+
+  letter-spacing: .5px;
 }
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
 
 input,
 select,
 textarea {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 9px;
-  font-size: 15px;
+
+  padding:
+    13px 14px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    var(--radius-sm);
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  color: var(--text);
+
   outline: none;
-  background: white;
+
+  background:
+    var(--surface-soft);
+
+  transition:
+    border-color .18s ease,
+    box-shadow .18s ease,
+    background .18s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #aaa2a8;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: #d9cbd2;
+
+  background: #fff;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-  border-color: #b65f8d;
+  border-color:
+    var(--primary-light);
+
+  background: white;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(139,63,104,.09);
+}
+
+input[type="date"] {
+  min-height: 45px;
 }
 
 textarea {
-  min-height: 80px;
+  min-height: 95px;
+
   resize: vertical;
+
+  line-height: 1.5;
 }
 
 .campo {
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 15px;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 16px;
 }
 
 
-/* =====================================================
+/* =========================================================
    HORÁRIOS
-   ===================================================== */
+   ========================================================= */
 
 .horarios {
   display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(95px,1fr));
+
+  grid-template-columns:
+    repeat(auto-fill, minmax(105px, 1fr));
+
   gap: 10px;
+
   margin-top: 10px;
 }
 
 .horario {
-  padding: 12px 8px;
-  border-radius: 10px;
-  background: #f4e6ee;
-  color: #713253;
-  border: 2px solid transparent;
-  font-size: 15px;
-  font-weight: bold;
+  position: relative;
+
+  min-height: 48px;
+
+  padding: 11px 8px;
+
+  border:
+    1px solid #ead6e0;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fff9fc,
+      #f8edf3
+    );
+
+  color:
+    var(--primary-dark);
+
+  font-size: 14px;
+  font-weight: 700;
+
+  box-shadow:
+    0 2px 6px rgba(88,39,65,.04);
 }
 
 .horario:hover {
-  background: #e8cadb;
+  border-color:
+    var(--primary-light);
+
+  background:
+    linear-gradient(
+      180deg,
+      #fff,
+      #f8e7f0
+    );
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 7px 16px
+    rgba(88,39,65,.10);
 }
 
 .horario.selecionado {
-  background: #8e4168;
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary-dark),
+      var(--primary)
+    );
+
   color: white;
-  border-color: #713253;
+
+  border-color:
+    var(--primary-dark);
+
+  box-shadow:
+    0 8px 20px
+    rgba(100,43,75,.25);
+
+  transform:
+    translateY(-1px);
 }
 
 .horario.ocupado {
-  background: #eeeeee;
-  color: #aaa;
+  background:
+    #f3f2f3;
+
+  color:
+    #aaa5a9;
+
+  border-color:
+    #e6e3e5;
+
   cursor: not-allowed;
-  text-decoration: line-through;
+
+  text-decoration:
+    line-through;
+
+  box-shadow: none;
 }
 
 .horario.informacao {
-  background: #fff8fb;
-  color: #8e4168;
-  border: 1px dashed #d89abc;
+  min-height: auto;
+
+  padding: 11px 14px;
+
+  background:
+    var(--accent-soft);
+
+  color:
+    #9a6840;
+
+  border:
+    1px dashed #e5bd99;
+
   cursor: default;
-  font-size: 13px;
-  grid-column: 1 / -1;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  grid-column:
+    1 / -1;
+
   text-decoration: none;
+
+  box-shadow: none;
 }
 
 
-/* =====================================================
+/* =========================================================
    MENSAGENS
-   ===================================================== */
+   ========================================================= */
 
 .mensagem {
-  padding: 12px;
-  border-radius: 9px;
-  margin-bottom: 15px;
+  padding:
+    13px 15px;
+
+  border-radius:
+    12px;
+
+  margin-bottom:
+    18px;
+
   display: none;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  border: 1px solid transparent;
 }
 
 .mensagem.erro {
   display: block;
-  background: #ffe4e4;
-  color: #a00000;
+
+  background:
+    var(--danger-soft);
+
+  color:
+    var(--danger);
+
+  border-color:
+    #ffd5d9;
 }
 
 .mensagem.sucesso {
   display: block;
-  background: #e2f7e8;
-  color: #176b2d;
+
+  background:
+    var(--success-soft);
+
+  color:
+    var(--success);
+
+  border-color:
+    #ccebd8;
 }
 
 .carregando {
   text-align: center;
-  color: #777;
-  padding: 15px;
+
+  color:
+    var(--text-muted);
+
+  padding: 25px 15px;
+
+  font-size: 14px;
 }
 
 .sem-horarios {
-  background: #fff4f4;
-  color: #a33;
-  padding: 15px;
-  border-radius: 10px;
+  background:
+    var(--danger-soft);
+
+  color:
+    #a34a55;
+
+  padding:
+    18px;
+
+  border-radius:
+    12px;
+
   text-align: center;
+
+  font-size: 14px;
+
+  border:
+    1px solid #f4d6da;
 }
 
 
-/* =====================================================
-   AGENDA
-   ===================================================== */
+/* =========================================================
+   AGENDAMENTOS
+   ========================================================= */
 
 .agendamento {
-  border: 1px solid #eee;
-  border-left: 5px solid #8e4168;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 12px;
-  background: #fff;
+  position: relative;
+
+  border:
+    1px solid var(--border);
+
+  border-left:
+    4px solid var(--primary);
+
+  padding:
+    17px 18px;
+
+  border-radius:
+    13px;
+
+  margin-bottom:
+    12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #fdfafb
+    );
+
+  box-shadow:
+    var(--shadow-sm);
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    border-color .18s ease;
+}
+
+.agendamento:hover {
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 10px 25px
+    rgba(67,31,51,.08);
+
+  border-color:
+    #e3d5dc;
 }
 
 .agendamento-topo {
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
+
+  justify-content:
+    space-between;
+
+  align-items:
+    center;
+
+  gap: 12px;
+
   flex-wrap: wrap;
 }
 
 .agendamento strong {
-  color: #713253;
+  color:
+    var(--primary-dark);
+
+  font-weight: 700;
+}
+
+.agendamento-topo strong {
+  font-size: 15px;
 }
 
 .info {
-  margin-top: 7px;
-  font-size: 14px;
-  color: #555;
+  margin-top: 8px;
+
+  font-size: 13px;
+
+  color:
+    var(--text-soft);
+
+  line-height: 1.45;
 }
 
+.info strong {
+  color:
+    #514850;
+}
+
+
+/* =========================================================
+   CANCELAR
+   ========================================================= */
+
 .btn-cancelar {
-  background: #ffe1e1;
-  color: #a00000;
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: bold;
+  background:
+    var(--danger-soft);
+
+  color:
+    var(--danger);
+
+  padding:
+    8px 12px;
+
+  border:
+    1px solid #f5d1d5;
+
+  border-radius:
+    9px;
+
+  font-size: 12px;
+
+  font-weight: 700;
 }
 
 .btn-cancelar:hover {
-  background: #ffcaca;
+  background:
+    #ffe1e4;
+
+  border-color:
+    #efb9bf;
+
+  transform:
+    translateY(-1px);
 }
 
 
-/* =====================================================
+/* =========================================================
    MODAL
-   ===================================================== */
+   ========================================================= */
 
 .modal {
   display: none;
+
   position: fixed;
+
   inset: 0;
-  background: rgba(0,0,0,.55);
+
+  background:
+    rgba(34, 19, 28, .64);
+
+  backdrop-filter:
+    blur(7px);
+
+  -webkit-backdrop-filter:
+    blur(7px);
+
   z-index: 999;
+
   padding: 20px;
+
   overflow-y: auto;
+
+  animation:
+    modalBackground .2s ease;
 }
 
 .modal.ativo {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+
+  align-items:
+    flex-start;
+
+  justify-content:
+    center;
+}
+
+@keyframes modalBackground {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
 }
 
 .modal-conteudo {
-  background: white;
+  position: relative;
+
+  background:
+    rgba(255,255,255,.98);
+
   width: 100%;
-  max-width: 650px;
-  margin: 20px auto;
-  border-radius: 18px;
-  padding: 25px;
-  box-shadow: 0 10px 40px rgba(0,0,0,.2);
+
+  max-width: 680px;
+
+  margin:
+    20px auto;
+
+  border-radius:
+    22px;
+
+  padding:
+    28px;
+
+  border:
+    1px solid rgba(255,255,255,.7);
+
+  box-shadow:
+    var(--shadow-lg);
+
+  animation:
+    modalEntrada .25s ease;
 }
+
+@keyframes modalEntrada {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(15px)
+      scale(.98);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* =========================================================
+   CABEÇALHO DO MODAL
+   ========================================================= */
 
 .modal-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+
+  justify-content:
+    space-between;
+
+  align-items:
+    center;
+
+  gap: 15px;
+
+  margin-bottom:
+    25px;
+
+  padding-bottom:
+    18px;
+
+  border-bottom:
+    1px solid var(--border);
 }
 
 .modal-header h2 {
   margin: 0;
-  color: #713253;
+
+  color:
+    var(--primary-dark);
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size:
+    25px;
+
+  font-weight:
+    600;
 }
 
 .fechar {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  background: #f2e6ed;
-  color: #713253;
-  font-size: 20px;
+  flex:
+    0 0 auto;
+
+  width:
+    38px;
+
+  height:
+    38px;
+
+  border-radius:
+    50%;
+
+  background:
+    #f5edf2;
+
+  color:
+    var(--primary-dark);
+
+  font-size:
+    22px;
+
+  line-height:
+    1;
 }
 
 .fechar:hover {
-  background: #e5cedb;
+  background:
+    #ead8e2;
+
+  transform:
+    rotate(4deg);
 }
 
+
+/* =========================================================
+   RESUMO
+   ========================================================= */
+
 .resumo {
-  background: #f8f1f5;
-  border-radius: 10px;
-  padding: 12px;
-  margin-top: 15px;
-  color: #713253;
-  font-size: 14px;
+  background:
+    linear-gradient(
+      135deg,
+      #fcf3f8,
+      #f7eaf1
+    );
+
+  border:
+    1px solid #edd8e3;
+
+  border-radius:
+    12px;
+
+  padding:
+    15px;
+
+  margin-top:
+    15px;
+
+  color:
+    var(--primary-dark);
+
+  font-size:
+    13px;
+
+  line-height:
+    1.7;
 }
+
+
+/* =========================================================
+   AÇÕES
+   ========================================================= */
 
 .acoes {
   display: flex;
+
   gap: 10px;
-  justify-content: flex-end;
-  margin-top: 20px;
+
+  justify-content:
+    flex-end;
+
+  margin-top:
+    24px;
+
+  padding-top:
+    20px;
+
+  border-top:
+    1px solid var(--border);
 }
 
 .btn-secundario {
-  background: #eee;
-  color: #444;
-  padding: 12px 18px;
-  border-radius: 9px;
-  font-weight: bold;
+  background:
+    #f2f0f1;
+
+  color:
+    #5f585d;
+
+  padding:
+    12px 18px;
+
+  border:
+    1px solid #e5e0e3;
+
+  border-radius:
+    10px;
+
+  font-weight:
+    700;
+
+  font-size:
+    13px;
+}
+
+.btn-secundario:hover {
+  background:
+    #e8e4e6;
+
+  transform:
+    translateY(-1px);
 }
 
 .btn-salvar {
-  background: #8e4168;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 9px;
-  font-weight: bold;
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary-dark),
+      var(--primary)
+    );
+
+  color:
+    white;
+
+  padding:
+    12px 20px;
+
+  border-radius:
+    10px;
+
+  font-weight:
+    700;
+
+  font-size:
+    13px;
+
+  box-shadow:
+    0 7px 18px
+    rgba(100,43,75,.18);
 }
 
 .btn-salvar:hover {
-  background: #713253;
+  background:
+    linear-gradient(
+      135deg,
+      #55223d,
+      #7b345c
+    );
+
+  box-shadow:
+    0 10px 24px
+    rgba(100,43,75,.27);
+
+  transform:
+    translateY(-1px);
 }
 
 .btn-salvar:disabled {
-  background: #aaa;
-  cursor: not-allowed;
+  background:
+    linear-gradient(
+      135deg,
+      #aaa,
+      #999
+    );
+
+  cursor:
+    not-allowed;
+
+  box-shadow:
+    none;
+
+  transform:
+    none;
 }
 
 
-/* =====================================================
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background:
+    #f4f1f3;
+}
+
+::-webkit-scrollbar-thumb {
+  background:
+    #c9aaba;
+
+  border-radius:
+    20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background:
+    #a87591;
+}
+
+
+/* =========================================================
+   SELEÇÃO
+   ========================================================= */
+
+::selection {
+  background:
+    rgba(139,63,104,.18);
+
+  color:
+    var(--primary-dark);
+}
+
+
+/* =========================================================
    RESPONSIVO
-   ===================================================== */
+   ========================================================= */
 
-@media (max-width:600px) {
+@media (max-width: 700px) {
 
-  .grid {
-    grid-template-columns: 1fr;
+  header {
+    padding:
+      28px 18px 32px;
+  }
+
+  header h1 {
+    font-size:
+      29px;
+  }
+
+  .container {
+    padding:
+      25px 15px 40px;
   }
 
   .topo {
-    align-items: stretch;
-    flex-direction: column;
+    align-items:
+      stretch;
+
+    flex-direction:
+      column;
+
+    gap:
+      16px;
+  }
+
+  .topo h2 {
+    font-size:
+      27px;
   }
 
   .topo .btn-principal {
-    width: 100%;
+    width:
+      100%;
   }
 
-  .modal {
-    padding: 10px;
+  .card {
+    padding:
+      18px;
+
+    border-radius:
+      15px;
   }
 
-  .modal-conteudo {
-    margin: 5px auto;
-    padding: 18px;
+  .grid {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      0;
   }
 
   .horarios {
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns:
+      repeat(3, 1fr);
+
+    gap:
+      8px;
+  }
+
+  .horario {
+    padding:
+      10px 5px;
+
+    font-size:
+      13px;
+  }
+
+  .modal {
+    padding:
+      10px;
+  }
+
+  .modal-conteudo {
+    margin:
+      5px auto;
+
+    padding:
+      20px;
+
+    border-radius:
+      18px;
+  }
+
+  .modal-header h2 {
+    font-size:
+      22px;
+  }
+
+  .acoes {
+    flex-direction:
+      column-reverse;
+  }
+
+  .acoes button {
+    width:
+      100%;
+  }
+
+  .agendamento-topo {
+    align-items:
+      flex-start;
+  }
+
+  .btn-cancelar {
+    width:
+      100%;
+  }
+
+}
+
+
+/* =========================================================
+   TELAS MUITO PEQUENAS
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .horarios {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  header h1 {
+    font-size:
+      26px;
+  }
+
+  .card {
+    padding:
+      16px;
   }
 
 }
@@ -1094,21 +2061,6 @@ async function atualizarHorarios() {
 }
 
 
-/*
- * Gera os horários possíveis.
- *
- * Os horários são analisados minuto a minuto
- * internamente, mas NÃO mostramos todos os
- * minutos na tela.
- *
- * Mostramos apenas os pontos em que o horário
- * realmente pode começar considerando:
- *
- * - expediente;
- * - duração do serviço;
- * - agendamentos existentes.
- */
-
 function renderizarHorarios(
   servico,
   agendamentos
@@ -1126,18 +2078,8 @@ function renderizarHorarios(
 
   const possiveis = [];
 
-  /*
-   * Primeiro horário sempre começa
-   * no início do expediente.
-   */
-
   let cursor =
     INICIO_EXPEDIENTE;
-
-
-  /*
-   * Ordena os agendamentos.
-   */
 
   const agenda =
     agendamentos
@@ -1185,21 +2127,6 @@ function renderizarHorarios(
         }
       );
 
-
-  /*
-   * Sem agendamentos:
-   *
-   * mostra somente o primeiro horário.
-   *
-   * Depois que o usuário escolher,
-   * o próximo horário possível será
-   * calculado normalmente.
-   *
-   * Para uma agenda já ocupada,
-   * avançamos para o final de cada
-   * agendamento.
-   */
-
   while (
     cursor +
     duracao <=
@@ -1221,26 +2148,9 @@ function renderizarHorarios(
           cursor + duracao
       });
 
-      /*
-       * O próximo horário possível
-       * é o término deste serviço.
-       *
-       * Assim não aparecem:
-       *
-       * 10:01
-       * 10:02
-       * 10:03...
-       */
-
       cursor += duracao;
 
     } else {
-
-      /*
-       * Se houver conflito, pula diretamente
-       * para o final do agendamento que bloqueia
-       * o horário.
-       */
 
       cursor =
         Math.max(
@@ -1251,11 +2161,6 @@ function renderizarHorarios(
     }
 
   }
-
-
-  /*
-   * Remove duplicados.
-   */
 
   const unicos = [];
 
@@ -1281,7 +2186,6 @@ function renderizarHorarios(
     }
   );
 
-
   if (unicos.length === 0) {
 
     area.innerHTML =
@@ -1293,9 +2197,7 @@ function renderizarHorarios(
 
   }
 
-
   area.innerHTML = '';
-
 
   const info =
     document.createElement(
@@ -1311,7 +2213,6 @@ function renderizarHorarios(
     ' minutos';
 
   area.appendChild(info);
-
 
   unicos.forEach(
     function(item) {
@@ -1632,25 +2533,8 @@ async function salvarAgendamento() {
   }
 
 
-  /*
-   * =====================================================
-   * ABRIMOS UMA ABA DO WHATSAPP ANTES DO FETCH
-   * =====================================================
-   *
-   * Isso evita que o navegador bloqueie o popup,
-   * porque window.open acontece diretamente
-   * durante o clique do usuário.
-   */
-
   let janelaWhatsApp = null;
 
-
-  /*
-   * Não abrimos ainda se os dados básicos
-   * estiverem inválidos.
-   *
-   * Aqui já passaram pelas validações.
-   */
 
   janelaWhatsApp =
     window.open(
@@ -1672,11 +2556,6 @@ async function salvarAgendamento() {
 
 
   try {
-
-    /*
-     * Busca novamente para conferir
-     * disponibilidade antes de salvar.
-     */
 
     const agendaAtual =
       await buscarAgendamentos(
@@ -1740,12 +2619,6 @@ async function salvarAgendamento() {
     btn.textContent =
       'Agendando...';
 
-
-    /*
-     * =====================================================
-     * ENVIO PARA O CODE.GS
-     * =====================================================
-     */
 
     const dados = {
 
@@ -1831,13 +2704,6 @@ async function salvarAgendamento() {
     }
 
 
-    /*
-     * =====================================================
-     * AGENDAMENTO SALVO!
-     * AGORA MONTAMOS A MENSAGEM DO WHATSAPP.
-     * =====================================================
-     */
-
     const dataFormatada =
       formatarDataBR(data);
 
@@ -1915,10 +2781,6 @@ async function salvarAgendamento() {
       NOME_SALAO;
 
 
-    /*
-     * Número do WhatsApp.
-     */
-
     const numero =
       prepararWhatsApp(
         whatsapp
@@ -1926,12 +2788,6 @@ async function salvarAgendamento() {
 
 
     if (!numero) {
-
-      /*
-       * O agendamento já foi salvo.
-       * Apenas não conseguimos abrir o WhatsApp
-       * porque o número é inválido.
-       */
 
       if (janelaWhatsApp) {
 
@@ -1955,10 +2811,6 @@ async function salvarAgendamento() {
           mensagem
         );
 
-
-      /*
-       * Redireciona a aba que já foi aberta.
-       */
 
       if (janelaWhatsApp) {
 
@@ -2001,11 +2853,6 @@ async function salvarAgendamento() {
       erro
     );
 
-
-    /*
-     * Se o agendamento falhou,
-     * fechamos a aba vazia.
-     */
 
     if (janelaWhatsApp) {
 
@@ -2059,16 +2906,6 @@ function prepararWhatsApp(
   }
 
 
-  /*
-   * Brasil:
-   *
-   * 31999999999
-   *
-   * vira:
-   *
-   * 5531999999999
-   */
-
   if (
     telefone.length === 10 ||
     telefone.length === 11
@@ -2080,10 +2917,6 @@ function prepararWhatsApp(
 
   }
 
-
-  /*
-   * Número brasileiro completo.
-   */
 
   if (
     telefone.startsWith('55') &&
