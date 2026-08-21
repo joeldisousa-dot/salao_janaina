@@ -499,14 +499,18 @@
           >
         </div>
 
-        <div class="campo">
-          <label>Horário</label>
-          <input
-            type="time"
-            id="hora"
-            required
-          >
-        </div>
+       <div class="campo campo-completo">
+  <label>Horário disponível</label>
+
+  <input type="hidden" id="hora" required>
+
+  <div id="horarios" class="horarios">
+    <div class="horarios-info">
+      Selecione uma data para ver os horários.
+    </div>
+  </div>
+</div>
+
 
         <div class="campo">
           <label>Serviço</label>
