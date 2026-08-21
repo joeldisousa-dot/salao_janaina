@@ -2,134 +2,120 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Agenda do Salão</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Agenda - Salão Janaina</title>
 
   <style>
+
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f8f5f2;
+      margin: 0;
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+      background: #f8f5f7;
       color: #333;
     }
 
-    button,
-    input,
-    select,
-    textarea {
-      font-family: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    /* ==============================
-       TOPO
-    ============================== */
-
     header {
-      background: linear-gradient(135deg, #8d526e, #b97898);
+      background:
+        linear-gradient(
+          135deg,
+          #8e4168,
+          #c66d9c
+        );
+
       color: white;
-      padding: 22px 15px;
-      box-shadow: 0 3px 15px rgba(0,0,0,.12);
+      padding: 25px 20px;
+      text-align: center;
     }
 
-    .topo {
-      max-width: 1200px;
-      margin: auto;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+    header h1 {
+      margin: 0;
+      font-size: 27px;
     }
 
-    .titulo h1 {
-      font-size: 25px;
-    }
-
-    .titulo p {
-      margin-top: 5px;
+    header p {
+      margin: 7px 0 0;
       opacity: .9;
-      font-size: 14px;
     }
-
-    /* ==============================
-       CONTAINER
-    ============================== */
 
     .container {
-      max-width: 1200px;
+      width: 100%;
+      max-width: 1000px;
       margin: 25px auto;
       padding: 0 15px;
     }
 
-    /* ==============================
-       BOTÕES
-    ============================== */
+    .topo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
 
-    .btn {
+    .topo h2 {
+      margin: 0;
+      color: #713253;
+    }
+
+    button {
       border: 0;
-      border-radius: 9px;
-      padding: 12px 18px;
-      font-size: 14px;
-      font-weight: bold;
+      cursor: pointer;
+      font-family: inherit;
     }
 
     .btn-principal {
-      background: #9a5f7b;
+      background: #8e4168;
       color: white;
+      padding: 13px 20px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: bold;
     }
 
     .btn-principal:hover {
-      background: #844e68;
+      background: #713253;
     }
 
-    .btn-secundario {
-      background: #eeeeee;
-      color: #444;
-    }
-
-    .btn-secundario:hover {
-      background: #e0e0e0;
-    }
-
-    /* ==============================
-       CONTROLES
-    ============================== */
-
-    .controles {
+    .card {
       background: white;
-      padding: 18px;
-      border-radius: 14px;
+      border-radius: 16px;
+      padding: 20px;
       margin-bottom: 20px;
 
-      display: flex;
-      align-items: end;
-      gap: 15px;
-      flex-wrap: wrap;
-
-      box-shadow: 0 3px 15px rgba(0,0,0,.06);
+      box-shadow:
+        0 3px 15px
+        rgba(0,0,0,.07);
     }
 
-    .campo {
+    .card h3 {
+      margin-top: 0;
+      color: #713253;
+    }
+
+    .filtro {
       display: flex;
-      flex-direction: column;
-      gap: 7px;
-      flex: 1;
-      min-width: 180px;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
     label {
-      font-size: 13px;
+      display: block;
+      font-size: 14px;
       font-weight: bold;
+      margin-bottom: 7px;
       color: #555;
     }
 
@@ -138,380 +124,283 @@
     textarea {
       width: 100%;
       padding: 12px;
-
       border: 1px solid #ddd;
       border-radius: 9px;
-
-      background: white;
-      color: #333;
-
       font-size: 15px;
       outline: none;
+      background: white;
     }
 
     input:focus,
     select:focus,
     textarea:focus {
-      border-color: #9a5f7b;
-      box-shadow: 0 0 0 2px rgba(154,95,123,.10);
+      border-color: #b65f8d;
     }
 
     textarea {
-      min-height: 85px;
+      min-height: 80px;
       resize: vertical;
     }
 
-    /* ==============================
-       RESUMO
-    ============================== */
+    .campo {
+      margin-bottom: 16px;
+    }
 
-    .resumo {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns:
+        repeat(2, 1fr);
       gap: 15px;
-      margin-bottom: 20px;
     }
 
-    .card-resumo {
-      background: white;
-      padding: 18px;
-      border-radius: 14px;
-
-      box-shadow: 0 3px 15px rgba(0,0,0,.06);
+    .horarios {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fill, minmax(90px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
     }
 
-    .numero {
-      color: #9a5f7b;
-      font-size: 28px;
+    .horario {
+      padding: 12px 8px;
+      border-radius: 10px;
+
+      background: #f4e6ee;
+      color: #713253;
+
+      border: 2px solid
+        transparent;
+
+      font-size: 15px;
       font-weight: bold;
     }
 
-    .card-resumo span {
+    .horario:hover {
+      background: #e8cadb;
+    }
+
+    .horario.selecionado {
+      background: #8e4168;
+      color: white;
+      border-color: #713253;
+    }
+
+    .horario.ocupado {
+      background: #eee;
+      color: #aaa;
+      cursor: not-allowed;
+      text-decoration: line-through;
+    }
+
+    .mensagem {
+      padding: 12px;
+      border-radius: 9px;
+      margin-bottom: 15px;
+      display: none;
+    }
+
+    .mensagem.erro {
+      display: block;
+      background: #ffe4e4;
+      color: #a00000;
+    }
+
+    .mensagem.sucesso {
+      display: block;
+      background: #e2f7e8;
+      color: #176b2d;
+    }
+
+    .carregando {
+      text-align: center;
       color: #777;
-      font-size: 13px;
-    }
-
-    /* ==============================
-       AGENDA
-    ============================== */
-
-    .agenda {
-      background: white;
-      border-radius: 14px;
-      overflow: hidden;
-
-      box-shadow: 0 3px 15px rgba(0,0,0,.06);
-    }
-
-    .agenda-titulo {
-      padding: 18px;
-
-      border-bottom: 1px solid #eee;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-    }
-
-    .agenda-titulo h2 {
-      font-size: 19px;
-      color: #444;
-    }
-
-    .lista {
       padding: 15px;
+    }
+
+    .sem-horarios {
+      background: #fff4f4;
+      color: #a33;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
     }
 
     .agendamento {
       border: 1px solid #eee;
-      border-left: 5px solid #a56583;
-      border-radius: 10px;
-
+      border-left: 5px solid #8e4168;
       padding: 15px;
+      border-radius: 10px;
       margin-bottom: 12px;
-
-      display: grid;
-      grid-template-columns: 80px 1fr auto;
-      gap: 15px;
-      align-items: center;
+      background: #fff;
     }
 
-    .horario-agenda {
-      font-size: 21px;
-      font-weight: bold;
-      color: #9a5f7b;
+    .agendamento-topo {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
-    .cliente {
-      font-weight: bold;
-      font-size: 16px;
+    .agendamento strong {
+      color: #713253;
     }
 
-    .detalhes {
-      margin-top: 5px;
-      color: #666;
-      font-size: 13px;
-      line-height: 1.7;
+    .info {
+      margin-top: 7px;
+      font-size: 14px;
+      color: #555;
     }
 
     .btn-cancelar {
-      background: #dc5b5b;
-      color: white;
-      border: 0;
+      background: #ffe1e1;
+      color: #a00000;
+      padding: 8px 12px;
       border-radius: 8px;
-      padding: 9px 12px;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: bold;
     }
 
     .btn-cancelar:hover {
-      background: #c94b4b;
+      background: #ffcaca;
     }
 
-    .vazio,
-    .loading {
-      padding: 45px 20px;
-      text-align: center;
-      color: #888;
-    }
-
-    /* ==============================
-       MENSAGENS
-    ============================== */
-
-    .mensagem {
-      display: none;
-      padding: 13px 15px;
-      border-radius: 9px;
-      margin-bottom: 15px;
-      font-size: 14px;
-    }
-
-    .mensagem.erro {
-      background: #ffe5e5;
-      color: #a33333;
-    }
-
-    .mensagem.sucesso {
-      background: #e3f6e8;
-      color: #28713b;
-    }
-
-    /* ==============================
-       MODAL
-    ============================== */
-
-    #modalFundo {
+    .modal {
       display: none;
 
       position: fixed;
       inset: 0;
 
-      background: rgba(0,0,0,.55);
+      background:
+        rgba(0,0,0,.55);
 
-      z-index: 9999;
+      z-index: 999;
 
-      padding: 15px;
+      padding: 20px;
 
-      align-items: center;
+      overflow-y: auto;
+    }
+
+    .modal.ativo {
+      display: flex;
+      align-items: flex-start;
       justify-content: center;
     }
 
-    #modalFundo.aberto {
-      display: flex;
-    }
-
-    .modal {
+    .modal-conteudo {
+      background: white;
       width: 100%;
       max-width: 650px;
-      max-height: 92vh;
 
-      overflow-y: auto;
+      margin: 20px auto;
 
-      background: white;
-      border-radius: 17px;
-
+      border-radius: 18px;
       padding: 25px;
 
-      box-shadow: 0 15px 50px rgba(0,0,0,.25);
+      box-shadow:
+        0 10px 40px
+        rgba(0,0,0,.2);
     }
 
     .modal-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .modal-header h2 {
-      color: #8d526e;
-      font-size: 21px;
+      margin: 0;
+      color: #713253;
     }
 
-    .btn-fechar {
-      width: 36px;
-      height: 36px;
-
-      border: 0;
+    .fechar {
+      width: 35px;
+      height: 35px;
       border-radius: 50%;
 
-      background: #eee;
-      color: #555;
+      background: #f2e6ed;
+      color: #713253;
 
-      font-size: 22px;
+      font-size: 20px;
     }
 
-    .btn-fechar:hover {
-      background: #ddd;
+    .fechar:hover {
+      background: #e5cedb;
     }
 
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-    }
-
-    .campo-completo {
-      grid-column: 1 / -1;
-    }
-
-    /* ==============================
-       HORÁRIOS
-    ============================== */
-
-    .horarios-titulo {
-      margin-bottom: 8px;
-    }
-
-    #horarios {
-      display: grid;
-
-      grid-template-columns:
-        repeat(4, 1fr);
-
-      gap: 9px;
-
-      margin-top: 4px;
-    }
-
-    .btn-horario {
-      border: 1px solid #d7c1cc;
-      border-radius: 9px;
-
-      background: white;
-      color: #8d526e;
-
-      padding: 13px 5px;
-
+    .resumo {
+      background: #f8f1f5;
+      border-radius: 10px;
+      padding: 12px;
+      margin-top: 15px;
+      color: #713253;
       font-size: 14px;
-      font-weight: bold;
-
-      transition: .15s;
     }
 
-    .btn-horario:hover:not(:disabled) {
-      background: #f7edf2;
-      border-color: #9a5f7b;
-    }
-
-    .btn-horario.selecionado {
-      background: #9a5f7b;
-      color: white;
-      border-color: #9a5f7b;
-    }
-
-    .btn-horario.ocupado,
-    .btn-horario:disabled {
-      background: #eeeeee;
-      color: #aaa;
-      border-color: #ddd;
-      cursor: not-allowed;
-      text-decoration: line-through;
-    }
-
-    .horarios-info {
-      grid-column: 1 / -1;
-
-      background: #f8f5f2;
-      color: #777;
-
-      padding: 15px;
-
-      text-align: center;
-
-      border-radius: 9px;
-
-      font-size: 13px;
-    }
-
-    /* ==============================
-       AÇÕES
-    ============================== */
-
-    .acoes-modal {
+    .acoes {
       display: flex;
-      justify-content: flex-end;
       gap: 10px;
-
-      margin-top: 22px;
+      justify-content: flex-end;
+      margin-top: 20px;
     }
 
-    /* ==============================
-       RESPONSIVO
-    ============================== */
+    .btn-secundario {
+      background: #eee;
+      color: #444;
+      padding: 12px 18px;
+      border-radius: 9px;
+      font-weight: bold;
+    }
 
-    @media (max-width: 700px) {
+    .btn-salvar {
+      background: #8e4168;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 9px;
+      font-weight: bold;
+    }
+
+    .btn-salvar:hover {
+      background: #713253;
+    }
+
+    .btn-salvar:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+
+    .preco {
+      color: #8e4168;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
 
       .topo {
-        flex-direction: column;
         align-items: stretch;
+        flex-direction: column;
       }
 
-      .topo .btn {
+      .topo .btn-principal {
         width: 100%;
       }
 
-      .resumo {
-        grid-template-columns: 1fr;
+      .modal {
+        padding: 10px;
       }
 
-      .form-grid {
-        grid-template-columns: 1fr;
+      .modal-conteudo {
+        margin: 5px auto;
+        padding: 18px;
       }
 
-      .campo-completo {
-        grid-column: auto;
-      }
-
-      #horarios {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .agendamento {
-        grid-template-columns: 65px 1fr;
-      }
-
-      .agendamento .acao {
-        grid-column: 1 / -1;
-      }
-
-      .agenda-titulo {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .agenda-titulo .btn {
-        width: 100%;
-      }
-
-    }
-
-    @media (max-width: 400px) {
-
-      #horarios {
-        grid-template-columns: repeat(2, 1fr);
+      .horarios {
+        grid-template-columns:
+          repeat(3, 1fr);
       }
 
     }
@@ -521,1785 +410,1222 @@
 
 <body>
 
-  <!-- =========================================
-       TOPO
-  ========================================== -->
+<header>
 
-  <header>
+  <h1>Salão Janaina</h1>
 
-    <div class="topo">
+  <p>
+    Agenda de clientes
+  </p>
 
-      <div class="titulo">
-
-        <h1>💇 Agenda do Salão</h1>
-
-        <p>
-          Controle de clientes e horários
-        </p>
-
-      </div>
-
-      <button
-        type="button"
-        id="btnNovoTopo"
-        class="btn btn-principal"
-      >
-        + Novo agendamento
-      </button>
-
-    </div>
-
-  </header>
+</header>
 
 
-  <main class="container">
+<div class="container">
 
-    <!-- MENSAGENS -->
+  <div class="topo">
 
-    <div
-      id="mensagemErro"
-      class="mensagem erro"
-    ></div>
+    <h2>Agenda</h2>
 
-    <div
-      id="mensagemSucesso"
-      class="mensagem sucesso"
-    ></div>
+    <button
+      class="btn-principal"
+      onclick="abrirNovoAgendamento()"
+    >
+      + Novo Agendamento
+    </button>
+
+  </div>
 
 
-    <!-- =========================================
-         CONTROLE DA AGENDA
-    ========================================== -->
+  <div
+    id="mensagemPrincipal"
+    class="mensagem"
+  ></div>
 
-    <section class="controles">
 
-      <div class="campo">
+  <div class="card">
+
+    <h3>Agendamentos do dia</h3>
+
+    <div class="filtro">
+
+      <div style="width:100%;max-width:250px">
 
         <label for="dataAgenda">
-          Data da agenda
+          Data
         </label>
 
         <input
           type="date"
           id="dataAgenda"
+          onchange="carregarAgenda()"
         >
 
       </div>
-
-
-      <button
-        type="button"
-        id="btnHoje"
-        class="btn btn-secundario"
-      >
-        Hoje
-      </button>
-
-
-      <button
-        type="button"
-        id="btnAtualizar"
-        class="btn btn-secundario"
-      >
-        🔄 Atualizar
-      </button>
-
-    </section>
-
-
-    <!-- =========================================
-         RESUMO
-    ========================================== -->
-
-    <section class="resumo">
-
-      <div class="card-resumo">
-
-        <div
-          id="totalAgendamentos"
-          class="numero"
-        >
-          0
-        </div>
-
-        <span>
-          Agendamentos
-        </span>
-
-      </div>
-
-
-      <div class="card-resumo">
-
-        <div
-          id="totalHoras"
-          class="numero"
-        >
-          0h
-        </div>
-
-        <span>
-          Tempo agendado
-        </span>
-
-      </div>
-
-
-      <div class="card-resumo">
-
-        <div
-          id="proximoHorario"
-          class="numero"
-        >
-          --:--
-        </div>
-
-        <span>
-          Primeiro horário
-        </span>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================================
-         AGENDA
-    ========================================== -->
-
-    <section class="agenda">
-
-      <div class="agenda-titulo">
-
-        <h2>
-          Agenda de
-          <span id="dataTitulo">
-            --/--/----
-          </span>
-        </h2>
-
-        <button
-          type="button"
-          id="btnAgendarCliente"
-          class="btn btn-principal"
-        >
-          + Agendar cliente
-        </button>
-
-      </div>
-
-
-      <div
-        id="listaAgendamentos"
-        class="lista"
-      >
-
-        <div class="loading">
-          Carregando agenda...
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- =========================================
-       MODAL
-  ========================================== -->
-
-  <div
-    id="modalFundo"
-  >
-
-    <div class="modal">
-
-      <div class="modal-header">
-
-        <h2>
-          Novo agendamento
-        </h2>
-
-        <button
-          type="button"
-          id="btnFechar"
-          class="btn-fechar"
-        >
-          ×
-        </button>
-
-      </div>
-
-
-      <form
-        id="formAgendamento"
-      >
-
-        <div class="form-grid">
-
-          <!-- CLIENTE -->
-
-          <div class="campo campo-completo">
-
-            <label for="cliente">
-              Nome da cliente *
-            </label>
-
-            <input
-              type="text"
-              id="cliente"
-              autocomplete="name"
-              placeholder="Digite o nome da cliente"
-              required
-            >
-
-          </div>
-
-
-          <!-- WHATSAPP -->
-
-          <div class="campo">
-
-            <label for="whatsapp">
-              WhatsApp *
-            </label>
-
-            <input
-              type="tel"
-              id="whatsapp"
-              placeholder="(31) 99999-9999"
-              required
-            >
-
-          </div>
-
-
-          <!-- DATA -->
-
-          <div class="campo">
-
-            <label for="data">
-              Data *
-            </label>
-
-            <input
-              type="date"
-              id="data"
-              required
-            >
-
-          </div>
-
-
-          <!-- SERVIÇO -->
-
-          <div class="campo campo-completo">
-
-            <label for="servico">
-              Serviço *
-            </label>
-
-            <select
-              id="servico"
-              required
-            >
-
-              <option value="">
-                Carregando serviços...
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <!-- HORÁRIOS -->
-
-          <div class="campo campo-completo">
-
-            <label>
-              Horário disponível *
-            </label>
-
-            <input
-              type="hidden"
-              id="hora"
-              required
-            >
-
-            <div id="horarios">
-
-              <div class="horarios-info">
-                Selecione uma data para ver os horários.
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <!-- DURAÇÃO -->
-
-          <div class="campo">
-
-            <label for="duracao">
-              Duração
-            </label>
-
-            <input
-              type="text"
-              id="duracao"
-              readonly
-              placeholder="Automático"
-            >
-
-          </div>
-
-
-          <!-- PREÇO -->
-
-          <div class="campo">
-
-            <label for="preco">
-              Preço
-            </label>
-
-            <input
-              type="text"
-              id="preco"
-              readonly
-              placeholder="Automático"
-            >
-
-          </div>
-
-
-          <!-- OBSERVAÇÃO -->
-
-          <div class="campo campo-completo">
-
-            <label for="observacao">
-              Observação
-            </label>
-
-            <textarea
-              id="observacao"
-              placeholder="Alguma observação sobre a cliente..."
-            ></textarea>
-
-          </div>
-
-        </div>
-
-
-        <div class="acoes-modal">
-
-          <button
-            type="button"
-            id="btnCancelarModal"
-            class="btn btn-secundario"
-          >
-            Fechar
-          </button>
-
-          <button
-            type="submit"
-            class="btn btn-principal"
-            id="btnSalvar"
-          >
-            Salvar agendamento
-          </button>
-
-        </div>
-
-      </form>
 
     </div>
 
   </div>
 
 
-  <!-- =========================================
-       JAVASCRIPT
-  ========================================== -->
+  <div
+    id="listaAgendamentos"
+    class="card"
+  >
 
-  <script>
+    <div class="carregando">
+      Carregando...
+    </div>
 
-    /*
-     * =====================================================
-     * CONFIGURAÇÃO
-     * =====================================================
-     */
+  </div>
 
-    const API_URL =
-      "https://script.google.com/macros/s/AKfycbxlDNqWDBZZ_BQiECAgMFgd1iZKmv-T1AVBOg2bTnvJdPj7NGolqTbQYdUljRORD3DK/exec";
+</div>
 
 
-    let servicos = [];
+<!-- =========================================================
+     MODAL NOVO AGENDAMENTO
+========================================================= -->
 
-    let agendamentos = [];
+<div
+  id="modal"
+  class="modal"
+>
 
+  <div class="modal-conteudo">
 
-    /*
-     * =====================================================
-     * INICIALIZAÇÃO
-     * =====================================================
-     */
+    <div class="modal-header">
 
-    document.addEventListener(
-      "DOMContentLoaded",
-      iniciar
-    );
+      <h2>
+        Novo Agendamento
+      </h2>
 
+      <button
+        class="fechar"
+        onclick="fecharModal()"
+      >
+        ×
+      </button>
 
-    async function iniciar() {
+    </div>
 
-      console.log(
-        "Sistema iniciando..."
-      );
 
+    <div
+      id="mensagemModal"
+      class="mensagem"
+    ></div>
 
-      configurarEventos();
 
+    <div class="campo">
 
-      colocarDataHoje();
+      <label for="cliente">
+        Nome da cliente *
+      </label>
 
+      <input
+        type="text"
+        id="cliente"
+        placeholder="Digite o nome da cliente"
+      >
 
-      await carregarServicos();
+    </div>
 
 
-      await carregarAgenda();
+    <div class="campo">
 
-    }
+      <label for="whatsapp">
+        WhatsApp *
+      </label>
 
+      <input
+        type="tel"
+        id="whatsapp"
+        placeholder="(31) 99999-9999"
+      >
 
-    /*
-     * =====================================================
-     * EVENTOS
-     * =====================================================
-     */
+    </div>
 
-    function configurarEventos() {
 
-      document
-        .getElementById("btnNovoTopo")
-        .addEventListener(
-          "click",
-          abrirModal
-        );
+    <div class="grid">
 
+      <div class="campo">
 
-      document
-        .getElementById("btnAgendarCliente")
-        .addEventListener(
-          "click",
-          abrirModal
-        );
+        <label for="data">
+          Data *
+        </label>
 
+        <input
+          type="date"
+          id="data"
+          onchange="dataAlterada()"
+        >
 
-      document
-        .getElementById("btnFechar")
-        .addEventListener(
-          "click",
-          fecharModal
-        );
+      </div>
 
 
-      document
-        .getElementById("btnCancelarModal")
-        .addEventListener(
-          "click",
-          fecharModal
-        );
+      <div class="campo">
 
+        <label for="servico">
+          Serviço *
+        </label>
 
-      document
-        .getElementById("btnHoje")
-        .addEventListener(
-          "click",
-          function() {
+        <select
+          id="servico"
+          onchange="servicoAlterado()"
+        >
 
-            colocarDataHoje();
+          <option value="">
+            Selecione o serviço
+          </option>
 
-            carregarAgenda();
+        </select>
 
-          }
-        );
+      </div>
 
+    </div>
 
-      document
-        .getElementById("btnAtualizar")
-        .addEventListener(
-          "click",
-          carregarAgenda
-        );
 
+    <div class="campo">
 
-      document
-        .getElementById("dataAgenda")
-        .addEventListener(
-          "change",
-          carregarAgenda
-        );
+      <label>
+        Horário *
+      </label>
 
+      <div
+        id="areaHorarios"
+        class="horarios"
+      >
 
-      document
-        .getElementById("data")
-        .addEventListener(
-          "change",
-          carregarHorarios
-        );
+        <div class="carregando">
+          Selecione uma data.
+        </div>
 
+      </div>
 
-      document
-        .getElementById("servico")
-        .addEventListener(
-          "change",
-          function() {
+    </div>
 
-            atualizarDadosServico();
 
-            carregarHorarios();
+    <div class="campo">
 
-          }
-        );
+      <label for="observacao">
+        Observação
+      </label>
 
+      <textarea
+        id="observacao"
+        placeholder="Observações da cliente..."
+      ></textarea>
 
-      document
-        .getElementById("formAgendamento")
-        .addEventListener(
-          "submit",
-          salvarAgendamento
-        );
+    </div>
 
 
-      /*
-       * Clicar fora do modal fecha.
-       */
+    <div
+      id="resumo"
+      class="resumo"
+      style="display:none"
+    ></div>
 
-      document
-        .getElementById("modalFundo")
-        .addEventListener(
-          "click",
-          function(event) {
 
-            if (
-              event.target ===
-              document.getElementById("modalFundo")
-            ) {
+    <div class="acoes">
 
-              fecharModal();
+      <button
+        class="btn-secundario"
+        onclick="fecharModal()"
+      >
+        Cancelar
+      </button>
 
-            }
+      <button
+        id="btnSalvar"
+        class="btn-salvar"
+        onclick="salvarAgendamento()"
+      >
+        Agendar Cliente
+      </button>
 
-          }
-        );
+    </div>
 
-    }
+  </div>
 
+</div>
 
-    /*
-     * =====================================================
-     * DATA DE HOJE
-     * =====================================================
-     */
 
-    function obterDataHoje() {
+<script>
 
-      const agora =
-        new Date();
+  /*
+   * ==========================================================
+   * CONFIGURAÇÃO
+   * ==========================================================
+   */
 
+  const API_URL =
+    'https://script.google.com/macros/s/AKfycbxlDNqWDBZZ_BQiECAgMFgd1iZKmv-T1AVBOg2bTnvJdPj7NGolqTbQYdUljRORD3DK/exec';
 
-      const ano =
-        agora.getFullYear();
 
+  let servicos = [];
 
-      const mes =
-        String(
-          agora.getMonth() + 1
-        ).padStart(2, "0");
+  let horarioSelecionado = '';
 
+  let agendamentosAtuais = [];
 
-      const dia =
-        String(
-          agora.getDate()
-        ).padStart(2, "0");
 
+  /*
+   * ==========================================================
+   * INICIALIZAÇÃO
+   * ==========================================================
+   */
 
-      return (
-        ano +
-        "-" +
-        mes +
-        "-" +
-        dia
-      );
-
-    }
-
-
-    function colocarDataHoje() {
+  document.addEventListener(
+    'DOMContentLoaded',
+    function() {
 
       const hoje =
         obterDataHoje();
 
+      document
+        .getElementById(
+          'dataAgenda'
+        )
+        .value = hoje;
+
 
       document
-        .getElementById("dataAgenda")
-        .value =
-        hoje;
+        .getElementById(
+          'data'
+        )
+        .min = hoje;
 
 
       document
-        .getElementById("data")
-        .value =
-        hoje;
+        .getElementById(
+          'dataAgenda'
+        )
+        .min = hoje;
 
 
-      atualizarTitulo(
-        hoje
-      );
+      carregarServicos();
+
+      carregarAgenda();
 
     }
+  );
+
+
+  /*
+   * ==========================================================
+   * DATA HOJE
+   * ==========================================================
+   */
+
+  function obterDataHoje() {
+
+    const agora =
+      new Date();
+
+
+    const ano =
+      agora.getFullYear();
+
+
+    const mes =
+      String(
+        agora.getMonth() + 1
+      ).padStart(
+        2,
+        '0'
+      );
+
+
+    const dia =
+      String(
+        agora.getDate()
+      ).padStart(
+        2,
+        '0'
+      );
+
+
+    return (
+      ano +
+      '-' +
+      mes +
+      '-' +
+      dia
+    );
+
+  }
+
+
+  /*
+   * ==========================================================
+   * ABRIR MODAL
+   * ==========================================================
+   */
+
+  function abrirNovoAgendamento() {
+
+    limparFormulario();
+
+
+    document
+      .getElementById(
+        'modal'
+      )
+      .classList
+      .add('ativo');
+
+
+    document
+      .getElementById(
+        'data'
+      )
+      .value =
+      document
+        .getElementById(
+          'dataAgenda'
+        )
+        .value ||
+      obterDataHoje();
+
+
+    carregarServicos();
 
 
     /*
-     * =====================================================
-     * MODAL
-     * =====================================================
+     * Se já existe serviço selecionado,
+     * carrega os horários.
      */
 
-    function abrirModal() {
+    atualizarHorarios();
 
-      console.log(
-        "Abrindo modal..."
-      );
+  }
 
 
-      const modal =
-        document.getElementById(
-          "modalFundo"
+  /*
+   * ==========================================================
+   * FECHAR MODAL
+   * ==========================================================
+   */
+
+  function fecharModal() {
+
+    document
+      .getElementById(
+        'modal'
+      )
+      .classList
+      .remove('ativo');
+
+  }
+
+
+  /*
+   * ==========================================================
+   * LIMPAR FORMULÁRIO
+   * ==========================================================
+   */
+
+  function limparFormulario() {
+
+    document
+      .getElementById(
+        'cliente'
+      )
+      .value = '';
+
+
+    document
+      .getElementById(
+        'whatsapp'
+      )
+      .value = '';
+
+
+    document
+      .getElementById(
+        'observacao'
+      )
+      .value = '';
+
+
+    document
+      .getElementById(
+        'servico'
+      )
+      .value = '';
+
+
+    horarioSelecionado = '';
+
+
+    document
+      .getElementById(
+        'resumo'
+      )
+      .style.display =
+      'none';
+
+
+    esconderMensagem(
+      'mensagemModal'
+    );
+
+
+    mostrarMensagemHorario(
+      'Selecione uma data e um serviço.'
+    );
+
+  }
+
+
+  /*
+   * ==========================================================
+   * CARREGAR SERVIÇOS
+   * ==========================================================
+   */
+
+  async function carregarServicos() {
+
+    try {
+
+      const resposta =
+        await fetch(
+          API_URL +
+          '?acao=servicos'
         );
 
 
-      modal.classList.add(
-        "aberto"
-      );
+      const dados =
+        await resposta.json();
 
 
-      /*
-       * Coloca a data da agenda no formulário.
-       */
+      if (
+        !Array.isArray(
+          dados
+        )
+      ) {
 
-      const dataAgenda =
-        document
-          .getElementById("dataAgenda")
-          .value;
-
-
-      if (dataAgenda) {
-
-        document
-          .getElementById("data")
-          .value =
-          dataAgenda;
+        throw new Error(
+          'Resposta inválida ao carregar serviços.'
+        );
 
       }
 
 
-      /*
-       * Carrega os horários imediatamente.
-       */
+      servicos = dados;
 
-      carregarHorarios();
-
-
-      setTimeout(
-        function() {
-
-          document
-            .getElementById("cliente")
-            .focus();
-
-        },
-        100
-      );
-
-    }
-
-
-    function fecharModal() {
-
-      const modal =
-        document.getElementById(
-          "modalFundo"
-        );
-
-
-      modal.classList.remove(
-        "aberto"
-      );
-
-
-      limparFormulario();
-
-    }
-
-
-    function limparFormulario() {
-
-      document
-        .getElementById("formAgendamento")
-        .reset();
-
-
-      const dataAgenda =
-        document
-          .getElementById("dataAgenda")
-          .value;
-
-
-      if (dataAgenda) {
-
-        document
-          .getElementById("data")
-          .value =
-          dataAgenda;
-
-      }
-
-
-      document
-        .getElementById("hora")
-        .value =
-        "";
-
-
-      document
-        .getElementById("duracao")
-        .value =
-        "";
-
-
-      document
-        .getElementById("preco")
-        .value =
-        "";
-
-
-      document
-        .getElementById("horarios")
-        .innerHTML = `
-
-          <div class="horarios-info">
-            Selecione uma data para ver os horários.
-          </div>
-
-        `;
-
-    }
-
-
-    /*
-     * =====================================================
-     * SERVIÇOS
-     * =====================================================
-     */
-
-    async function carregarServicos() {
 
       const select =
         document.getElementById(
-          "servico"
+          'servico'
         );
-
-
-      try {
-
-        select.innerHTML = `
-          <option value="">
-            Carregando serviços...
-          </option>
-        `;
-
-
-        const resposta =
-          await fetch(
-            API_URL +
-            "?acao=servicos"
-          );
-
-
-        if (!resposta.ok) {
-
-          throw new Error(
-            "Erro HTTP " +
-            resposta.status
-          );
-
-        }
-
-
-        const dados =
-          await resposta.json();
-
-
-        console.log(
-          "Serviços recebidos:",
-          dados
-        );
-
-
-        if (
-          !Array.isArray(dados)
-        ) {
-
-          throw new Error(
-            "A API não retornou uma lista de serviços."
-          );
-
-        }
-
-
-        servicos =
-          dados;
-
-
-        select.innerHTML = `
-          <option value="">
-            Selecione o serviço
-          </option>
-        `;
-
-
-        servicos.forEach(
-          function(servico) {
-
-            const option =
-              document.createElement(
-                "option"
-              );
-
-
-            option.value =
-              servico.id;
-
-
-            option.textContent =
-              servico.nome;
-
-
-            select.appendChild(
-              option
-            );
-
-          }
-        );
-
-
-      } catch (erro) {
-
-        console.error(
-          "Erro serviços:",
-          erro
-        );
-
-
-        select.innerHTML = `
-          <option value="">
-            Erro ao carregar serviços
-          </option>
-        `;
-
-
-        mostrarErro(
-          "Não foi possível carregar os serviços: " +
-          erro.message
-        );
-
-      }
-
-    }
-
-
-    /*
-     * =====================================================
-     * SERVIÇO SELECIONADO
-     * =====================================================
-     */
-
-    function obterServicoSelecionado() {
-
-      const id =
-        document
-          .getElementById("servico")
-          .value;
-
-
-      return servicos.find(
-        function(servico) {
-
-          return String(
-            servico.id
-          ) === String(id);
-
-        }
-      );
-
-    }
-
-
-    function atualizarDadosServico() {
-
-      const servico =
-        obterServicoSelecionado();
-
-
-      const duracao =
-        document.getElementById(
-          "duracao"
-        );
-
-
-      const preco =
-        document.getElementById(
-          "preco"
-        );
-
-
-      if (!servico) {
-
-        duracao.value = "";
-
-        preco.value = "";
-
-        return;
-
-      }
-
-
-      duracao.value =
-        servico.duracao +
-        " minutos";
-
-
-      preco.value =
-        formatarMoeda(
-          servico.preco
-        );
-
-    }
-
-
-    /*
-     * =====================================================
-     * HORÁRIOS
-     * =====================================================
-     */
-
-    async function carregarHorarios() {
-
-      const data =
-        document
-          .getElementById("data")
-          .value;
-
-
-      const container =
-        document.getElementById(
-          "horarios"
-        );
-
-
-      const campoHora =
-        document.getElementById(
-          "hora"
-        );
-
-
-      campoHora.value = "";
-
-
-      if (!data) {
-
-        container.innerHTML = `
-          <div class="horarios-info">
-            Selecione uma data.
-          </div>
-        `;
-
-        return;
-
-      }
 
 
       /*
-       * Se o serviço ainda não foi selecionado,
-       * usamos 30 minutos para listar os horários.
+       * Mantém a opção inicial.
        */
 
-      const servico =
-        obterServicoSelecionado();
+      select.innerHTML =
+        '<option value="">Selecione o serviço</option>';
 
 
-      let duracao = 30;
+      servicos.forEach(
+        function(servico) {
+
+          const option =
+            document.createElement(
+              'option'
+            );
 
 
-      if (servico) {
-
-        duracao =
-          Number(
-            servico.duracao
-          );
-
-      }
+          option.value =
+            servico.id;
 
 
-      container.innerHTML = `
-        <div class="horarios-info">
-          Buscando horários disponíveis...
-        </div>
-      `;
+          option.textContent =
+            servico.nome +
+            ' - ' +
+            servico.duracao +
+            ' min' +
+            (
+              servico.preco
+                ? ' - R$ ' +
+                  Number(
+                    servico.preco
+                  ).toFixed(2).replace(
+                    '.',
+                    ','
+                  )
+                : ''
+            );
 
 
-      try {
-
-        const url =
-          API_URL +
-          "?acao=horarios" +
-          "&data=" +
-          encodeURIComponent(data) +
-          "&duracao=" +
-          encodeURIComponent(duracao);
-
-
-        console.log(
-          "Consultando:",
-          url
-        );
-
-
-        const resposta =
-          await fetch(
-            url
-          );
-
-
-        if (!resposta.ok) {
-
-          throw new Error(
-            "Erro HTTP " +
-            resposta.status
+          select.appendChild(
+            option
           );
 
         }
+      );
+
+    } catch (erro) {
+
+      mostrarMensagem(
+        'mensagemModal',
+        'Erro ao carregar os serviços: ' +
+        erro.message,
+        'erro'
+      );
+
+    }
+
+  }
 
 
-        const resultado =
-          await resposta.json();
+  /*
+   * ==========================================================
+   * DATA ALTERADA
+   * ==========================================================
+   */
+
+  function dataAlterada() {
+
+    horarioSelecionado = '';
+
+    atualizarHorarios();
+
+  }
 
 
-        console.log(
-          "Resposta horários:",
-          resultado
+  /*
+   * ==========================================================
+   * SERVIÇO ALTERADO
+   * ==========================================================
+   */
+
+  function servicoAlterado() {
+
+    horarioSelecionado = '';
+
+    atualizarHorarios();
+
+  }
+
+
+  /*
+   * ==========================================================
+   * ATUALIZAR HORÁRIOS
+   * ==========================================================
+   */
+
+  async function atualizarHorarios() {
+
+    const data =
+      document
+        .getElementById(
+          'data'
+        )
+        .value;
+
+
+    const servicoId =
+      document
+        .getElementById(
+          'servico'
+        )
+        .value;
+
+
+    const area =
+      document
+        .getElementById(
+          'areaHorarios'
         );
 
 
-        if (
-          resultado.sucesso === false
-        ) {
-
-          throw new Error(
-            resultado.erro ||
-            "Erro na API."
-          );
-
-        }
+    horarioSelecionado = '';
 
 
-        /*
-         * Aceita tanto:
-         *
-         * resultado.horarios
-         *
-         * quanto uma resposta direta em array.
-         */
+    if (!data) {
 
-        let horarios =
-          Array.isArray(
-            resultado
-          )
-          ?
-          resultado
-          :
-          resultado.horarios;
+      area.innerHTML =
+        '<div class="carregando">' +
+        'Selecione uma data.' +
+        '</div>';
 
+      atualizarResumo();
 
-        if (
-          !Array.isArray(horarios)
-        ) {
-
-          throw new Error(
-            "A API não retornou os horários."
-          );
-
-        }
-
-
-        mostrarHorarios(
-          horarios
-        );
-
-
-      } catch (erro) {
-
-        console.error(
-          "Erro horários:",
-          erro
-        );
-
-
-        container.innerHTML = `
-
-          <div class="horarios-info">
-
-            Não foi possível carregar os horários.
-
-            <br><br>
-
-            ${escaparHTML(
-              erro.message
-            )}
-
-          </div>
-
-        `;
-
-      }
+      return;
 
     }
 
 
-    function mostrarHorarios(
-      horarios
-    ) {
+    if (!servicoId) {
 
-      const container =
-        document.getElementById(
-          "horarios"
+      area.innerHTML =
+        '<div class="carregando">' +
+        'Agora selecione o serviço.' +
+        '</div>';
+
+      atualizarResumo();
+
+      return;
+
+    }
+
+
+    const servico =
+      servicos.find(
+        function(item) {
+
+          return String(
+            item.id
+          ) === String(
+            servicoId
+          );
+
+        }
+      );
+
+
+    if (!servico) {
+
+      area.innerHTML =
+        '<div class="sem-horarios">' +
+        'Serviço não encontrado.' +
+        '</div>';
+
+      return;
+
+    }
+
+
+    area.innerHTML =
+      '<div class="carregando">' +
+      'Buscando horários disponíveis...' +
+      '</div>';
+
+
+    try {
+
+      const url =
+        API_URL +
+        '?acao=horarios' +
+        '&data=' +
+        encodeURIComponent(
+          data
+        ) +
+        '&duracao=' +
+        encodeURIComponent(
+          servico.duracao
         );
 
 
-      container.innerHTML = "";
+      console.log(
+        'Consultando:',
+        url
+      );
 
 
-      if (
-        !horarios ||
-        horarios.length === 0
-      ) {
+      const resposta =
+        await fetch(
+          url,
+          {
+            method: 'GET',
+            cache: 'no-store'
+          }
+        );
 
-        container.innerHTML = `
-          <div class="horarios-info">
-            Nenhum horário disponível para esta data.
-          </div>
-        `;
 
-        return;
+      if (!resposta.ok) {
+
+        throw new Error(
+          'Erro HTTP ' +
+          resposta.status
+        );
 
       }
 
 
-      horarios.forEach(
+      const dados =
+        await resposta.json();
+
+
+      console.log(
+        'Horários recebidos:',
+        dados
+      );
+
+
+      if (
+        !dados ||
+        dados.sucesso === false
+      ) {
+
+        throw new Error(
+          dados.erro ||
+          'Erro ao consultar horários.'
+        );
+
+      }
+
+
+      renderizarHorarios(
+        dados.horarios || []
+      );
+
+
+    } catch (erro) {
+
+      console.error(
+        erro
+      );
+
+
+      area.innerHTML =
+        '<div class="sem-horarios">' +
+        'Não foi possível carregar os horários.<br><br>' +
+        '<small>' +
+        escapeHtml(
+          erro.message
+        ) +
+        '</small>' +
+        '</div>';
+
+    }
+
+  }
+
+
+  /*
+   * ==========================================================
+   * RENDERIZAR HORÁRIOS
+   * ==========================================================
+   */
+
+  function renderizarHorarios(
+    horarios
+  ) {
+
+    const area =
+      document
+        .getElementById(
+          'areaHorarios'
+        );
+
+
+    if (
+      !horarios ||
+      horarios.length === 0
+    ) {
+
+      area.innerHTML =
+        '<div class="sem-horarios">' +
+        'Não há horários disponíveis para esta data.' +
+        '</div>';
+
+      return;
+
+    }
+
+
+    const disponiveis =
+      horarios.filter(
         function(item) {
 
-          const hora =
-            item.hora ||
-            item;
+          return item.disponivel;
+
+        }
+      );
 
 
-          /*
-           * Aceita:
-           *
-           * disponivel: true
-           *
-           * disponível: true
-           *
-           * ou disponível sem informação,
-           * considerando livre.
-           */
+    if (
+      disponiveis.length === 0
+    ) {
 
-          const disponivel =
-            item.disponivel !== undefined
-            ?
-            Boolean(item.disponivel)
-            :
-            item.disponível !== undefined
-            ?
-            Boolean(item.disponível)
-            :
+      area.innerHTML =
+        '<div class="sem-horarios">' +
+        'Todos os horários estão ocupados nesta data.' +
+        '</div>';
+
+      return;
+
+    }
+
+
+    area.innerHTML = '';
+
+
+    horarios.forEach(
+      function(item) {
+
+        const botao =
+          document.createElement(
+            'button'
+          );
+
+
+        botao.type =
+          'button';
+
+
+        botao.textContent =
+          item.hora;
+
+
+        botao.className =
+          'horario';
+
+
+        if (
+          !item.disponivel
+        ) {
+
+          botao.classList.add(
+            'ocupado'
+          );
+
+          botao.disabled =
             true;
 
+          botao.title =
+            'Horário ocupado';
 
-          const botao =
-            document.createElement(
-              "button"
-            );
+        } else {
 
-
-          botao.type =
-            "button";
-
-
-          botao.className =
-            "btn-horario";
-
-
-          botao.textContent =
-            hora;
-
-
-          if (!disponivel) {
-
-            botao.disabled =
-              true;
-
-
-            botao.classList.add(
-              "ocupado"
-            );
-
-
-            botao.title =
-              "Horário ocupado";
-
-
-          } else {
-
-            botao.addEventListener(
-              "click",
-              function() {
-
-                selecionarHorario(
-                  hora,
-                  botao
-                );
-
-              }
-            );
-
-          }
-
-
-          container.appendChild(
-            botao
-          );
-
-        }
-      );
-
-    }
-
-
-    function selecionarHorario(
-      hora,
-      botao
-    ) {
-
-      document
-        .querySelectorAll(
-          "#horarios .btn-horario"
-        )
-        .forEach(
-          function(item) {
-
-            item.classList.remove(
-              "selecionado"
-            );
-
-          }
-        );
-
-
-      botao.classList.add(
-        "selecionado"
-      );
-
-
-      document
-        .getElementById("hora")
-        .value =
-        hora;
-
-    }
-
-
-    /*
-     * =====================================================
-     * AGENDA
-     * =====================================================
-     */
-
-    async function carregarAgenda() {
-
-      const data =
-        document
-          .getElementById("dataAgenda")
-          .value;
-
-
-      if (!data) {
-
-        return;
-
-      }
-
-
-      atualizarTitulo(
-        data
-      );
-
-
-      const lista =
-        document.getElementById(
-          "listaAgendamentos"
-        );
-
-
-      lista.innerHTML = `
-        <div class="loading">
-          Carregando agenda...
-        </div>
-      `;
-
-
-      try {
-
-        const url =
-          API_URL +
-          "?acao=agendamentos" +
-          "&data=" +
-          encodeURIComponent(data);
-
-
-        const resposta =
-          await fetch(
-            url
-          );
-
-
-        if (!resposta.ok) {
-
-          throw new Error(
-            "Erro HTTP " +
-            resposta.status
-          );
-
-        }
-
-
-        const dados =
-          await resposta.json();
-
-
-        if (
-          !Array.isArray(dados)
-        ) {
-
-          throw new Error(
-            "Resposta inválida da agenda."
-          );
-
-        }
-
-
-        agendamentos =
-          dados.sort(
-            function(a,b) {
-
-              return converterMinutos(
-                a.hora
-              )
-              -
-              converterMinutos(
-                b.hora
-              );
-
-            }
-          );
-
-
-        mostrarAgenda();
-
-        atualizarResumo();
-
-
-      } catch (erro) {
-
-        console.error(
-          "Erro agenda:",
-          erro
-        );
-
-
-        lista.innerHTML = `
-          <div class="vazio">
-            Não foi possível carregar a agenda.
-          </div>
-        `;
-
-
-        mostrarErro(
-          erro.message
-        );
-
-      }
-
-    }
-
-
-    function atualizarTitulo(
-      data
-    ) {
-
-      if (!data) {
-
-        return;
-
-      }
-
-
-      const partes =
-        data.split("-");
-
-
-      document
-        .getElementById("dataTitulo")
-        .textContent =
-        partes[2] +
-        "/" +
-        partes[1] +
-        "/" +
-        partes[0];
-
-    }
-
-
-    function mostrarAgenda() {
-
-      const lista =
-        document.getElementById(
-          "listaAgendamentos"
-        );
-
-
-      if (
-        agendamentos.length === 0
-      ) {
-
-        lista.innerHTML = `
-          <div class="vazio">
-            Nenhum agendamento para este dia.
-          </div>
-        `;
-
-        return;
-
-      }
-
-
-      lista.innerHTML = "";
-
-
-      agendamentos.forEach(
-        function(item) {
-
-          const div =
-            document.createElement(
-              "div"
-            );
-
-
-          div.className =
-            "agendamento";
-
-
-          const observacao =
-            item.observacao
-            ?
-            `
-              <br>
-              📝 ${escaparHTML(item.observacao)}
-            `
-            :
-            "";
-
-
-          div.innerHTML = `
-
-            <div class="horario-agenda">
-              ${escaparHTML(item.hora)}
-            </div>
-
-            <div>
-
-              <div class="cliente">
-                ${escaparHTML(item.cliente)}
-              </div>
-
-              <div class="detalhes">
-
-                💇 ${escaparHTML(item.servico)}
-
-                <br>
-
-                📱 ${formatarTelefone(item.whatsapp)}
-
-                <br>
-
-                ⏱️ ${item.duracao} minutos
-
-                ${observacao}
-
-              </div>
-
-            </div>
-
-            <div class="acao">
-
-              <button
-                type="button"
-                class="btn-cancelar"
-                data-id="${escaparHTML(item.id)}"
-              >
-                Cancelar
-              </button>
-
-            </div>
-
-          `;
-
-
-          const botaoCancelar =
-            div.querySelector(
-              ".btn-cancelar"
-            );
-
-
-          botaoCancelar.addEventListener(
-            "click",
+          botao.onclick =
             function() {
 
-              cancelarAgendamento(
-                item.id
+              selecionarHorario(
+                item.hora,
+                botao
               );
 
-            }
-          );
-
-
-          lista.appendChild(
-            div
-          );
+            };
 
         }
-      );
-
-    }
 
 
-    /*
-     * =====================================================
-     * RESUMO
-     * =====================================================
-     */
+        area.appendChild(
+          botao
+        );
 
-    function atualizarResumo() {
+      }
+    );
 
-      const total =
-        agendamentos.length;
+  }
 
 
-      document
-        .getElementById(
-          "totalAgendamentos"
-        )
-        .textContent =
-        total;
+  /*
+   * ==========================================================
+   * SELECIONAR HORÁRIO
+   * ==========================================================
+   */
 
+  function selecionarHorario(
+    hora,
+    botao
+  ) {
 
-      let minutos = 0;
-
-
-      agendamentos.forEach(
+    document
+      .querySelectorAll(
+        '#areaHorarios .horario'
+      )
+      .forEach(
         function(item) {
 
-          minutos +=
-            Number(
-              item.duracao || 0
-            );
+          item.classList.remove(
+            'selecionado'
+          );
 
         }
       );
 
 
-      const horas =
-        Math.floor(
-          minutos / 60
+    botao.classList.add(
+      'selecionado'
+    );
+
+
+    horarioSelecionado =
+      hora;
+
+
+    atualizarResumo();
+
+  }
+
+
+  /*
+   * ==========================================================
+   * RESUMO
+   * ==========================================================
+   */
+
+  function atualizarResumo() {
+
+    const resumo =
+      document
+        .getElementById(
+          'resumo'
         );
 
 
-      const minutosRestantes =
-        minutos % 60;
-
-
+    const data =
       document
         .getElementById(
-          "totalHoras"
+          'data'
         )
-        .textContent =
-        horas +
-        "h " +
-        minutosRestantes +
-        "min";
+        .value;
 
 
+    const servicoId =
       document
         .getElementById(
-          "proximoHorario"
+          'servico'
         )
-        .textContent =
-        total > 0
-        ?
-        agendamentos[0].hora
-        :
-        "--:--";
+        .value;
+
+
+    if (
+      !data ||
+      !servicoId ||
+      !horarioSelecionado
+    ) {
+
+      resumo.style.display =
+        'none';
+
+      return;
 
     }
 
 
-    /*
-     * =====================================================
-     * SALVAR AGENDAMENTO
-     * =====================================================
-     */
+    const servico =
+      servicos.find(
+        function(item) {
 
-    async function salvarAgendamento(
-      event
-    ) {
+          return String(
+            item.id
+          ) === String(
+            servicoId
+          );
 
-      event.preventDefault();
-
-
-      const cliente =
-        document
-          .getElementById("cliente")
-          .value
-          .trim();
+        }
+      );
 
 
-      const whatsapp =
-        document
-          .getElementById("whatsapp")
-          .value
-          .trim();
+    if (!servico) {
+
+      resumo.style.display =
+        'none';
+
+      return;
+
+    }
 
 
-      const data =
-        document
-          .getElementById("data")
-          .value;
+    resumo.innerHTML =
+
+      '<strong>Resumo:</strong><br>' +
+
+      'Data: ' +
+      formatarDataBR(
+        data
+      ) +
+
+      '<br>' +
+
+      'Horário: ' +
+      horarioSelecionado +
+
+      '<br>' +
+
+      'Serviço: ' +
+      escapeHtml(
+        servico.nome
+      ) +
+
+      '<br>' +
+
+      'Duração: ' +
+      servico.duracao +
+      ' minutos';
 
 
-      const hora =
-        document
-          .getElementById("hora")
-          .value;
+    resumo.style.display =
+      'block';
+
+  }
 
 
-      const servico =
-        obterServicoSelecionado();
+  /*
+   * ==========================================================
+   * SALVAR
+   * ==========================================================
+   */
+
+  async function salvarAgendamento() {
+
+    const cliente =
+      document
+        .getElementById(
+          'cliente'
+        )
+        .value
+        .trim();
 
 
-      const observacao =
-        document
-          .getElementById("observacao")
-          .value
-          .trim();
+    const whatsapp =
+      document
+        .getElementById(
+          'whatsapp'
+        )
+        .value
+        .trim();
 
 
-      if (!cliente) {
+    const data =
+      document
+        .getElementById(
+          'data'
+        )
+        .value;
 
-        mostrarErro(
-          "Informe o nome da cliente."
+
+    const servicoId =
+      document
+        .getElementById(
+          'servico'
+        )
+        .value;
+
+
+    const observacao =
+      document
+        .getElementById(
+          'observacao'
+        )
+        .value
+        .trim();
+
+
+    if (!cliente) {
+
+      mostrarMensagem(
+        'mensagemModal',
+        'Informe o nome da cliente.',
+        'erro'
+      );
+
+      return;
+
+    }
+
+
+    if (!whatsapp) {
+
+      mostrarMensagem(
+        'mensagemModal',
+        'Informe o WhatsApp da cliente.',
+        'erro'
+      );
+
+      return;
+
+    }
+
+
+    if (!data) {
+
+      mostrarMensagem(
+        'mensagemModal',
+        'Informe a data.',
+        'erro'
+      );
+
+      return;
+
+    }
+
+
+    if (!servicoId) {
+
+      mostrarMensagem(
+        'mensagemModal',
+        'Selecione o serviço.',
+        'erro'
+      );
+
+      return;
+
+    }
+
+
+    if (!horarioSelecionado) {
+
+      mostrarMensagem(
+        'mensagemModal',
+        'Selecione um horário.',
+        'erro'
+      );
+
+      return;
+
+    }
+
+
+    const servico =
+      servicos.find(
+        function(item) {
+
+          return String(
+            item.id
+          ) === String(
+            servicoId
+          );
+
+        }
+      );
+
+
+    if (!servico) {
+
+      mostrarMensagem(
+        'mensagemModal',
+        'Serviço inválido.',
+        'erro'
+      );
+
+      return;
+
+    }
+
+
+    const btn =
+      document
+        .getElementById(
+          'btnSalvar'
         );
 
-        return;
 
-      }
-
-
-      if (!whatsapp) {
-
-        mostrarErro(
-          "Informe o WhatsApp."
-        );
-
-        return;
-
-      }
+    btn.disabled =
+      true;
 
 
-      if (!data) {
-
-        mostrarErro(
-          "Informe a data."
-        );
-
-        return;
-
-      }
+    btn.textContent =
+      'Agendando...';
 
 
-      if (!hora) {
-
-        mostrarErro(
-          "Selecione um horário."
-        );
-
-        return;
-
-      }
+    esconderMensagem(
+      'mensagemModal'
+    );
 
 
-      if (!servico) {
-
-        mostrarErro(
-          "Selecione o serviço."
-        );
-
-        return;
-
-      }
-
-
-      const botao =
-        document.getElementById(
-          "btnSalvar"
-        );
-
-
-      botao.disabled =
-        true;
-
-
-      botao.textContent =
-        "Salvando...";
-
+    try {
 
       const dados = {
 
         acao:
-          "agendar",
+          'agendar',
 
         cliente:
           cliente,
@@ -2311,7 +1637,7 @@
           data,
 
         hora:
-          hora,
+          horarioSelecionado,
 
         servico:
           servico.nome,
@@ -2327,380 +1653,699 @@
       };
 
 
-      try {
+      /*
+       * O Apps Script aceita POST JSON.
+       */
 
-        console.log(
-          "Enviando agendamento:",
+      const resposta =
+        await fetch(
+          API_URL,
+          {
+
+            method:
+              'POST',
+
+            headers: {
+
+              'Content-Type':
+                'text/plain;charset=utf-8'
+
+            },
+
+            body:
+              JSON.stringify(
+                dados
+              )
+
+          }
+        );
+
+
+      const resultado =
+        await resposta.json();
+
+
+      if (
+        !resultado.sucesso
+      ) {
+
+        throw new Error(
+          resultado.erro ||
+          'Não foi possível realizar o agendamento.'
+        );
+
+      }
+
+
+      mostrarMensagem(
+        'mensagemPrincipal',
+        'Agendamento realizado com sucesso!',
+        'sucesso'
+      );
+
+
+      fecharModal();
+
+
+      document
+        .getElementById(
+          'dataAgenda'
+        )
+        .value =
+        data;
+
+
+      carregarAgenda();
+
+
+    } catch (erro) {
+
+      console.error(
+        erro
+      );
+
+
+      mostrarMensagem(
+        'mensagemModal',
+        erro.message,
+        'erro'
+      );
+
+
+    } finally {
+
+      btn.disabled =
+        false;
+
+      btn.textContent =
+        'Agendar Cliente';
+
+    }
+
+  }
+
+
+  /*
+   * ==========================================================
+   * CARREGAR AGENDA
+   * ==========================================================
+   */
+
+  async function carregarAgenda() {
+
+    const data =
+      document
+        .getElementById(
+          'dataAgenda'
+        )
+        .value;
+
+
+    const area =
+      document
+        .getElementById(
+          'listaAgendamentos'
+        );
+
+
+    if (!data) {
+
+      area.innerHTML =
+        '<div class="carregando">' +
+        'Selecione uma data.' +
+        '</div>';
+
+      return;
+
+    }
+
+
+    area.innerHTML =
+      '<div class="carregando">' +
+      'Carregando agendamentos...' +
+      '</div>';
+
+
+    try {
+
+      const resposta =
+        await fetch(
+          API_URL +
+          '?acao=agendamentos' +
+          '&data=' +
+          encodeURIComponent(
+            data
+          ) +
+          '&_=' +
+          Date.now(),
+          {
+            cache:
+              'no-store'
+          }
+        );
+
+
+      const dados =
+        await resposta.json();
+
+
+      if (
+        !Array.isArray(
           dados
+        )
+      ) {
+
+        throw new Error(
+          'Resposta inválida.'
         );
-
-
-        /*
-         * text/plain evita problemas de CORS
-         * com o Google Apps Script.
-         */
-
-        const resposta =
-          await fetch(
-            API_URL,
-            {
-              method: "POST",
-
-              headers: {
-                "Content-Type":
-                  "text/plain;charset=utf-8"
-              },
-
-              body:
-                JSON.stringify(
-                  dados
-                )
-            }
-          );
-
-
-        const resultado =
-          await resposta.json();
-
-
-        console.log(
-          "Resultado:",
-          resultado
-        );
-
-
-        if (
-          !resultado.sucesso
-        ) {
-
-          throw new Error(
-            resultado.erro ||
-            "Não foi possível realizar o agendamento."
-          );
-
-        }
-
-
-        fecharModal();
-
-
-        mostrarSucesso(
-          "Agendamento realizado com sucesso!"
-        );
-
-
-        document
-          .getElementById("dataAgenda")
-          .value =
-          data;
-
-
-        await carregarAgenda();
-
-
-      } catch (erro) {
-
-        console.error(
-          "Erro ao salvar:",
-          erro
-        );
-
-
-        mostrarErro(
-          erro.message
-        );
-
-      } finally {
-
-        botao.disabled =
-          false;
-
-
-        botao.textContent =
-          "Salvar agendamento";
 
       }
+
+
+      agendamentosAtuais =
+        dados;
+
+
+      renderizarAgenda(
+        dados
+      );
+
+
+    } catch (erro) {
+
+      console.error(
+        erro
+      );
+
+
+      area.innerHTML =
+        '<div class="sem-horarios">' +
+        'Erro ao carregar a agenda.<br>' +
+        escapeHtml(
+          erro.message
+        ) +
+        '</div>';
+
+    }
+
+  }
+
+
+  /*
+   * ==========================================================
+   * RENDERIZAR AGENDA
+   * ==========================================================
+   */
+
+  function renderizarAgenda(
+    agendamentos
+  ) {
+
+    const area =
+      document
+        .getElementById(
+          'listaAgendamentos'
+        );
+
+
+    if (
+      !agendamentos ||
+      agendamentos.length === 0
+    ) {
+
+      area.innerHTML =
+        '<h3>Agendamentos do dia</h3>' +
+        '<div class="carregando">' +
+        'Nenhum agendamento para esta data.' +
+        '</div>';
+
+      return;
 
     }
 
 
     /*
-     * =====================================================
-     * CANCELAR
-     * =====================================================
+     * Ordena por horário.
      */
 
-    async function cancelarAgendamento(
-      id
+    agendamentos.sort(
+      function(a, b) {
+
+        return converterMinutosJS(
+          a.hora
+        ) -
+        converterMinutosJS(
+          b.hora
+        );
+
+      }
+    );
+
+
+    let html =
+      '<h3>Agendamentos do dia</h3>';
+
+
+    agendamentos.forEach(
+      function(item) {
+
+        html +=
+
+          '<div class="agendamento">' +
+
+            '<div class="agendamento-topo">' +
+
+              '<div>' +
+
+                '<strong>' +
+
+                escapeHtml(
+                  item.hora
+                ) +
+
+                ' - ' +
+
+                escapeHtml(
+                  item.cliente
+                ) +
+
+                '</strong>' +
+
+              '</div>' +
+
+              '<button ' +
+
+                'class="btn-cancelar" ' +
+
+                'onclick="cancelarAgendamento(\'' +
+
+                escapeHtmlJS(
+                  item.id
+                ) +
+
+                '\')">' +
+
+                'Cancelar' +
+
+              '</button>' +
+
+            '</div>' +
+
+            '<div class="info">' +
+
+              '<strong>Serviço:</strong> ' +
+
+              escapeHtml(
+                item.servico
+              ) +
+
+              ' (' +
+
+              item.duracao +
+
+              ' min)' +
+
+            '</div>' +
+
+            '<div class="info">' +
+
+              '<strong>WhatsApp:</strong> ' +
+
+              escapeHtml(
+                item.whatsapp
+              ) +
+
+            '</div>' +
+
+            (
+              item.observacao
+              ?
+
+              '<div class="info">' +
+
+                '<strong>Observação:</strong> ' +
+
+                escapeHtml(
+                  item.observacao
+                ) +
+
+              '</div>'
+
+              :
+
+              ''
+
+            ) +
+
+          '</div>';
+
+      }
+    );
+
+
+    area.innerHTML =
+      html;
+
+  }
+
+
+  /*
+   * ==========================================================
+   * CANCELAR
+   * ==========================================================
+   */
+
+  async function cancelarAgendamento(
+    id
+  ) {
+
+    if (
+      !confirm(
+        'Deseja realmente cancelar este agendamento?'
+      )
     ) {
 
-      const confirmar =
-        confirm(
-          "Deseja realmente cancelar este agendamento?"
+      return;
+
+    }
+
+
+    try {
+
+      const resposta =
+        await fetch(
+          API_URL,
+          {
+
+            method:
+              'POST',
+
+            headers: {
+
+              'Content-Type':
+                'text/plain;charset=utf-8'
+
+            },
+
+            body:
+              JSON.stringify({
+
+                acao:
+                  'cancelar',
+
+                id:
+                  id
+
+              })
+
+          }
         );
 
 
-      if (!confirmar) {
+      const resultado =
+        await resposta.json();
 
-        return;
+
+      if (
+        !resultado.sucesso
+      ) {
+
+        throw new Error(
+          resultado.erro ||
+          'Erro ao cancelar.'
+        );
 
       }
 
 
-      try {
-
-        const resposta =
-          await fetch(
-            API_URL,
-            {
-              method: "POST",
-
-              headers: {
-                "Content-Type":
-                  "text/plain;charset=utf-8"
-              },
-
-              body:
-                JSON.stringify({
-
-                  acao:
-                    "cancelar",
-
-                  id:
-                    id
-
-                })
-
-            }
-          );
+      mostrarMensagem(
+        'mensagemPrincipal',
+        'Agendamento cancelado com sucesso.',
+        'sucesso'
+      );
 
 
-        const resultado =
-          await resposta.json();
+      carregarAgenda();
 
+
+    } catch (erro) {
+
+      mostrarMensagem(
+        'mensagemPrincipal',
+        erro.message,
+        'erro'
+      );
+
+    }
+
+  }
+
+
+  /*
+   * ==========================================================
+   * MENSAGENS
+   * ==========================================================
+   */
+
+  function mostrarMensagem(
+    id,
+    texto,
+    tipo
+  ) {
+
+    const elemento =
+      document.getElementById(
+        id
+      );
+
+
+    if (!elemento) {
+
+      return;
+
+    }
+
+
+    elemento.textContent =
+      texto;
+
+
+    elemento.className =
+      'mensagem ' +
+      tipo;
+
+
+    setTimeout(
+      function() {
+
+        esconderMensagem(
+          id
+        );
+
+      },
+      5000
+    );
+
+  }
+
+
+  function esconderMensagem(
+    id
+  ) {
+
+    const elemento =
+      document.getElementById(
+        id
+      );
+
+
+    if (!elemento) {
+
+      return;
+
+    }
+
+
+    elemento.className =
+      'mensagem';
+
+    elemento.textContent =
+      '';
+
+  }
+
+
+  function mostrarMensagemHorario(
+    texto
+  ) {
+
+    document
+      .getElementById(
+        'areaHorarios'
+      )
+      .innerHTML =
+      '<div class="carregando">' +
+      texto +
+      '</div>';
+
+  }
+
+
+  /*
+   * ==========================================================
+   * FUNÇÕES DE FORMATAÇÃO
+   * ==========================================================
+   */
+
+  function formatarDataBR(
+    data
+  ) {
+
+    if (!data) {
+
+      return '';
+
+    }
+
+
+    const partes =
+      data.split('-');
+
+
+    if (
+      partes.length !== 3
+    ) {
+
+      return data;
+
+    }
+
+
+    return (
+
+      partes[2] +
+      '/' +
+      partes[1] +
+      '/' +
+      partes[0]
+
+    );
+
+  }
+
+
+  function converterMinutosJS(
+    hora
+  ) {
+
+    const partes =
+      String(
+        hora || '00:00'
+      ).split(':');
+
+
+    return (
+
+      Number(
+        partes[0] || 0
+      ) * 60
+
+      +
+
+      Number(
+        partes[1] || 0
+      )
+
+    );
+
+  }
+
+
+  /*
+   * ==========================================================
+   * SEGURANÇA HTML
+   * ==========================================================
+   */
+
+  function escapeHtml(
+    texto
+  ) {
+
+    return String(
+      texto || ''
+    )
+    .replace(
+      /&/g,
+      '&amp;'
+    )
+    .replace(
+      /</g,
+      '&lt;'
+    )
+    .replace(
+      />/g,
+      '&gt;'
+    )
+    .replace(
+      /"/g,
+      '&quot;'
+    )
+    .replace(
+      /'/g,
+      '&#039;'
+    );
+
+  }
+
+
+  function escapeHtmlJS(
+    texto
+  ) {
+
+    return String(
+      texto || ''
+    )
+    .replace(
+      /\\/g,
+      '\\\\'
+    )
+    .replace(
+      /'/g,
+      "\\'"
+    )
+    .replace(
+      /"/g,
+      '\\"'
+    );
+
+  }
+
+
+  /*
+   * Fecha o modal clicando fora.
+   */
+
+  document
+    .getElementById(
+      'modal'
+    )
+    .addEventListener(
+      'click',
+      function(event) {
 
         if (
-          !resultado.sucesso
+          event.target ===
+          this
         ) {
 
-          throw new Error(
-            resultado.erro ||
-            "Não foi possível cancelar."
-          );
+          fecharModal();
 
         }
 
-
-        mostrarSucesso(
-          "Agendamento cancelado."
-        );
-
-
-        await carregarAgenda();
-
-
-      } catch (erro) {
-
-        console.error(
-          erro
-        );
-
-
-        mostrarErro(
-          erro.message
-        );
-
       }
+    );
 
-    }
-
-
-    /*
-     * =====================================================
-     * AUXILIARES
-     * =====================================================
-     */
-
-    function converterMinutos(
-      hora
-    ) {
-
-      const partes =
-        String(
-          hora || "00:00"
-        ).split(":");
-
-
-      return (
-        Number(partes[0]) * 60 +
-        Number(partes[1])
-      );
-
-    }
-
-
-    function formatarMoeda(
-      valor
-    ) {
-
-      return Number(
-        valor || 0
-      ).toLocaleString(
-        "pt-BR",
-        {
-          style: "currency",
-          currency: "BRL"
-        }
-      );
-
-    }
-
-
-    function formatarTelefone(
-      numero
-    ) {
-
-      const n =
-        String(
-          numero || ""
-        ).replace(
-          /\D/g,
-          ""
-        );
-
-
-      if (
-        n.length === 11
-      ) {
-
-        return (
-          "(" +
-          n.substring(0,2) +
-          ") " +
-          n.substring(2,7) +
-          "-" +
-          n.substring(7)
-        );
-
-      }
-
-
-      if (
-        n.length === 10
-      ) {
-
-        return (
-          "(" +
-          n.substring(0,2) +
-          ") " +
-          n.substring(2,6) +
-          "-" +
-          n.substring(6)
-        );
-
-      }
-
-
-      return numero || "";
-
-    }
-
-
-    function escaparHTML(
-      texto
-    ) {
-
-      return String(
-        texto == null
-        ? ""
-        : texto
-      )
-      .replace(
-        /&/g,
-        "&amp;"
-      )
-      .replace(
-        /</g,
-        "&lt;"
-      )
-      .replace(
-        />/g,
-        "&gt;"
-      )
-      .replace(
-        /"/g,
-        "&quot;"
-      )
-      .replace(
-        /'/g,
-        "&#039;"
-      );
-
-    }
-
-
-    function mostrarErro(
-      mensagem
-    ) {
-
-      const elemento =
-        document.getElementById(
-          "mensagemErro"
-        );
-
-
-      elemento.textContent =
-        mensagem;
-
-
-      elemento.style.display =
-        "block";
-
-
-      setTimeout(
-        function() {
-
-          elemento.style.display =
-            "none";
-
-        },
-        5000
-      );
-
-    }
-
-
-    function mostrarSucesso(
-      mensagem
-    ) {
-
-      const elemento =
-        document.getElementById(
-          "mensagemSucesso"
-        );
-
-
-      elemento.textContent =
-        mensagem;
-
-
-      elemento.style.display =
-        "block";
-
-
-      setTimeout(
-        function() {
-
-          elemento.style.display =
-            "none";
-
-        },
-        4000
-      );
-
-    }
-
-  </script>
+</script>
 
 </body>
 </html>
