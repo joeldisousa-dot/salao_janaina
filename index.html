@@ -1361,9 +1361,7 @@ function renderizarHorarios(
   const duracao =
     Number(servico.duracao);
 
-  /*
-   * Segurança
-   */
+
   if (
     !Number.isFinite(duracao) ||
     duracao <= 0
@@ -1380,34 +1378,8 @@ function renderizarHorarios(
 
   /*
    * ========================================================
-   * NOVA REGRA DE GERAÇÃO DOS HORÁRIOS
+   * TRANSFORMA OS AGENDAMENTOS EM INTERVALOS
    * ========================================================
-   *
-   * Não percorremos mais minuto por minuto.
-   *
-   * O primeiro horário começa às 08:00.
-   *
-   * Se estiver livre:
-   *
-   * 08:00 -> 08:50
-   *
-   * então o próximo horário possível será:
-   *
-   * 08:50
-   *
-   * Se existir um agendamento:
-   *
-   * 09:20 -> 10:10
-   *
-   * e o horário atual não comportar o serviço,
-   * pulamos diretamente para 10:10.
-   */
-
-
-  /*
-   * Normalizamos os agendamentos,
-   * transformando hora + duração em
-   * início e fim em minutos.
    */
 
   const bloqueios =
@@ -1426,9 +1398,9 @@ function renderizarHorarios(
 
 
         /*
-         * Se a duração não veio no
-         * agendamento, tenta localizar
-         * o serviço correspondente.
+         * Caso o agendamento não tenha
+         * duração, procura na lista
+         * de serviços.
          */
 
         if (
@@ -1508,6 +1480,26 @@ function renderizarHorarios(
    * ========================================================
    * GERAÇÃO DOS HORÁRIOS
    * ========================================================
+   *
+   * AQUI ESTÁ A REGRA IMPORTANTE:
+   *
+   * NÃO fazemos:
+   *
+   * inicio++
+   *
+   * Portanto nunca teremos:
+   *
+   * 08:01
+   * 08:02
+   * 08:03
+   *
+   *
+   * Em vez disso:
+   *
+   * 08:00 + 50 = 08:50
+   * 08:50 + 50 = 09:40
+   * 09:40 + 50 = 10:30
+   *
    */
 
   const horarios = [];
@@ -1520,15 +1512,68 @@ function renderizarHorarios(
     inicio < FIM_EXPEDIENTE
   ) {
 
-    const fim =
-      inicio + duracao;
+    /*
+     * Procura se existe algum
+     * agendamento que esteja
+     * bloqueando o horário atual.
+     */
+
+    const conflito =
+      bloqueios.find(
+        function(bloqueio) {
+
+          return (
+            inicio < bloqueio.fim &&
+            (
+              inicio + duracao
+            ) > bloqueio.inicio
+          );
+
+        }
+      );
 
 
     /*
-     * Se o serviço não couber até
-     * o final do expediente,
-     * encerramos a busca.
+     * ======================================================
+     * EXISTE CONFLITO
+     * ======================================================
      */
+
+    if (conflito) {
+
+      /*
+       * Pula diretamente para o
+       * final do agendamento existente.
+       *
+       * Exemplo:
+       *
+       * Serviço tentando:
+       * 09:40 → 10:30
+       *
+       * Agendamento:
+       * 10:00 → 10:50
+       *
+       * Próxima tentativa:
+       * 10:50
+       */
+
+      inicio =
+        conflito.fim;
+
+      continue;
+
+    }
+
+
+    /*
+     * ======================================================
+     * VERIFICA SE O SERVIÇO CABE
+     * ======================================================
+     */
+
+    const fim =
+      inicio + duracao;
+
 
     if (
       fim > FIM_EXPEDIENTE
@@ -1540,108 +1585,46 @@ function renderizarHorarios(
 
 
     /*
-     * Procuramos um agendamento que
-     * tenha conflito com o horário.
+     * ======================================================
+     * HORÁRIO DISPONÍVEL
+     * ======================================================
      */
 
-    const conflito =
-      bloqueios.find(
-        function(bloqueio) {
+    horarios.push({
 
-          return (
-            inicio < bloqueio.fim &&
-            fim > bloqueio.inicio
-          );
+      inicio:
+        inicio,
 
-        }
-      );
+      fim:
+        fim,
+
+      hora:
+        minutosParaHora(
+          inicio
+        ),
+
+      termino:
+        minutosParaHora(
+          fim
+        ),
+
+      disponivel:
+        true
+
+    });
 
 
     /*
      * ======================================================
-     * HORÁRIO LIVRE
-     * ======================================================
-     */
-
-    if (!conflito) {
-
-      horarios.push({
-
-        inicio:
-          inicio,
-
-        fim:
-          fim,
-
-        hora:
-          minutosParaHora(
-            inicio
-          ),
-
-        termino:
-          minutosParaHora(
-            fim
-          ),
-
-        disponivel:
-          true
-
-      });
-
-
-      /*
-       * IMPORTANTE:
-       *
-       * O próximo horário começa
-       * exatamente quando este serviço
-       * termina.
-       *
-       * Exemplo:
-       *
-       * Mão = 50 min
-       *
-       * 08:00 -> 08:50
-       * 08:50 -> 09:40
-       * 09:40 -> 10:30
-       */
-
-      inicio =
-        fim;
-
-
-      continue;
-
-    }
-
-
-    /*
-     * ======================================================
-     * HORÁRIO OCUPADO
+     * PRÓXIMO HORÁRIO
      * ======================================================
      *
-     * Se existe conflito, não precisamos
-     * testar 08:01, 08:02, 08:03...
-     *
-     * Pulamos diretamente para o final
-     * do agendamento que está bloqueando.
-     *
-     * Exemplo:
-     *
-     * Serviço solicitado = 50 min
-     *
-     * Agendamento existente:
-     *
-     * 09:20 -> 10:10
-     *
-     * Se chegamos em 09:00 e há conflito,
-     * pulamos diretamente para 10:10.
+     * O próximo começa exatamente
+     * quando o atual termina.
      */
 
     inicio =
-      Math.max(
-        inicio + 1,
-        conflito.fim
-      );
+      fim;
 
   }
 
@@ -1668,16 +1651,12 @@ function renderizarHorarios(
 
   /*
    * ========================================================
-   * RENDERIZAÇÃO
+   * MOSTRAR HORÁRIOS
    * ========================================================
    */
 
   area.innerHTML = '';
 
-
-  /*
-   * Informação da duração
-   */
 
   const info =
     document.createElement(
@@ -1699,11 +1678,6 @@ function renderizarHorarios(
     info
   );
 
-
-  /*
-   * Mostra somente os horários
-   * realmente disponíveis.
-   */
 
   horarios.forEach(
     function(item) {
@@ -1752,6 +1726,7 @@ function renderizarHorarios(
   );
 
 }
+
 
 
 
