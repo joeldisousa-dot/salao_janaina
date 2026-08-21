@@ -368,11 +368,6 @@ textarea {
   cursor: not-allowed;
 }
 
-.preco {
-  color: #8e4168;
-  font-weight: bold;
-}
-
 
 /* =====================================================
    RESPONSIVO
@@ -464,7 +459,7 @@ Data
 <input
   type="date"
   id="dataAgenda"
-  onchange="carregarAgenda()">
+  onchange="carregarAgenda">
 
 </div>
 
@@ -487,9 +482,8 @@ Carregando...
 </div>
 
 
-
 <!-- =====================================================
-     MODAL NOVO AGENDAMENTO
+     MODAL
      ===================================================== -->
 
 <div
@@ -583,7 +577,6 @@ Selecione o serviço
 
 </div>
 
-
 </div>
 
 
@@ -592,7 +585,6 @@ Selecione o serviço
 <label>
 Horários disponíveis *
 </label>
-
 
 <div
   id="areaHorarios"
@@ -655,62 +647,28 @@ Observação
 </div>
 
 
-
 <script>
 
 
-/* =========================================================
+/* =====================================================
    CONFIGURAÇÃO
-   ========================================================= */
+   ===================================================== */
 
 const API_URL =
 'https://script.google.com/macros/s/AKfycbzGWzCjQsNGfPfFZuRp2Xw3TgqKQ2lslr_bT7sS2_p7YZOqhF_zwTU5KCl_jGqGYrZj/exec';
 
 
-/*
- * HORÁRIO DO SALÃO
- */
-
-const INICIO_EXPEDIENTE = 8 * 60;
-
-const FIM_EXPEDIENTE = 18 * 60;
+const NOME_SALAO =
+'Salão Janaina';
 
 
-/*
- * IMPORTANTE
- *
- * NÃO EXISTE INTERVALO 30 MINUTOS.
- *
- * Os horários são calculados a partir
- * da duração real do serviço e dos
- * agendamentos existentes.
- *
- * Exemplo:
- *
- * Mão = 50 minutos
- *
- * Agendamento:
- *
- * 10:00 -> 10:50
- *
- * Próximo horário:
- *
- * 10:50
- *
- *
- * Mão = 40 minutos
- *
- * 10:00 -> 10:40
- *
- * Próximo horário:
- *
- * 10:40
- */
+const INICIO_EXPEDIENTE =
+8 * 60;
 
 
-/* =========================================================
-   VARIÁVEIS
-   ========================================================= */
+const FIM_EXPEDIENTE =
+18 * 60;
+
 
 let servicos = [];
 
@@ -721,9 +679,9 @@ let horarioSelecionado = '';
 let servicoSelecionado = null;
 
 
-/* =========================================================
+/* =====================================================
    INICIALIZAÇÃO
-   ========================================================= */
+   ===================================================== */
 
 document.addEventListener(
   'DOMContentLoaded',
@@ -732,21 +690,17 @@ document.addEventListener(
     const hoje =
       obterDataHoje();
 
-
     document.getElementById(
       'dataAgenda'
     ).value = hoje;
 
-
     document.getElementById(
       'dataAgenda'
     ).min = hoje;
 
-
     document.getElementById(
       'data'
     ).min = hoje;
-
 
     await carregarServicos();
 
@@ -756,57 +710,41 @@ document.addEventListener(
 );
 
 
-/* =========================================================
-   DATA HOJE
-   ========================================================= */
+/* =====================================================
+   DATA
+   ===================================================== */
 
 function obterDataHoje() {
 
-  const agora =
-    new Date();
-
-
-  const ano =
-    agora.getFullYear();
-
-
-  const mes =
-    String(
-      agora.getMonth() + 1
-    ).padStart(2,'0');
-
-
-  const dia =
-    String(
-      agora.getDate()
-    ).padStart(2,'0');
-
+  const agora = new Date();
 
   return (
-    ano +
+    agora.getFullYear() +
     '-' +
-    mes +
+    String(
+      agora.getMonth() + 1
+    ).padStart(2,'0') +
     '-' +
-    dia
+    String(
+      agora.getDate()
+    ).padStart(2,'0')
   );
 
 }
 
 
-/* =========================================================
-   ABRIR MODAL
-   ========================================================= */
+/* =====================================================
+   MODAL
+   ===================================================== */
 
 async function abrirNovoAgendamento() {
 
   limparFormulario();
 
-
   const dataAgenda =
     document.getElementById(
       'dataAgenda'
     ).value;
-
 
   document.getElementById(
     'data'
@@ -814,29 +752,20 @@ async function abrirNovoAgendamento() {
     dataAgenda ||
     obterDataHoje();
 
-
   document.getElementById(
     'modal'
   ).classList.add('ativo');
 
-
-  if (
-    servicos.length === 0
-  ) {
+  if (servicos.length === 0) {
 
     await carregarServicos();
 
   }
 
-
   atualizarHorarios();
 
 }
 
-
-/* =========================================================
-   FECHAR
-   ========================================================= */
 
 function fecharModal() {
 
@@ -847,41 +776,31 @@ function fecharModal() {
 }
 
 
-/* =========================================================
-   LIMPAR
-   ========================================================= */
-
 function limparFormulario() {
 
   document.getElementById(
     'cliente'
   ).value = '';
 
-
   document.getElementById(
     'whatsapp'
   ).value = '';
-
 
   document.getElementById(
     'observacao'
   ).value = '';
 
-
   document.getElementById(
     'servico'
   ).value = '';
-
 
   horarioSelecionado = '';
 
   servicoSelecionado = null;
 
-
   document.getElementById(
     'resumo'
   ).style.display = 'none';
-
 
   document.getElementById(
     'areaHorarios'
@@ -890,7 +809,6 @@ function limparFormulario() {
     'Selecione a data e o serviço.' +
     '</div>';
 
-
   esconderMensagem(
     'mensagemModal'
   );
@@ -898,9 +816,9 @@ function limparFormulario() {
 }
 
 
-/* =========================================================
-   CARREGAR SERVIÇOS
-   ========================================================= */
+/* =====================================================
+   SERVIÇOS
+   ===================================================== */
 
 async function carregarServicos() {
 
@@ -916,7 +834,6 @@ async function carregarServicos() {
         }
       );
 
-
     if (!resposta.ok) {
 
       throw new Error(
@@ -926,23 +843,10 @@ async function carregarServicos() {
 
     }
 
-
     const dados =
       await resposta.json();
 
-
-    /*
-     * Seu Code.gs retorna diretamente
-     * um ARRAY ou pode retornar:
-     *
-     * {
-     *   sucesso:true,
-     *   servicos:[...]
-     * }
-     */
-
     let lista = dados;
-
 
     if (
       dados &&
@@ -956,7 +860,6 @@ async function carregarServicos() {
 
     }
 
-
     if (
       !Array.isArray(lista)
     ) {
@@ -967,72 +870,58 @@ async function carregarServicos() {
 
     }
 
-
     servicos =
-      lista
-        .map(
-          function(item) {
+      lista.map(
+        function(item) {
 
-            return {
+          return {
 
-              id:
-                String(
-                  item.id || ''
-                ),
+            id:
+              String(
+                item.id || ''
+              ),
 
-              nome:
-                String(
-                  item.nome ||
-                  item.servico ||
-                  ''
-                ),
+            nome:
+              String(
+                item.nome ||
+                item.servico ||
+                ''
+              ),
 
-              /*
-               * AQUI está a regra principal:
-               *
-               * DURAÇÃO VEM DA ABA SERVICOS.
-               */
-
-              duracao:
-                Number(
-                  item.duracao
-                ),
-
-              preco:
-                Number(
-                  item.preco || 0
-                )
-
-            };
-
-          }
-        )
-        .filter(
-          function(item) {
-
-            return (
-              item.id &&
-              item.nome &&
-              Number.isFinite(
+            duracao:
+              Number(
                 item.duracao
-              ) &&
-              item.duracao > 0
-            );
+              ),
 
-          }
-        );
+            preco:
+              Number(
+                item.preco || 0
+              )
 
+          };
+
+        }
+      )
+      .filter(
+        function(item) {
+
+          return (
+            item.id &&
+            item.nome &&
+            Number.isFinite(
+              item.duracao
+            ) &&
+            item.duracao > 0
+          );
+
+        }
+      );
 
     preencherSelectServicos();
 
-
   } catch (erro) {
 
-    console.error(
-      'Erro ao carregar serviços:',
-      erro
-    );
-
+    console.error(erro);
 
     mostrarMensagem(
       'mensagemModal',
@@ -1046,10 +935,6 @@ async function carregarServicos() {
 }
 
 
-/* =========================================================
-   SELECT SERVIÇOS
-   ========================================================= */
-
 function preencherSelectServicos() {
 
   const select =
@@ -1057,12 +942,10 @@ function preencherSelectServicos() {
       'servico'
     );
 
-
   select.innerHTML =
     '<option value="">' +
     'Selecione o serviço' +
     '</option>';
-
 
   servicos.forEach(
     function(servico) {
@@ -1072,20 +955,14 @@ function preencherSelectServicos() {
           'option'
         );
 
-
       option.value =
         servico.id;
 
-
       let texto =
-        servico.nome;
-
-
-      texto +=
+        servico.nome +
         ' - ' +
         servico.duracao +
         ' min';
-
 
       if (
         servico.preco > 0
@@ -1099,10 +976,8 @@ function preencherSelectServicos() {
 
       }
 
-
       option.textContent =
         texto;
-
 
       select.appendChild(
         option
@@ -1114,9 +989,9 @@ function preencherSelectServicos() {
 }
 
 
-/* =========================================================
-   DATA / SERVIÇO ALTERADOS
-   ========================================================= */
+/* =====================================================
+   HORÁRIOS
+   ===================================================== */
 
 async function atualizarHorarios() {
 
@@ -1124,29 +999,24 @@ async function atualizarHorarios() {
 
   servicoSelecionado = null;
 
-
   document.getElementById(
     'resumo'
   ).style.display = 'none';
-
 
   const data =
     document.getElementById(
       'data'
     ).value;
 
-
   const servicoId =
     document.getElementById(
       'servico'
     ).value;
 
-
   const area =
     document.getElementById(
       'areaHorarios'
     );
-
 
   if (!data) {
 
@@ -1159,7 +1029,6 @@ async function atualizarHorarios() {
 
   }
 
-
   if (!servicoId) {
 
     area.innerHTML =
@@ -1171,48 +1040,29 @@ async function atualizarHorarios() {
 
   }
 
-
   const servico =
     servicos.find(
       function(item) {
 
-        return String(
-          item.id
-        ) === String(
-          servicoId
-        );
+        return String(item.id) ===
+          String(servicoId);
 
       }
     );
 
-
-  if (
-    !servico ||
-    !servico.duracao ||
-    servico.duracao <= 0
-  ) {
-
-    area.innerHTML =
-      '<div class="sem-horarios">' +
-      'A duração deste serviço é inválida.' +
-      '</div>';
+  if (!servico) {
 
     return;
 
   }
 
-
   servicoSelecionado =
     servico;
 
-
   area.innerHTML =
     '<div class="carregando">' +
-    'Calculando horários usando ' +
-    servico.duracao +
-    ' minutos...' +
+    'Calculando horários...' +
     '</div>';
-
 
   try {
 
@@ -1221,40 +1071,22 @@ async function atualizarHorarios() {
         data
       );
 
-
     agendamentosDoDia =
       agendamentos;
-
-
-    /*
-     * NÃO usamos a função "horarios"
-     * do Code.gs.
-     *
-     * O HTML calcula tudo usando
-     * a duração real do serviço.
-     */
 
     renderizarHorarios(
       servico,
       agendamentos
     );
 
-
   } catch (erro) {
-
-    console.error(
-      erro
-    );
-
 
     area.innerHTML =
       '<div class="sem-horarios">' +
       'Erro ao carregar horários.<br><br>' +
-      '<small>' +
       escapeHtml(
         erro.message
       ) +
-      '</small>' +
       '</div>';
 
   }
@@ -1262,91 +1094,20 @@ async function atualizarHorarios() {
 }
 
 
-/* =========================================================
-   BUSCAR AGENDAMENTOS
-   ========================================================= */
-
-async function buscarAgendamentos(
-  data
-) {
-
-  const url =
-    API_URL +
-    '?acao=agendamentos' +
-    '&data=' +
-    encodeURIComponent(data) +
-    '&_=' +
-    Date.now();
-
-
-  const resposta =
-    await fetch(
-      url,
-      {
-        cache: 'no-store'
-      }
-    );
-
-
-  if (!resposta.ok) {
-
-    throw new Error(
-      'HTTP ' +
-      resposta.status
-    );
-
-  }
-
-
-  const dados =
-    await resposta.json();
-
-
-  /*
-   * Seu Code.gs retorna:
-   *
-   * [
-   *   {...}
-   * ]
-   *
-   * Mas aceitamos também:
-   *
-   * {
-   *   agendamentos:[...]
-   * }
-   */
-
-  if (
-    Array.isArray(dados)
-  ) {
-
-    return dados;
-
-  }
-
-
-  if (
-    dados &&
-    Array.isArray(
-      dados.agendamentos
-    )
-  ) {
-
-    return dados.agendamentos;
-
-  }
-
-
-  throw new Error(
-    'Resposta inválida dos agendamentos.'
-  );
-
-}
-
-
-/* =========================================================
-   RENDERIZAR HORÁRIOS
-   ========================================================= */
+/*
+ * Gera os horários possíveis.
+ *
+ * Os horários são analisados minuto a minuto
+ * internamente, mas NÃO mostramos todos os
+ * minutos na tela.
+ *
+ * Mostramos apenas os pontos em que o horário
+ * realmente pode começar considerando:
+ *
+ * - expediente;
+ * - duração do serviço;
+ * - agendamentos existentes.
+ */
 
 function renderizarHorarios(
   servico,
@@ -1359,285 +1120,169 @@ function renderizarHorarios(
     );
 
   const duracao =
-    Number(servico.duracao);
+    Number(
+      servico.duracao
+    );
 
-
-  if (
-    !Number.isFinite(duracao) ||
-    duracao <= 0
-  ) {
-
-    area.innerHTML =
-      '<div class="sem-horarios">' +
-      'Duração inválida.' +
-      '</div>';
-
-    return;
-  }
-
+  const possiveis = [];
 
   /*
-   * ========================================================
-   * TRANSFORMA OS AGENDAMENTOS EM INTERVALOS
-   * ========================================================
+   * Primeiro horário sempre começa
+   * no início do expediente.
    */
 
-  const bloqueios =
-    agendamentos
-      .map(function(agendamento) {
-
-        const inicio =
-          horaParaMinutos(
-            agendamento.hora
-          );
-
-        let duracaoExistente =
-          Number(
-            agendamento.duracao
-          );
-
-
-        /*
-         * Caso o agendamento não tenha
-         * duração, procura na lista
-         * de serviços.
-         */
-
-        if (
-          !Number.isFinite(
-            duracaoExistente
-          ) ||
-          duracaoExistente <= 0
-        ) {
-
-          const servicoExistente =
-            servicos.find(
-              function(item) {
-
-                return (
-                  String(
-                    item.nome
-                  ).trim().toLowerCase() ===
-                  String(
-                    agendamento.servico
-                  ).trim().toLowerCase()
-                );
-
-              }
-            );
-
-
-          if (servicoExistente) {
-
-            duracaoExistente =
-              Number(
-                servicoExistente.duracao
-              );
-
-          }
-
-        }
-
-
-        if (
-          inicio < 0 ||
-          !Number.isFinite(
-            duracaoExistente
-          ) ||
-          duracaoExistente <= 0
-        ) {
-
-          return null;
-
-        }
-
-
-        return {
-
-          inicio:
-            inicio,
-
-          fim:
-            inicio +
-            duracaoExistente
-
-        };
-
-      })
-      .filter(function(item) {
-
-        return item !== null;
-
-      })
-      .sort(function(a,b) {
-
-        return a.inicio - b.inicio;
-
-      });
-
-
-  /*
-   * ========================================================
-   * GERAÇÃO DOS HORÁRIOS
-   * ========================================================
-   *
-   * AQUI ESTÁ A REGRA IMPORTANTE:
-   *
-   * NÃO fazemos:
-   *
-   * inicio++
-   *
-   * Portanto nunca teremos:
-   *
-   * 08:01
-   * 08:02
-   * 08:03
-   *
-   *
-   * Em vez disso:
-   *
-   * 08:00 + 50 = 08:50
-   * 08:50 + 50 = 09:40
-   * 09:40 + 50 = 10:30
-   *
-   */
-
-  const horarios = [];
-
-  let inicio =
+  let cursor =
     INICIO_EXPEDIENTE;
 
 
-  while (
-    inicio < FIM_EXPEDIENTE
-  ) {
+  /*
+   * Ordena os agendamentos.
+   */
 
-    /*
-     * Procura se existe algum
-     * agendamento que esteja
-     * bloqueando o horário atual.
-     */
+  const agenda =
+    agendamentos
+      .map(
+        function(item) {
 
-    const conflito =
-      bloqueios.find(
-        function(bloqueio) {
+          const inicio =
+            horaParaMinutos(
+              item.hora
+            );
+
+          const d =
+            Number(
+              item.duracao
+            );
+
+          return {
+
+            inicio: inicio,
+
+            fim:
+              inicio +
+              d
+
+          };
+
+        }
+      )
+      .filter(
+        function(item) {
 
           return (
-            inicio < bloqueio.fim &&
-            (
-              inicio + duracao
-            ) > bloqueio.inicio
+            item.inicio >= 0 &&
+            item.fim > item.inicio
           );
+
+        }
+      )
+      .sort(
+        function(a,b) {
+
+          return a.inicio -
+            b.inicio;
 
         }
       );
 
 
-    /*
-     * ======================================================
-     * EXISTE CONFLITO
-     * ======================================================
-     */
+  /*
+   * Sem agendamentos:
+   *
+   * mostra somente o primeiro horário.
+   *
+   * Depois que o usuário escolher,
+   * o próximo horário possível será
+   * calculado normalmente.
+   *
+   * Para uma agenda já ocupada,
+   * avançamos para o final de cada
+   * agendamento.
+   */
 
-    if (conflito) {
+  while (
+    cursor +
+    duracao <=
+    FIM_EXPEDIENTE
+  ) {
+
+    const conflito =
+      encontrarConflito(
+        cursor,
+        cursor + duracao,
+        agenda
+      );
+
+    if (!conflito) {
+
+      possiveis.push({
+        inicio: cursor,
+        fim:
+          cursor + duracao
+      });
 
       /*
-       * Pula diretamente para o
-       * final do agendamento existente.
+       * O próximo horário possível
+       * é o término deste serviço.
        *
-       * Exemplo:
+       * Assim não aparecem:
        *
-       * Serviço tentando:
-       * 09:40 → 10:30
-       *
-       * Agendamento:
-       * 10:00 → 10:50
-       *
-       * Próxima tentativa:
-       * 10:50
+       * 10:01
+       * 10:02
+       * 10:03...
        */
 
-      inicio =
-        conflito.fim;
+      cursor += duracao;
 
-      continue;
+    } else {
 
-    }
+      /*
+       * Se houver conflito, pula diretamente
+       * para o final do agendamento que bloqueia
+       * o horário.
+       */
 
-
-    /*
-     * ======================================================
-     * VERIFICA SE O SERVIÇO CABE
-     * ======================================================
-     */
-
-    const fim =
-      inicio + duracao;
-
-
-    if (
-      fim > FIM_EXPEDIENTE
-    ) {
-
-      break;
+      cursor =
+        Math.max(
+          cursor + 1,
+          conflito.fim
+        );
 
     }
-
-
-    /*
-     * ======================================================
-     * HORÁRIO DISPONÍVEL
-     * ======================================================
-     */
-
-    horarios.push({
-
-      inicio:
-        inicio,
-
-      fim:
-        fim,
-
-      hora:
-        minutosParaHora(
-          inicio
-        ),
-
-      termino:
-        minutosParaHora(
-          fim
-        ),
-
-      disponivel:
-        true
-
-    });
-
-
-    /*
-     * ======================================================
-     * PRÓXIMO HORÁRIO
-     * ======================================================
-     *
-     * O próximo começa exatamente
-     * quando o atual termina.
-     */
-
-    inicio =
-      fim;
 
   }
 
 
   /*
-   * ========================================================
-   * NENHUM HORÁRIO
-   * ========================================================
+   * Remove duplicados.
    */
 
-  if (
-    horarios.length === 0
-  ) {
+  const unicos = [];
+
+  possiveis.forEach(
+    function(item) {
+
+      const existe =
+        unicos.some(
+          function(x) {
+
+            return x.inicio ===
+              item.inicio;
+
+          }
+        );
+
+      if (!existe) {
+
+        unicos.push(item);
+
+      }
+
+    }
+  );
+
+
+  if (unicos.length === 0) {
 
     area.innerHTML =
       '<div class="sem-horarios">' +
@@ -1649,12 +1294,6 @@ function renderizarHorarios(
   }
 
 
-  /*
-   * ========================================================
-   * MOSTRAR HORÁRIOS
-   * ========================================================
-   */
-
   area.innerHTML = '';
 
 
@@ -1663,23 +1302,18 @@ function renderizarHorarios(
       'div'
     );
 
-
   info.className =
     'horario informacao';
 
-
   info.textContent =
-    'Duração do serviço: ' +
+    'Duração: ' +
     duracao +
     ' minutos';
 
-
-  area.appendChild(
-    info
-  );
+  area.appendChild(info);
 
 
-  horarios.forEach(
+  unicos.forEach(
     function(item) {
 
       const botao =
@@ -1687,36 +1321,34 @@ function renderizarHorarios(
           'button'
         );
 
-
       botao.type =
         'button';
-
-
-      botao.textContent =
-        item.hora;
-
 
       botao.className =
         'horario';
 
+      botao.textContent =
+        minutosParaHora(
+          item.inicio
+        );
+
+      botao.title =
+        'Término previsto: ' +
+        minutosParaHora(
+          item.fim
+        );
 
       botao.onclick =
         function() {
 
           selecionarHorario(
-            item.hora,
+            minutosParaHora(
+              item.inicio
+            ),
             botao
           );
 
         };
-
-
-      botao.title =
-        'Início: ' +
-        item.hora +
-        ' | Término: ' +
-        item.termino;
-
 
       area.appendChild(
         botao
@@ -1728,137 +1360,29 @@ function renderizarHorarios(
 }
 
 
-
-
-/* =========================================================
-   DISPONIBILIDADE
-   ========================================================= */
-
-function verificarDisponibilidadeLocal(
-  inicioNovo,
-  fimNovo,
-  agendamentos
+function encontrarConflito(
+  inicio,
+  fim,
+  agenda
 ) {
 
-  return !agendamentos.some(
-    function(agendamento) {
-
-      const inicioExistente =
-        horaParaMinutos(
-          agendamento.hora
-        );
-
-
-      if (
-        inicioExistente < 0
-      ) {
-
-        return false;
-
-      }
-
-
-      /*
-       * SEMPRE usa a duração do
-       * agendamento.
-       */
-
-      let duracaoExistente =
-        Number(
-          agendamento.duracao
-        );
-
-
-      /*
-       * Se vier inválida,
-       * tenta buscar pelo serviço.
-       */
-
-      if (
-        !Number.isFinite(
-          duracaoExistente
-        ) ||
-        duracaoExistente <= 0
-      ) {
-
-        const servico =
-          servicos.find(
-            function(item) {
-
-              return (
-                String(
-                  item.nome
-                ).trim().toLowerCase() ===
-                String(
-                  agendamento.servico
-                ).trim().toLowerCase()
-              );
-
-            }
-          );
-
-
-        if (servico) {
-
-          duracaoExistente =
-            Number(
-              servico.duracao
-            );
-
-        }
-
-      }
-
-
-      if (
-        duracaoExistente <= 0
-      ) {
-
-        return false;
-
-      }
-
-
-      const fimExistente =
-        inicioExistente +
-        duracaoExistente;
-
-
-      /*
-       * INTERVALOS:
-       *
-       * Novo:
-       * 10:00 -------- 10:50
-       *
-       * Existente:
-       * 10:50 -------- 11:40
-       *
-       * NÃO conflita.
-       *
-       *
-       * Novo:
-       * 10:00 -------- 10:50
-       *
-       * Existente:
-       * 10:40 -------- 11:30
-       *
-       * CONFLITA.
-       */
+  return agenda.find(
+    function(item) {
 
       return (
-        inicioNovo < fimExistente &&
-        fimNovo > inicioExistente
+        inicio < item.fim &&
+        fim > item.inicio
       );
 
     }
-  );
+  ) || null;
 
 }
 
 
-/* =========================================================
+/* =====================================================
    SELECIONAR HORÁRIO
-   ========================================================= */
+   ===================================================== */
 
 function selecionarHorario(
   hora,
@@ -1879,24 +1403,21 @@ function selecionarHorario(
       }
     );
 
-
   botao.classList.add(
     'selecionado'
   );
 
-
   horarioSelecionado =
     hora;
-
 
   atualizarResumo();
 
 }
 
 
-/* =========================================================
+/* =====================================================
    RESUMO
-   ========================================================= */
+   ===================================================== */
 
 function atualizarResumo() {
 
@@ -1905,18 +1426,15 @@ function atualizarResumo() {
       'data'
     ).value;
 
-
   const servicoId =
     document.getElementById(
       'servico'
     ).value;
 
-
   const resumo =
     document.getElementById(
       'resumo'
     );
-
 
   if (
     !data ||
@@ -1931,20 +1449,15 @@ function atualizarResumo() {
 
   }
 
-
   const servico =
     servicos.find(
       function(item) {
 
-        return String(
-          item.id
-        ) === String(
-          servicoId
-        );
+        return String(item.id) ===
+          String(servicoId);
 
       }
     );
-
 
   if (!servico) {
 
@@ -1955,19 +1468,16 @@ function atualizarResumo() {
 
   }
 
-
   const inicio =
     horaParaMinutos(
       horarioSelecionado
     );
-
 
   const fim =
     inicio +
     Number(
       servico.duracao
     );
-
 
   resumo.innerHTML =
 
@@ -1983,7 +1493,7 @@ function atualizarResumo() {
 
     '<br>' +
 
-    'Previsão de término: ' +
+    'Término: ' +
     minutosParaHora(fim) +
 
     '<br>' +
@@ -1999,16 +1509,15 @@ function atualizarResumo() {
     servico.duracao +
     ' minutos';
 
-
   resumo.style.display =
     'block';
 
 }
 
 
-/* =========================================================
-   SALVAR
-   ========================================================= */
+/* =====================================================
+   SALVAR + WHATSAPP
+   ===================================================== */
 
 async function salvarAgendamento() {
 
@@ -2017,24 +1526,20 @@ async function salvarAgendamento() {
       'cliente'
     ).value.trim();
 
-
   const whatsapp =
     document.getElementById(
       'whatsapp'
     ).value.trim();
-
 
   const data =
     document.getElementById(
       'data'
     ).value;
 
-
   const servicoId =
     document.getElementById(
       'servico'
     ).value;
-
 
   const observacao =
     document.getElementById(
@@ -2054,7 +1559,6 @@ async function salvarAgendamento() {
 
   }
 
-
   if (!whatsapp) {
 
     mostrarMensagem(
@@ -2066,7 +1570,6 @@ async function salvarAgendamento() {
     return;
 
   }
-
 
   if (!data) {
 
@@ -2080,7 +1583,6 @@ async function salvarAgendamento() {
 
   }
 
-
   if (!servicoId) {
 
     mostrarMensagem(
@@ -2092,7 +1594,6 @@ async function salvarAgendamento() {
     return;
 
   }
-
 
   if (!horarioSelecionado) {
 
@@ -2111,25 +1612,18 @@ async function salvarAgendamento() {
     servicos.find(
       function(item) {
 
-        return String(
-          item.id
-        ) === String(
-          servicoId
-        );
+        return String(item.id) ===
+          String(servicoId);
 
       }
     );
 
 
-  if (
-    !servico ||
-    !servico.duracao ||
-    servico.duracao <= 0
-  ) {
+  if (!servico) {
 
     mostrarMensagem(
       'mensagemModal',
-      'Duração do serviço inválida.',
+      'Serviço inválido.',
       'erro'
     );
 
@@ -2139,51 +1633,39 @@ async function salvarAgendamento() {
 
 
   /*
-   * Verificação local final.
+   * =====================================================
+   * ABRIMOS UMA ABA DO WHATSAPP ANTES DO FETCH
+   * =====================================================
+   *
+   * Isso evita que o navegador bloqueie o popup,
+   * porque window.open acontece diretamente
+   * durante o clique do usuário.
    */
 
-  const inicioNovo =
-    horaParaMinutos(
-      horarioSelecionado
-    );
-
-
-  const fimNovo =
-    inicioNovo +
-    Number(
-      servico.duracao
-    );
-
-
-  if (
-    fimNovo >
-    FIM_EXPEDIENTE
-  ) {
-
-    mostrarMensagem(
-      'mensagemModal',
-      'Este serviço termina após o horário de funcionamento.',
-      'erro'
-    );
-
-    return;
-
-  }
+  let janelaWhatsApp = null;
 
 
   /*
-   * Busca novamente antes de salvar.
+   * Não abrimos ainda se os dados básicos
+   * estiverem inválidos.
+   *
+   * Aqui já passaram pelas validações.
    */
+
+  janelaWhatsApp =
+    window.open(
+      'about:blank',
+      '_blank'
+    );
+
 
   const btn =
     document.getElementById(
       'btnSalvar'
     );
 
-
   btn.disabled =
     true;
-
 
   btn.textContent =
     'Verificando...';
@@ -2191,17 +1673,58 @@ async function salvarAgendamento() {
 
   try {
 
+    /*
+     * Busca novamente para conferir
+     * disponibilidade antes de salvar.
+     */
+
     const agendaAtual =
       await buscarAgendamentos(
         data
       );
 
 
+    const inicioNovo =
+      horaParaMinutos(
+        horarioSelecionado
+      );
+
+    const fimNovo =
+      inicioNovo +
+      Number(
+        servico.duracao
+      );
+
+
     const conflito =
-      !verificarDisponibilidadeLocal(
+      encontrarConflito(
         inicioNovo,
         fimNovo,
-        agendaAtual
+        agendaAtual.map(
+          function(item) {
+
+            const inicio =
+              horaParaMinutos(
+                item.hora
+              );
+
+            const duracao =
+              Number(
+                item.duracao
+              );
+
+            return {
+
+              inicio: inicio,
+
+              fim:
+                inicio +
+                duracao
+
+            };
+
+          }
+        )
       );
 
 
@@ -2219,15 +1742,9 @@ async function salvarAgendamento() {
 
 
     /*
-     * Enviamos:
-     *
-     * servicoId
-     * servico
-     * duracao
-     *
-     * Porém o Code.gs deve usar
-     * a coluna Duração da aba Servicos
-     * como fonte oficial.
+     * =====================================================
+     * ENVIO PARA O CODE.GS
+     * =====================================================
      */
 
     const dados = {
@@ -2314,6 +1831,150 @@ async function salvarAgendamento() {
     }
 
 
+    /*
+     * =====================================================
+     * AGENDAMENTO SALVO!
+     * AGORA MONTAMOS A MENSAGEM DO WHATSAPP.
+     * =====================================================
+     */
+
+    const dataFormatada =
+      formatarDataBR(data);
+
+
+    const termino =
+      minutosParaHora(
+        inicioNovo +
+        Number(
+          servico.duracao
+        )
+      );
+
+
+    let mensagem =
+
+      'Olá, ' +
+      cliente +
+      '! 💕\n\n' +
+
+      'Seu agendamento no ' +
+      NOME_SALAO +
+      ' foi realizado com sucesso! ✨\n\n' +
+
+      '📅 *Data:* ' +
+      dataFormatada +
+      '\n' +
+
+      '🕐 *Horário:* ' +
+      horarioSelecionado +
+      '\n' +
+
+      '⏰ *Término previsto:* ' +
+      termino +
+      '\n' +
+
+      '💅 *Serviço:* ' +
+      servico.nome +
+      '\n' +
+
+      '⏱️ *Duração:* ' +
+      servico.duracao +
+      ' minutos';
+
+
+    if (
+      servico.preco > 0
+    ) {
+
+      mensagem +=
+        '\n' +
+        '💰 *Valor:* R$ ' +
+        servico.preco
+          .toFixed(2)
+          .replace('.',',');
+
+    }
+
+
+    if (observacao) {
+
+      mensagem +=
+        '\n\n' +
+        '📝 *Observação:* ' +
+        observacao;
+
+    }
+
+
+    mensagem +=
+
+      '\n\n' +
+
+      'Até lá! 💖\n' +
+
+      NOME_SALAO;
+
+
+    /*
+     * Número do WhatsApp.
+     */
+
+    const numero =
+      prepararWhatsApp(
+        whatsapp
+      );
+
+
+    if (!numero) {
+
+      /*
+       * O agendamento já foi salvo.
+       * Apenas não conseguimos abrir o WhatsApp
+       * porque o número é inválido.
+       */
+
+      if (janelaWhatsApp) {
+
+        janelaWhatsApp.close();
+
+      }
+
+      mostrarMensagem(
+        'mensagemPrincipal',
+        'Agendamento realizado, mas o WhatsApp informado é inválido.',
+        'erro'
+      );
+
+    } else {
+
+      const urlWhatsApp =
+        'https://wa.me/' +
+        numero +
+        '?text=' +
+        encodeURIComponent(
+          mensagem
+        );
+
+
+      /*
+       * Redireciona a aba que já foi aberta.
+       */
+
+      if (janelaWhatsApp) {
+
+        janelaWhatsApp.location.href =
+          urlWhatsApp;
+
+      } else {
+
+        window.location.href =
+          urlWhatsApp;
+
+      }
+
+    }
+
+
     mostrarMensagem(
       'mensagemPrincipal',
       'Agendamento realizado com sucesso.',
@@ -2341,6 +2002,18 @@ async function salvarAgendamento() {
     );
 
 
+    /*
+     * Se o agendamento falhou,
+     * fechamos a aba vazia.
+     */
+
+    if (janelaWhatsApp) {
+
+      janelaWhatsApp.close();
+
+    }
+
+
     mostrarMensagem(
       'mensagemModal',
       erro.message ||
@@ -2354,7 +2027,6 @@ async function salvarAgendamento() {
     btn.disabled =
       false;
 
-
     btn.textContent =
       'Agendar Cliente';
 
@@ -2363,9 +2035,141 @@ async function salvarAgendamento() {
 }
 
 
-/* =========================================================
-   CARREGAR AGENDA
-   ========================================================= */
+/* =====================================================
+   WHATSAPP
+   ===================================================== */
+
+function prepararWhatsApp(
+  numero
+) {
+
+  let telefone =
+    String(
+      numero || ''
+    ).replace(
+      /\D/g,
+      ''
+    );
+
+
+  if (!telefone) {
+
+    return '';
+
+  }
+
+
+  /*
+   * Brasil:
+   *
+   * 31999999999
+   *
+   * vira:
+   *
+   * 5531999999999
+   */
+
+  if (
+    telefone.length === 10 ||
+    telefone.length === 11
+  ) {
+
+    telefone =
+      '55' +
+      telefone;
+
+  }
+
+
+  /*
+   * Número brasileiro completo.
+   */
+
+  if (
+    telefone.startsWith('55') &&
+    (
+      telefone.length === 12 ||
+      telefone.length === 13
+    )
+  ) {
+
+    return telefone;
+
+  }
+
+
+  return '';
+
+}
+
+
+/* =====================================================
+   AGENDA
+   ===================================================== */
+
+async function buscarAgendamentos(
+  data
+) {
+
+  const url =
+    API_URL +
+    '?acao=agendamentos' +
+    '&data=' +
+    encodeURIComponent(data) +
+    '&_=' +
+    Date.now();
+
+
+  const resposta =
+    await fetch(
+      url,
+      {
+        cache: 'no-store'
+      }
+    );
+
+
+  if (!resposta.ok) {
+
+    throw new Error(
+      'HTTP ' +
+      resposta.status
+    );
+
+  }
+
+
+  const dados =
+    await resposta.json();
+
+
+  if (
+    Array.isArray(dados)
+  ) {
+
+    return dados;
+
+  }
+
+
+  if (
+    dados &&
+    Array.isArray(
+      dados.agendamentos
+    )
+  ) {
+
+    return dados.agendamentos;
+
+  }
+
+
+  throw new Error(
+    'Resposta inválida dos agendamentos.'
+  );
+
+}
+
 
 async function carregarAgenda() {
 
@@ -2382,11 +2186,6 @@ async function carregarAgenda() {
 
 
   if (!data) {
-
-    area.innerHTML =
-      '<div class="carregando">' +
-      'Selecione uma data.' +
-      '</div>';
 
     return;
 
@@ -2406,19 +2205,11 @@ async function carregarAgenda() {
         data
       );
 
-
     renderizarAgenda(
       dados
     );
 
-
   } catch (erro) {
-
-    console.error(
-      'Erro agenda:',
-      erro
-    );
-
 
     area.innerHTML =
       '<div class="sem-horarios">' +
@@ -2434,10 +2225,6 @@ async function carregarAgenda() {
 
 }
 
-
-/* =========================================================
-   RENDERIZAR AGENDA
-   ========================================================= */
 
 function renderizarAgenda(
   agendamentos
@@ -2456,7 +2243,6 @@ function renderizarAgenda(
 
     area.innerHTML =
       '<h3>Agendamentos do dia</h3>' +
-
       '<div class="carregando">' +
       'Nenhum agendamento para esta data.' +
       '</div>';
@@ -2526,17 +2312,10 @@ function renderizarAgenda(
 
         '</div>' +
 
-
         '<button ' +
-
         'class="btn-cancelar" ' +
-
         'onclick="cancelarAgendamento(\'' +
-
-        escapeHtmlJS(
-          item.id
-        ) +
-
+        escapeHtmlJS(item.id) +
         '\')">' +
 
         'Cancelar' +
@@ -2544,7 +2323,6 @@ function renderizarAgenda(
         '</button>' +
 
         '</div>' +
-
 
         '<div class="info">' +
 
@@ -2562,7 +2340,6 @@ function renderizarAgenda(
 
         '</div>' +
 
-
         '<div class="info">' +
 
         '<strong>Horário:</strong> ' +
@@ -2579,7 +2356,6 @@ function renderizarAgenda(
 
         '</div>' +
 
-
         '<div class="info">' +
 
         '<strong>WhatsApp:</strong> ' +
@@ -2590,26 +2366,18 @@ function renderizarAgenda(
 
         '</div>' +
 
-
         (
           item.observacao
-            ?
-
-            '<div class="info">' +
-
-            '<strong>Observação:</strong> ' +
-
-            escapeHtml(
-              item.observacao
-            ) +
-
-            '</div>'
-
-            :
-
-            ''
+          ?
+          '<div class="info">' +
+          '<strong>Observação:</strong> ' +
+          escapeHtml(
+            item.observacao
+          ) +
+          '</div>'
+          :
+          ''
         ) +
-
 
         '</div>';
 
@@ -2623,9 +2391,9 @@ function renderizarAgenda(
 }
 
 
-/* =========================================================
+/* =====================================================
    CANCELAR
-   ========================================================= */
+   ===================================================== */
 
 async function cancelarAgendamento(
   id
@@ -2674,16 +2442,6 @@ async function cancelarAgendamento(
       );
 
 
-    if (!resposta.ok) {
-
-      throw new Error(
-        'HTTP ' +
-        resposta.status
-      );
-
-    }
-
-
     const resultado =
       await resposta.json();
 
@@ -2712,11 +2470,6 @@ async function cancelarAgendamento(
 
   } catch (erro) {
 
-    console.error(
-      erro
-    );
-
-
     mostrarMensagem(
       'mensagemPrincipal',
       erro.message,
@@ -2728,16 +2481,18 @@ async function cancelarAgendamento(
 }
 
 
-/* =========================================================
-   HORA -> MINUTOS
-   ========================================================= */
+/* =====================================================
+   UTILITÁRIOS
+   ===================================================== */
 
 function horaParaMinutos(
   hora
 ) {
 
   if (!hora) {
+
     return -1;
+
   }
 
 
@@ -2756,21 +2511,20 @@ function horaParaMinutos(
   }
 
 
-  const horas =
+  const h =
     Number(
       partes[0]
     );
 
-
-  const minutos =
+  const m =
     Number(
       partes[1]
     );
 
 
   if (
-    !Number.isFinite(horas) ||
-    !Number.isFinite(minutos)
+    !Number.isFinite(h) ||
+    !Number.isFinite(m)
   ) {
 
     return -1;
@@ -2778,17 +2532,10 @@ function horaParaMinutos(
   }
 
 
-  return (
-    horas * 60 +
-    minutos
-  );
+  return h * 60 + m;
 
 }
 
-
-/* =========================================================
-   MINUTOS -> HORA
-   ========================================================= */
 
 function minutosParaHora(
   minutos
@@ -2809,32 +2556,20 @@ function minutosParaHora(
   }
 
 
-  const horas =
-    Math.floor(
-      valor / 60
-    );
-
-
-  const mins =
-    valor % 60;
-
-
   return (
     String(
-      horas
+      Math.floor(
+        valor / 60
+      )
     ).padStart(2,'0') +
     ':' +
     String(
-      mins
+      valor % 60
     ).padStart(2,'0')
   );
 
 }
 
-
-/* =========================================================
-   DATA BR
-   ========================================================= */
 
 function formatarDataBR(
   data
@@ -2866,10 +2601,6 @@ function formatarDataBR(
 }
 
 
-/* =========================================================
-   MENSAGEM
-   ========================================================= */
-
 function mostrarMensagem(
   id,
   texto,
@@ -2883,13 +2614,14 @@ function mostrarMensagem(
 
 
   if (!elemento) {
+
     return;
+
   }
 
 
   elemento.textContent =
     texto;
-
 
   elemento.className =
     'mensagem ' +
@@ -2910,10 +2642,6 @@ function mostrarMensagem(
 }
 
 
-/* =========================================================
-   ESCONDER MENSAGEM
-   ========================================================= */
-
 function esconderMensagem(
   id
 ) {
@@ -2925,23 +2653,20 @@ function esconderMensagem(
 
 
   if (!elemento) {
+
     return;
+
   }
 
 
   elemento.className =
     'mensagem';
 
-
   elemento.textContent =
     '';
 
 }
 
-
-/* =========================================================
-   ESCAPE HTML
-   ========================================================= */
 
 function escapeHtml(
   texto
@@ -2979,10 +2704,6 @@ function escapeHtml(
 }
 
 
-/* =========================================================
-   ESCAPE JS
-   ========================================================= */
-
 function escapeHtmlJS(
   texto
 ) {
@@ -3009,9 +2730,9 @@ function escapeHtmlJS(
 }
 
 
-/* =========================================================
+/* =====================================================
    FECHAR CLICANDO FORA
-   ========================================================= */
+   ===================================================== */
 
 document
   .getElementById(
@@ -3031,7 +2752,6 @@ document
 
     }
   );
-
 
 </script>
 
