@@ -590,12 +590,12 @@
    * Exemplo:
    *
    * const API_URL =
-   *   "https://script.google.com/macros/s/XXXXXXXX/exec";
+   *   "https://script.google.com/macros/s/AKfycbxlDNqWDBZZ_BQiECAgMFgd1iZKmv-T1AVBOg2bTnvJdPj7NGolqTbQYdUljRORD3DK/exec";
    *
    */
 
   const API_URL =
-    "COLE_AQUI_A_URL_DO_SEU_WEB_APP";
+    "https://script.google.com/macros/s/AKfycbxlDNqWDBZZ_BQiECAgMFgd1iZKmv-T1AVBOg2bTnvJdPj7NGolqTbQYdUljRORD3DK/exec";
 
 
   let servicos = [];
