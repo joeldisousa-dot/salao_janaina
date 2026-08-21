@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Agenda - Salão Janaina</title>
 
@@ -137,11 +140,16 @@ textarea {
   gap: 15px;
 }
 
-/* HORÁRIOS */
+
+/* =========================================================
+   HORÁRIOS
+   ========================================================= */
 
 .horarios {
   display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(90px,1fr));
+  grid-template-columns:
+    repeat(auto-fill,minmax(90px,1fr));
+
   gap: 10px;
   margin-top: 10px;
 }
@@ -154,6 +162,7 @@ textarea {
   border: 2px solid transparent;
   font-size: 15px;
   font-weight: bold;
+  transition: .15s;
 }
 
 .horario:hover {
@@ -173,7 +182,28 @@ textarea {
   text-decoration: line-through;
 }
 
-/* MENSAGENS */
+
+/* =========================================================
+   INFORMAÇÃO DA DURAÇÃO
+   ========================================================= */
+
+.info-duracao {
+  background: #f8f1f5;
+  color: #713253;
+  border-radius: 9px;
+  padding: 10px 12px;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.info-duracao strong {
+  color: #8e4168;
+}
+
+
+/* =========================================================
+   MENSAGENS
+   ========================================================= */
 
 .mensagem {
   padding: 12px;
@@ -208,7 +238,10 @@ textarea {
   text-align: center;
 }
 
-/* AGENDAMENTOS */
+
+/* =========================================================
+   AGENDAMENTOS
+   ========================================================= */
 
 .agendamento {
   border: 1px solid #eee;
@@ -249,7 +282,10 @@ textarea {
   background: #ffcaca;
 }
 
-/* MODAL */
+
+/* =========================================================
+   MODAL
+   ========================================================= */
 
 .modal {
   display: none;
@@ -348,6 +384,11 @@ textarea {
   font-weight: bold;
 }
 
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media (max-width:600px) {
 
   .grid {
@@ -373,257 +414,297 @@ textarea {
   }
 
   .horarios {
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns:
+      repeat(3,1fr);
   }
 
 }
 
 </style>
+
 </head>
+
 
 <body>
 
+
 <header>
 
-<h1>Salão Janaina</h1>
+  <h1>Salão Janaina</h1>
 
-<p>Agenda de clientes</p>
+  <p>Agenda de clientes</p>
 
 </header>
 
 
 <div class="container">
 
-<div class="topo">
 
-<h2>Agenda</h2>
+  <div class="topo">
 
-<button
-class="btn-principal"
-onclick="abrirNovoAgendamento()"
->
-+ Novo Agendamento
-</button>
+    <h2>Agenda</h2>
+
+    <button
+      class="btn-principal"
+      onclick="abrirNovoAgendamento()"
+    >
+      + Novo Agendamento
+    </button>
+
+  </div>
+
+
+  <div
+    id="mensagemPrincipal"
+    class="mensagem"
+  ></div>
+
+
+  <div class="card">
+
+    <h3>Agendamentos do dia</h3>
+
+    <div class="filtro">
+
+      <div
+        style="width:100%;max-width:250px"
+      >
+
+        <label for="dataAgenda">
+          Data
+        </label>
+
+        <input
+          type="date"
+          id="dataAgenda"
+          onchange="carregarAgenda()"
+        >
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="listaAgendamentos"
+    class="card"
+  >
+
+    <div class="carregando">
+      Carregando...
+    </div>
+
+  </div>
+
 
 </div>
 
+
+
+<!-- =======================================================
+     MODAL
+======================================================== -->
 
 <div
-id="mensagemPrincipal"
-class="mensagem"
-></div>
-
-
-<div class="card">
-
-<h3>Agendamentos do dia</h3>
-
-<div class="filtro">
-
-<div style="width:100%;max-width:250px">
-
-<label for="dataAgenda">
-Data
-</label>
-
-<input
-type="date"
-id="dataAgenda"
-onchange="carregarAgenda()"
+  id="modal"
+  class="modal"
 >
 
-</div>
+  <div class="modal-conteudo">
+
+
+    <div class="modal-header">
+
+      <h2>Novo Agendamento</h2>
+
+      <button
+        class="fechar"
+        onclick="fecharModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div
+      id="mensagemModal"
+      class="mensagem"
+    ></div>
+
+
+    <div class="campo">
+
+      <label for="cliente">
+        Nome da cliente *
+      </label>
+
+      <input
+        type="text"
+        id="cliente"
+        placeholder="Digite o nome da cliente"
+      >
+
+    </div>
+
+
+    <div class="campo">
+
+      <label for="whatsapp">
+        WhatsApp *
+      </label>
+
+      <input
+        type="tel"
+        id="whatsapp"
+        placeholder="(31) 99999-9999"
+      >
+
+    </div>
+
+
+    <div class="grid">
+
+
+      <div class="campo">
+
+        <label for="data">
+          Data *
+        </label>
+
+        <input
+          type="date"
+          id="data"
+          onchange="atualizarHorarios()"
+        >
+
+      </div>
+
+
+      <div class="campo">
+
+        <label for="servico">
+          Serviço *
+        </label>
+
+        <select
+          id="servico"
+          onchange="atualizarHorarios()"
+        >
+
+          <option value="">
+            Selecione o serviço
+          </option>
+
+        </select>
+
+
+        <div
+          id="informacaoDuracao"
+          class="info-duracao"
+          style="display:none"
+        ></div>
+
+      </div>
+
+    </div>
+
+
+    <div class="campo">
+
+      <label>
+        Horários disponíveis *
+      </label>
+
+      <div
+        id="areaHorarios"
+        class="horarios"
+      >
+
+        <div class="carregando">
+          Selecione a data e o serviço.
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="campo">
+
+      <label for="observacao">
+        Observação
+      </label>
+
+      <textarea
+        id="observacao"
+        placeholder="Observações da cliente..."
+      ></textarea>
+
+    </div>
+
+
+    <div
+      id="resumo"
+      class="resumo"
+      style="display:none"
+    ></div>
+
+
+    <div class="acoes">
+
+      <button
+        class="btn-secundario"
+        onclick="fecharModal()"
+      >
+        Cancelar
+      </button>
+
+      <button
+        id="btnSalvar"
+        class="btn-salvar"
+        onclick="salvarAgendamento()"
+      >
+        Agendar Cliente
+      </button>
+
+    </div>
+
+
+  </div>
 
 </div>
 
-</div>
-
-
-<div
-id="listaAgendamentos"
-class="card"
->
-
-<div class="carregando">
-Carregando...
-</div>
-
-</div>
-
-</div>
-
-
-<!-- MODAL -->
-
-<div
-id="modal"
-class="modal"
->
-
-<div class="modal-conteudo">
-
-<div class="modal-header">
-
-<h2>Novo Agendamento</h2>
-
-<button
-class="fechar"
-onclick="fecharModal()"
->
-×
-</button>
-
-</div>
-
-
-<div
-id="mensagemModal"
-class="mensagem"
-></div>
-
-
-<div class="campo">
-
-<label for="cliente">
-Nome da cliente *
-</label>
-
-<input
-type="text"
-id="cliente"
-placeholder="Digite o nome da cliente"
->
-
-</div>
-
-
-<div class="campo">
-
-<label for="whatsapp">
-WhatsApp *
-</label>
-
-<input
-type="tel"
-id="whatsapp"
-placeholder="(31) 99999-9999"
->
-
-</div>
-
-
-<div class="grid">
-
-<div class="campo">
-
-<label for="data">
-Data *
-</label>
-
-<input
-type="date"
-id="data"
-onchange="atualizarHorarios()"
->
-
-</div>
-
-
-<div class="campo">
-
-<label for="servico">
-Serviço *
-</label>
-
-<select
-id="servico"
-onchange="atualizarHorarios()"
->
-
-<option value="">
-Selecione o serviço
-</option>
-
-</select>
-
-</div>
-
-</div>
-
-
-<div class="campo">
-
-<label>
-Horários disponíveis *
-</label>
-
-<div
-id="areaHorarios"
-class="horarios"
->
-
-<div class="carregando">
-Selecione a data e o serviço.
-</div>
-
-</div>
-
-</div>
-
-
-<div class="campo">
-
-<label for="observacao">
-Observação
-</label>
-
-<textarea
-id="observacao"
-placeholder="Observações da cliente..."
-></textarea>
-
-</div>
-
-
-<div
-id="resumo"
-class="resumo"
-style="display:none"
-></div>
-
-
-<div class="acoes">
-
-<button
-class="btn-secundario"
-onclick="fecharModal()"
->
-Cancelar
-</button>
-
-<button
-id="btnSalvar"
-class="btn-salvar"
-onclick="salvarAgendamento()"
->
-Agendar Cliente
-</button>
-
-</div>
-
-</div>
-
-</div>
 
 
 <script>
 
+
 /* =========================================================
-CONFIGURAÇÃO
+   CONFIGURAÇÃO
 ========================================================= */
 
 const API_URL =
-'https://script.google.com/macros/s/AKfycbwp9RPaerz5Qe0k-DVjlUMoEn16Pdw4JYyayCR9-CXW0ImT8XkRUmKjbNmXCzaZQqRc/exec';
+  'https://script.google.com/macros/s/AKfycbwp9RPaerz5Qe0k-DVjlUMoEn16Pdw4JYyayCR9-CXW0ImT8XkRUmKjbNmXCzaZQqRc/exec';
+
+
+/*
+ * Horário de funcionamento.
+ */
+const INICIO_EXPEDIENTE = 8 * 60;
+const FIM_EXPEDIENTE = 18 * 60;
+
+
+/*
+ * IMPORTANTE:
+ *
+ * NÃO existe intervalo fixo de 30 minutos.
+ *
+ * O intervalo é SEMPRE a duração
+ * do serviço selecionado.
+ */
 
 
 let servicos = [];
@@ -636,487 +717,776 @@ let carregandoServicos = false;
 
 
 /* =========================================================
-INICIALIZAÇÃO
+   INICIALIZAÇÃO
 ========================================================= */
 
 document.addEventListener(
-'DOMContentLoaded',
-async function() {
+  'DOMContentLoaded',
+  async function() {
 
-const hoje = obterDataHoje();
+    const hoje =
+      obterDataHoje();
 
-document.getElementById(
-'dataAgenda'
-).value = hoje;
 
-document.getElementById(
-'dataAgenda'
-).min = hoje;
+    document.getElementById(
+      'dataAgenda'
+    ).value = hoje;
 
-document.getElementById(
-'data'
-).min = hoje;
 
-await carregarServicos();
+    document.getElementById(
+      'dataAgenda'
+    ).min = hoje;
 
-carregarAgenda();
 
-});
+    document.getElementById(
+      'data'
+    ).min = hoje;
+
+
+    await carregarServicos();
+
+
+    carregarAgenda();
+
+  }
+);
 
 
 /* =========================================================
-DATA
+   DATA DE HOJE
 ========================================================= */
 
 function obterDataHoje() {
 
-const agora = new Date();
+  const agora =
+    new Date();
 
-const ano =
-agora.getFullYear();
 
-const mes =
-String(
-agora.getMonth()+1
-).padStart(2,'0');
+  const ano =
+    agora.getFullYear();
 
-const dia =
-String(
-agora.getDate()
-).padStart(2,'0');
 
-return `${ano}-${mes}-${dia}`;
+  const mes =
+    String(
+      agora.getMonth() + 1
+    ).padStart(2,'0');
+
+
+  const dia =
+    String(
+      agora.getDate()
+    ).padStart(2,'0');
+
+
+  return (
+    ano +
+    '-' +
+    mes +
+    '-' +
+    dia
+  );
 
 }
 
 
 /* =========================================================
-ABRIR NOVO AGENDAMENTO
+   ABRIR MODAL
 ========================================================= */
 
 async function abrirNovoAgendamento() {
 
-limparFormulario();
+  limparFormulario();
 
-const dataAgenda =
-document.getElementById(
-'dataAgenda'
-).value;
 
-document.getElementById(
-'data'
-).value =
-dataAgenda || obterDataHoje();
+  const dataAgenda =
+    document.getElementById(
+      'dataAgenda'
+    ).value;
 
-document.getElementById(
-'modal'
-).classList.add('ativo');
 
-if (
-servicos.length === 0
-) {
+  document.getElementById(
+    'data'
+  ).value =
+    dataAgenda ||
+    obterDataHoje();
 
-await carregarServicos();
 
-}
+  document.getElementById(
+    'modal'
+  ).classList.add('ativo');
 
-atualizarHorarios();
+
+  if (
+    servicos.length === 0
+  ) {
+
+    await carregarServicos();
+
+  }
+
+
+  atualizarHorarios();
 
 }
 
 
 /* =========================================================
-FECHAR
+   FECHAR MODAL
 ========================================================= */
 
 function fecharModal() {
 
-document.getElementById(
-'modal'
-).classList.remove('ativo');
+  document.getElementById(
+    'modal'
+  ).classList.remove('ativo');
 
 }
 
 
 /* =========================================================
-LIMPAR
+   LIMPAR FORMULÁRIO
 ========================================================= */
 
 function limparFormulario() {
 
-document.getElementById(
-'cliente'
-).value = '';
+  document.getElementById(
+    'cliente'
+  ).value = '';
 
-document.getElementById(
-'whatsapp'
-).value = '';
 
-document.getElementById(
-'observacao'
-).value = '';
+  document.getElementById(
+    'whatsapp'
+  ).value = '';
 
-document.getElementById(
-'servico'
-).value = '';
 
-horarioSelecionado = '';
+  document.getElementById(
+    'observacao'
+  ).value = '';
 
-document.getElementById(
-'resumo'
-).style.display = 'none';
 
-document.getElementById(
-'areaHorarios'
-).innerHTML =
-'<div class="carregando">' +
-'Selecione a data e o serviço.' +
-'</div>';
+  document.getElementById(
+    'servico'
+  ).value = '';
 
-esconderMensagem(
-'mensagemModal'
-);
+
+  horarioSelecionado = '';
+
+
+  document.getElementById(
+    'resumo'
+  ).style.display = 'none';
+
+
+  document.getElementById(
+    'informacaoDuracao'
+  ).style.display = 'none';
+
+
+  document.getElementById(
+    'areaHorarios'
+  ).innerHTML =
+    '<div class="carregando">' +
+    'Selecione a data e o serviço.' +
+    '</div>';
+
+
+  esconderMensagem(
+    'mensagemModal'
+  );
 
 }
 
 
 /* =========================================================
-CARREGAR SERVIÇOS
+   CARREGAR SERVIÇOS
 ========================================================= */
 
 async function carregarServicos() {
 
-if (carregandoServicos) {
-return;
-}
-
-carregandoServicos = true;
-
-try {
-
-const resposta =
-await fetch(
-API_URL +
-'?acao=servicos&_=' +
-Date.now(),
-{
-cache:'no-store'
-}
-);
-
-const dados =
-await resposta.json();
-
-if (!Array.isArray(dados)) {
-
-throw new Error(
-'Resposta inválida dos serviços.'
-);
-
-}
-
-servicos = dados.map(
-function(servico) {
-
-return {
-
-id:String(
-servico.id
-),
-
-nome:String(
-servico.nome || ''
-),
-
-/*
-IMPORTANTÍSSIMO:
-a duração vem diretamente
-da aba Servicos.
-*/
-
-duracao:Number(
-servico.duracao || 0
-),
-
-preco:Number(
-servico.preco || 0
-)
-
-};
-
-}
-);
+  if (carregandoServicos) {
+    return;
+  }
 
 
-const select =
-document.getElementById(
-'servico'
-);
-
-const valorAtual =
-select.value;
-
-select.innerHTML =
-'<option value="">' +
-'Selecione o serviço' +
-'</option>';
+  carregandoServicos = true;
 
 
-servicos.forEach(
-function(servico) {
+  try {
 
-const option =
-document.createElement(
-'option'
-);
-
-option.value =
-servico.id;
-
-let texto =
-servico.nome;
-
-if (servico.duracao > 0) {
-
-texto +=
-' - ' +
-servico.duracao +
-' min';
-
-}
-
-if (servico.preco > 0) {
-
-texto +=
-' - R$ ' +
-servico.preco
-.toFixed(2)
-.replace('.',',');
-
-}
-
-option.textContent =
-texto;
-
-select.appendChild(
-option
-);
-
-}
-);
+    const resposta =
+      await fetch(
+        API_URL +
+        '?acao=servicos&_=' +
+        Date.now(),
+        {
+          method: 'GET',
+          cache: 'no-store'
+        }
+      );
 
 
-if (valorAtual) {
-select.value =
-valorAtual;
-}
+    if (!resposta.ok) {
+
+      throw new Error(
+        'Erro HTTP ' +
+        resposta.status
+      );
+
+    }
 
 
-} catch (erro) {
+    const dados =
+      await resposta.json();
 
-console.error(
-'Erro serviços:',
-erro
-);
 
-mostrarMensagem(
-'mensagemModal',
-'Erro ao carregar serviços: ' +
-erro.message,
-'erro'
-);
+    if (!Array.isArray(dados)) {
 
-} finally {
+      /*
+       * Seu Code.gs pode retornar
+       * diretamente array ou objeto.
+       */
 
-carregandoServicos = false;
+      if (
+        dados &&
+        Array.isArray(dados.servicos)
+      ) {
 
-}
+        servicos =
+          normalizarServicos(
+            dados.servicos
+          );
+
+      } else {
+
+        throw new Error(
+          'Resposta inválida dos serviços.'
+        );
+
+      }
+
+    } else {
+
+      servicos =
+        normalizarServicos(
+          dados
+        );
+
+    }
+
+
+    preencherSelectServicos();
+
+
+  } catch (erro) {
+
+    console.error(
+      'Erro serviços:',
+      erro
+    );
+
+
+    mostrarMensagem(
+      'mensagemModal',
+      'Erro ao carregar serviços: ' +
+      erro.message,
+      'erro'
+    );
+
+
+  } finally {
+
+    carregandoServicos = false;
+
+  }
 
 }
 
 
 /* =========================================================
-DATA/SERVIÇO ALTERADOS
+   NORMALIZAR SERVIÇOS
+========================================================= */
+
+function normalizarServicos(lista) {
+
+  return lista
+    .map(function(servico) {
+
+      return {
+
+        id:
+          String(
+            servico.id ?? ''
+          ),
+
+        nome:
+          String(
+            servico.nome ||
+            servico.servico ||
+            ''
+          ),
+
+        /*
+         * A duração vem da aba SERVICOS.
+         */
+        duracao:
+          converterNumero(
+            servico.duracao
+          ),
+
+        preco:
+          converterNumero(
+            servico.preco
+          )
+
+      };
+
+    })
+    .filter(function(servico) {
+
+      return (
+        servico.id &&
+        servico.nome &&
+        servico.duracao > 0
+      );
+
+    });
+
+}
+
+
+/* =========================================================
+   PREENCHER SERVIÇOS
+========================================================= */
+
+function preencherSelectServicos() {
+
+  const select =
+    document.getElementById(
+      'servico'
+    );
+
+
+  const valorAtual =
+    select.value;
+
+
+  select.innerHTML =
+    '<option value="">' +
+    'Selecione o serviço' +
+    '</option>';
+
+
+  servicos.forEach(
+    function(servico) {
+
+      const option =
+        document.createElement(
+          'option'
+        );
+
+
+      /*
+       * O VALUE é o ID do serviço.
+       */
+      option.value =
+        servico.id;
+
+
+      let texto =
+        servico.nome;
+
+
+      texto +=
+        ' - ' +
+        servico.duracao +
+        ' min';
+
+
+      if (
+        servico.preco > 0
+      ) {
+
+        texto +=
+          ' - R$ ' +
+          servico.preco
+            .toFixed(2)
+            .replace('.',',');
+
+      }
+
+
+      option.textContent =
+        texto;
+
+
+      select.appendChild(
+        option
+      );
+
+    }
+  );
+
+
+  if (valorAtual) {
+
+    select.value =
+      valorAtual;
+
+  }
+
+}
+
+
+/* =========================================================
+   DATA OU SERVIÇO ALTERADO
 ========================================================= */
 
 function atualizarHorarios() {
 
-horarioSelecionado = '';
-
-const data =
-document.getElementById(
-'data'
-).value;
-
-const servicoId =
-document.getElementById(
-'servico'
-).value;
-
-const area =
-document.getElementById(
-'areaHorarios'
-);
-
-document.getElementById(
-'resumo'
-).style.display =
-'none';
+  horarioSelecionado = '';
 
 
-if (!data) {
-
-area.innerHTML =
-'<div class="carregando">' +
-'Selecione uma data.' +
-'</div>';
-
-return;
-
-}
+  document.getElementById(
+    'resumo'
+  ).style.display = 'none';
 
 
-if (!servicoId) {
-
-area.innerHTML =
-'<div class="carregando">' +
-'Agora selecione o serviço para calcular os horários.' +
-'</div>';
-
-return;
-
-}
+  const data =
+    document.getElementById(
+      'data'
+    ).value;
 
 
-const servico =
-servicos.find(
-function(item) {
-
-return String(item.id) ===
-String(servicoId);
-
-}
-);
+  const servicoId =
+    document.getElementById(
+      'servico'
+    ).value;
 
 
-if (
-!servico ||
-servico.duracao <= 0
-) {
-
-area.innerHTML =
-'<div class="sem-horarios">' +
-'A duração deste serviço é inválida.' +
-'</div>';
-
-return;
-
-}
+  const area =
+    document.getElementById(
+      'areaHorarios'
+    );
 
 
-area.innerHTML =
-'<div class="carregando">' +
-'Calculando horários usando ' +
-servico.duracao +
-' minutos...' +
-'</div>';
+  const infoDuracao =
+    document.getElementById(
+      'informacaoDuracao'
+    );
 
 
-/*
-Agora NÃO usamos mais a ação
-"horarios" do Code.gs.
+  if (!data) {
 
-Buscamos os agendamentos reais
-do dia e calculamos localmente.
-*/
+    infoDuracao.style.display =
+      'none';
 
-carregarAgendamentosParaHorarios(
-data,
-servico
-);
+
+    area.innerHTML =
+      '<div class="carregando">' +
+      'Selecione uma data.' +
+      '</div>';
+
+    return;
+
+  }
+
+
+  if (!servicoId) {
+
+    infoDuracao.style.display =
+      'none';
+
+
+    area.innerHTML =
+      '<div class="carregando">' +
+      'Agora selecione o serviço.' +
+      '</div>';
+
+    return;
+
+  }
+
+
+  const servico =
+    servicos.find(
+      function(item) {
+
+        return String(item.id) ===
+          String(servicoId);
+
+      }
+    );
+
+
+  if (
+    !servico ||
+    servico.duracao <= 0
+  ) {
+
+    infoDuracao.style.display =
+      'none';
+
+
+    area.innerHTML =
+      '<div class="sem-horarios">' +
+      'A duração deste serviço é inválida.' +
+      '</div>';
+
+    return;
+
+  }
+
+
+  /*
+   * Mostra claramente qual duração
+   * está sendo usada.
+   */
+
+  infoDuracao.innerHTML =
+    '<strong>Duração:</strong> ' +
+    servico.duracao +
+    ' minutos';
+
+
+  infoDuracao.style.display =
+    'block';
+
+
+  area.innerHTML =
+    '<div class="carregando">' +
+    'Calculando horários usando ' +
+    '<strong>' +
+    servico.duracao +
+    ' minutos' +
+    '</strong>...' +
+    '</div>';
+
+
+  carregarAgendamentosParaHorarios(
+    data,
+    servico
+  );
 
 }
 
 
 /* =========================================================
-BUSCAR AGENDAMENTOS PARA CALCULAR HORÁRIOS
+   BUSCAR AGENDAMENTOS
 ========================================================= */
 
 async function carregarAgendamentosParaHorarios(
-data,
-servico
+  data,
+  servico
 ) {
 
-try {
+  try {
 
-const resposta =
-await fetch(
-API_URL +
-'?acao=agendamentos' +
-'&data=' +
-encodeURIComponent(data) +
-'&_=' +
-Date.now(),
-{
-cache:'no-store'
-}
-);
-
-const dados =
-await resposta.json();
+    const resposta =
+      await fetch(
+        API_URL +
+        '?acao=agendamentos' +
+        '&data=' +
+        encodeURIComponent(data) +
+        '&_=' +
+        Date.now(),
+        {
+          method: 'GET',
+          cache: 'no-store'
+        }
+      );
 
 
-if (!Array.isArray(dados)) {
+    if (!resposta.ok) {
 
-throw new Error(
-'Resposta inválida dos agendamentos.'
-);
+      throw new Error(
+        'Erro HTTP ' +
+        resposta.status
+      );
 
-}
-
-
-agendamentosDoDia =
-dados;
+    }
 
 
-/*
-Aqui está o cálculo principal.
-
-A duração usada é a duração
-DO SERVIÇO SELECIONADO.
-*/
-
-renderizarHorariosPorDuracao(
-servico.duracao,
-dados
-);
+    const dados =
+      await resposta.json();
 
 
-} catch (erro) {
+    let agenda;
 
-console.error(
-'Erro ao consultar agendamentos:',
-erro
-);
 
-document.getElementById(
-'areaHorarios'
-).innerHTML =
-'<div class="sem-horarios">' +
-'Não foi possível calcular os horários.<br><br>' +
-'<small>' +
-escapeHtml(erro.message) +
-'</small>' +
-'</div>';
+    if (Array.isArray(dados)) {
 
-}
+      agenda = dados;
+
+    } else if (
+      dados &&
+      Array.isArray(dados.agendamentos)
+    ) {
+
+      agenda =
+        dados.agendamentos;
+
+    } else {
+
+      throw new Error(
+        'Resposta inválida dos agendamentos.'
+      );
+
+    }
+
+
+    agendamentosDoDia =
+      normalizarAgendamentos(
+        agenda
+      );
+
+
+    renderizarHorariosPorDuracao(
+      servico.duracao,
+      agendamentosDoDia
+    );
+
+
+  } catch (erro) {
+
+    console.error(
+      'Erro agendamentos:',
+      erro
+    );
+
+
+    document.getElementById(
+      'areaHorarios'
+    ).innerHTML =
+      '<div class="sem-horarios">' +
+      'Não foi possível carregar os horários.<br><br>' +
+      '<small>' +
+      escapeHtml(
+        erro.message
+      ) +
+      '</small>' +
+      '</div>';
+
+  }
 
 }
 
 
 /* =========================================================
-GERAR HORÁRIOS
+   NORMALIZAR AGENDAMENTOS
 ========================================================= */
+
+function normalizarAgendamentos(lista) {
+
+  return lista
+    .map(function(item) {
+
+      return {
+
+        id:
+          String(
+            item.id || ''
+          ),
+
+        data:
+          String(
+            item.data || ''
+          ),
+
+        hora:
+          String(
+            item.hora || ''
+          ),
+
+        cliente:
+          String(
+            item.cliente || ''
+          ),
+
+        whatsapp:
+          String(
+            item.whatsapp || ''
+          ),
+
+        servico:
+          String(
+            item.servico || ''
+          ),
+
+        /*
+         * A duração do agendamento
+         * existente também é real.
+         */
+        duracao:
+          converterNumero(
+            item.duracao
+          ),
+
+        observacao:
+          String(
+            item.observacao || ''
+          ),
+
+        status:
+          String(
+            item.status ||
+            'AGENDADO'
+          )
+
+      };
+
+    })
+    .filter(function(item) {
+
+      return (
+        item.hora &&
+        item.duracao > 0 &&
+        item.status.toUpperCase() !==
+        'CANCELADO'
+      );
+
+    });
+
+}
+
+
+/* =========================================================
+   GERAR HORÁRIOS
+========================================================= */
+
+/*
+ * ============================================================
+ *
+ * ESTA É A PARTE MAIS IMPORTANTE DO HTML.
+ *
+ * NÃO EXISTE INTERVALO FIXO DE 30 MINUTOS.
+ *
+ * O intervalo usado é:
+ *
+ *     DURACAO DO SERVIÇO
+ *
+ * ============================================================
+ *
+ * Exemplo:
+ *
+ * duração = 40
+ *
+ * 08:00
+ * 08:40
+ * 09:20
+ * 10:00
+ * 10:40
+ *
+ *
+ * Se houver:
+ *
+ * 10:00 → 10:40
+ *
+ * então 10:00 fica ocupado
+ * e o próximo horário possível
+ * será 10:40.
+ *
+ * ============================================================
+ */
 
 function renderizarHorariosPorDuracao(
   duracaoServico,
@@ -1124,13 +1494,21 @@ function renderizarHorariosPorDuracao(
 ) {
 
   const area =
-    document.getElementById('areaHorarios');
+    document.getElementById(
+      'areaHorarios'
+    );
+
 
   const duracao =
-    Number(duracaoServico);
+    Number(
+      duracaoServico
+    );
 
 
-  if (!duracao || duracao <= 0) {
+  if (
+    !duracao ||
+    duracao <= 0
+  ) {
 
     area.innerHTML =
       '<div class="sem-horarios">' +
@@ -1138,91 +1516,215 @@ function renderizarHorariosPorDuracao(
       '</div>';
 
     return;
+
   }
 
 
-  /*
-   * ========================================================
-   * HORÁRIO DE FUNCIONAMENTO
-   * ========================================================
-   */
+  const inicioExpediente =
+    INICIO_EXPEDIENTE;
 
-  const inicioExpediente = 8 * 60;
-  const fimExpediente = 18 * 60;
+
+  const fimExpediente =
+    FIM_EXPEDIENTE;
 
 
   /*
-   * ========================================================
-   * IMPORTANTE
-   *
-   * NÃO usar 30 minutos.
-   *
-   * O intervalo entre os horários é exatamente
-   * a duração do serviço selecionado.
-   *
-   * Exemplo:
-   *
-   * duração = 40
-   *
-   * 08:00
-   * 08:40
-   * 09:20
-   * 10:00
-   * 10:40
-   *
-   * ========================================================
+   * Copia e ordena os agendamentos.
    */
 
-  const intervalo = duracao;
+  const agenda =
+    Array.isArray(agendamentos)
+      ? agendamentos
+          .filter(function(item) {
+
+            return (
+              horaParaMinutos(
+                item.hora
+              ) >= 0 &&
+              Number(item.duracao) > 0
+            );
+
+          })
+          .sort(function(a,b) {
+
+            return (
+              horaParaMinutos(a.hora) -
+              horaParaMinutos(b.hora)
+            );
+
+          })
+      : [];
 
 
   const horarios = [];
 
 
   /*
-   * Gera os horários usando a duração do serviço.
+   * ========================================================
+   * COMEÇA ÀS 08:00.
+   * ========================================================
    */
 
-  for (
-    let inicio = inicioExpediente;
+  let cursor =
+    inicioExpediente;
 
-    inicio + duracao <= fimExpediente;
 
-    inicio += intervalo
+  /*
+   * Segurança contra loop.
+   */
+
+  let contador =
+    0;
+
+
+  while (
+    cursor + duracao <= fimExpediente &&
+    contador < 100
   ) {
 
-    const fim =
-      inicio + duracao;
+    contador++;
 
 
-    const disponivel =
-      verificarDisponibilidade(
-        inicio,
-        fim,
-        agendamentos
+    /*
+     * Procura se o horário atual
+     * entra em conflito com algum
+     * agendamento existente.
+     */
+
+    const conflito =
+      agenda.find(
+        function(agendamento) {
+
+          const inicioExistente =
+            horaParaMinutos(
+              agendamento.hora
+            );
+
+
+          const duracaoExistente =
+            Number(
+              agendamento.duracao
+            );
+
+
+          const fimExistente =
+            inicioExistente +
+            duracaoExistente;
+
+
+          /*
+           * INTERVALOS:
+           *
+           * Novo:
+           * cursor → cursor + duração
+           *
+           * Existente:
+           * início → fim
+           *
+           * Se cruzar, está ocupado.
+           */
+
+          return (
+            cursor <
+              fimExistente
+            &&
+            cursor + duracao >
+              inicioExistente
+          );
+
+        }
       );
 
 
-    horarios.push({
+    /*
+     * ======================================================
+     * HORÁRIO LIVRE
+     * ======================================================
+     */
 
-      hora:
-        minutosParaHora(inicio),
+    if (!conflito) {
 
-      disponivel:
-        disponivel
+      horarios.push({
 
-    });
+        hora:
+          minutosParaHora(
+            cursor
+          ),
+
+        disponivel: true
+
+      });
+
+
+      /*
+       * PRÓXIMO HORÁRIO:
+       *
+       * horário atual
+       * +
+       * duração do serviço
+       */
+
+      cursor =
+        cursor +
+        duracao;
+
+
+      continue;
+
+    }
+
+
+    /*
+     * ======================================================
+     * HORÁRIO OCUPADO
+     * ======================================================
+     */
+
+    const inicioOcupado =
+      horaParaMinutos(
+        conflito.hora
+      );
+
+
+    const duracaoOcupada =
+      Number(
+        conflito.duracao
+      );
+
+
+    const fimOcupado =
+      inicioOcupado +
+      duracaoOcupada;
+
+
+    /*
+     * O próximo horário começa
+     * exatamente quando termina
+     * o agendamento que bloqueou.
+     *
+     * Exemplo:
+     *
+     * 10:00 + 50 = 10:50
+     *
+     * próximo = 10:50
+     */
+
+    cursor =
+      Math.max(
+        cursor + 1,
+        fimOcupado
+      );
 
   }
 
 
   /*
-   * ========================================================
-   * VERIFICA SE EXISTE ALGUM HORÁRIO
-   * ========================================================
+   * Nenhum horário.
    */
 
-  if (horarios.length === 0) {
+  if (
+    horarios.length === 0
+  ) {
 
     area.innerHTML =
       '<div class="sem-horarios">' +
@@ -1230,26 +1732,30 @@ function renderizarHorariosPorDuracao(
       '</div>';
 
     return;
+
   }
-
-
-  area.innerHTML = '';
 
 
   /*
    * ========================================================
-   * DESENHA OS BOTÕES
+   * DESENHAR HORÁRIOS
    * ========================================================
    */
+
+  area.innerHTML = '';
+
 
   horarios.forEach(
     function(item) {
 
       const botao =
-        document.createElement('button');
+        document.createElement(
+          'button'
+        );
 
 
-      botao.type = 'button';
+      botao.type =
+        'button';
 
 
       botao.textContent =
@@ -1260,30 +1766,20 @@ function renderizarHorariosPorDuracao(
         'horario';
 
 
-      if (item.disponivel) {
+      /*
+       * Todos que chegaram aqui
+       * estão disponíveis.
+       */
 
-        botao.onclick =
-          function() {
+      botao.onclick =
+        function() {
 
-            selecionarHorario(
-              item.hora,
-              botao
-            );
+          selecionarHorario(
+            item.hora,
+            botao
+          );
 
-          };
-
-      } else {
-
-        botao.classList.add(
-          'ocupado'
-        );
-
-        botao.disabled = true;
-
-        botao.title =
-          'Este horário conflita com outro agendamento.';
-
-      }
+        };
 
 
       area.appendChild(
@@ -1296,953 +1792,1350 @@ function renderizarHorariosPorDuracao(
 }
 
 
-
 /* =========================================================
-VERIFICAR DISPONIBILIDADE
-========================================================= */
-
-function verificarDisponibilidade(
-inicioNovo,
-fimNovo,
-agendamentos
-) {
-
-return !agendamentos.some(
-function(agendamento) {
-
-const inicioExistente =
-horaParaMinutos(
-agendamento.hora
-);
-
-
-/*
-IMPORTANTE:
-
-Usa a duração do agendamento
-que já está na planilha.
-
-Não usa 30 minutos.
-*/
-
-const duracaoExistente =
-Number(
-agendamento.duracao || 0
-);
-
-
-const fimExistente =
-inicioExistente +
-duracaoExistente;
-
-
-/*
-DOIS INTERVALOS CONFLITAM
-quando:
-
-início novo < fim existente
-
-E
-
-fim novo > início existente
-*/
-
-return (
-inicioNovo < fimExistente &&
-fimNovo > inicioExistente
-);
-
-}
-);
-
-}
-
-
-/* =========================================================
-SELECIONAR HORÁRIO
+   SELECIONAR HORÁRIO
 ========================================================= */
 
 function selecionarHorario(
-hora,
-botao
+  hora,
+  botao
 ) {
 
-document
-.querySelectorAll(
-'#areaHorarios .horario'
-)
-.forEach(
-function(item) {
+  document
+    .querySelectorAll(
+      '#areaHorarios .horario'
+    )
+    .forEach(
+      function(item) {
 
-item.classList.remove(
-'selecionado'
-);
+        item.classList.remove(
+          'selecionado'
+        );
 
-}
-);
+      }
+    );
 
-botao.classList.add(
-'selecionado'
-);
 
-horarioSelecionado =
-hora;
+  botao.classList.add(
+    'selecionado'
+  );
 
-atualizarResumo();
+
+  horarioSelecionado =
+    hora;
+
+
+  atualizarResumo();
 
 }
 
 
 /* =========================================================
-RESUMO
+   RESUMO
 ========================================================= */
 
 function atualizarResumo() {
 
-const data =
-document.getElementById(
-'data'
-).value;
-
-const servicoId =
-document.getElementById(
-'servico'
-).value;
-
-const resumo =
-document.getElementById(
-'resumo'
-);
+  const data =
+    document.getElementById(
+      'data'
+    ).value;
 
 
-if (
-!data ||
-!servicoId ||
-!horarioSelecionado
-) {
-
-resumo.style.display =
-'none';
-
-return;
-
-}
+  const servicoId =
+    document.getElementById(
+      'servico'
+    ).value;
 
 
-const servico =
-servicos.find(
-function(item) {
-
-return String(item.id) ===
-String(servicoId);
-
-}
-);
+  const resumo =
+    document.getElementById(
+      'resumo'
+    );
 
 
-if (!servico) {
-return;
-}
+  if (
+    !data ||
+    !servicoId ||
+    !horarioSelecionado
+  ) {
+
+    resumo.style.display =
+      'none';
+
+    return;
+
+  }
 
 
-const inicio =
-horaParaMinutos(
-horarioSelecionado
-);
+  const servico =
+    servicos.find(
+      function(item) {
 
-const fim =
-inicio +
-Number(servico.duracao);
+        return String(item.id) ===
+          String(servicoId);
 
-
-resumo.innerHTML =
-
-'<strong>Resumo:</strong><br>' +
-
-'Data: ' +
-formatarDataBR(data) +
-
-'<br>' +
-
-'Horário: ' +
-horarioSelecionado +
-
-'<br>' +
-
-'Previsão de término: ' +
-minutosParaHora(fim) +
-
-'<br>' +
-
-'Serviço: ' +
-escapeHtml(servico.nome) +
-
-'<br>' +
-
-'Duração: ' +
-servico.duracao +
-' minutos';
+      }
+    );
 
 
-resumo.style.display =
-'block';
+  if (!servico) {
+
+    resumo.style.display =
+      'none';
+
+    return;
+
+  }
+
+
+  const inicio =
+    horaParaMinutos(
+      horarioSelecionado
+    );
+
+
+  const fim =
+    inicio +
+    Number(
+      servico.duracao
+    );
+
+
+  resumo.innerHTML =
+
+    '<strong>Resumo:</strong><br>' +
+
+    'Data: ' +
+    formatarDataBR(data) +
+
+    '<br>' +
+
+    'Horário: ' +
+    horarioSelecionado +
+
+    '<br>' +
+
+    'Previsão de término: ' +
+    minutosParaHora(fim) +
+
+    '<br>' +
+
+    'Serviço: ' +
+    escapeHtml(
+      servico.nome
+    ) +
+
+    '<br>' +
+
+    'Duração: ' +
+    servico.duracao +
+    ' minutos';
+
+
+  resumo.style.display =
+    'block';
 
 }
 
 
 /* =========================================================
-SALVAR AGENDAMENTO
+   SALVAR AGENDAMENTO
 ========================================================= */
 
 async function salvarAgendamento() {
 
-const cliente =
-document.getElementById(
-'cliente'
-).value.trim();
+  const cliente =
+    document.getElementById(
+      'cliente'
+    ).value.trim();
 
-const whatsapp =
-document.getElementById(
-'whatsapp'
-).value.trim();
 
-const data =
-document.getElementById(
-'data'
-).value;
+  const whatsapp =
+    document.getElementById(
+      'whatsapp'
+    ).value.trim();
 
-const servicoId =
-document.getElementById(
-'servico'
-).value;
 
-const observacao =
-document.getElementById(
-'observacao'
-).value.trim();
+  const data =
+    document.getElementById(
+      'data'
+    ).value;
 
 
-if (!cliente) {
+  const servicoId =
+    document.getElementById(
+      'servico'
+    ).value;
 
-mostrarMensagem(
-'mensagemModal',
-'Informe o nome da cliente.',
-'erro'
-);
 
-return;
+  const observacao =
+    document.getElementById(
+      'observacao'
+    ).value.trim();
 
-}
 
+  if (!cliente) {
 
-if (!whatsapp) {
+    mostrarMensagem(
+      'mensagemModal',
+      'Informe o nome da cliente.',
+      'erro'
+    );
 
-mostrarMensagem(
-'mensagemModal',
-'Informe o WhatsApp da cliente.',
-'erro'
-);
+    return;
 
-return;
+  }
 
-}
 
+  if (!whatsapp) {
 
-if (!data) {
+    mostrarMensagem(
+      'mensagemModal',
+      'Informe o WhatsApp da cliente.',
+      'erro'
+    );
 
-mostrarMensagem(
-'mensagemModal',
-'Informe a data.',
-'erro'
-);
+    return;
 
-return;
+  }
 
-}
 
+  if (!data) {
 
-if (!servicoId) {
+    mostrarMensagem(
+      'mensagemModal',
+      'Informe a data.',
+      'erro'
+    );
 
-mostrarMensagem(
-'mensagemModal',
-'Selecione o serviço.',
-'erro'
-);
+    return;
 
-return;
+  }
 
-}
 
+  if (!servicoId) {
 
-if (!horarioSelecionado) {
+    mostrarMensagem(
+      'mensagemModal',
+      'Selecione o serviço.',
+      'erro'
+    );
 
-mostrarMensagem(
-'mensagemModal',
-'Selecione um horário.',
-'erro'
-);
+    return;
 
-return;
+  }
 
-}
 
+  if (!horarioSelecionado) {
 
-const servico =
-servicos.find(
-function(item) {
+    mostrarMensagem(
+      'mensagemModal',
+      'Selecione um horário.',
+      'erro'
+    );
 
-return String(item.id) ===
-String(servicoId);
+    return;
 
-}
-);
+  }
 
 
-if (
-!servico ||
-!servico.duracao
-) {
+  const servico =
+    servicos.find(
+      function(item) {
 
-mostrarMensagem(
-'mensagemModal',
-'Não foi possível identificar a duração do serviço.',
-'erro'
-);
+        return String(item.id) ===
+          String(servicoId);
 
-return;
+      }
+    );
 
-}
 
+  if (
+    !servico ||
+    !servico.duracao
+  ) {
 
-const btn =
-document.getElementById(
-'btnSalvar'
-);
+    mostrarMensagem(
+      'mensagemModal',
+      'Não foi possível identificar a duração do serviço.',
+      'erro'
+    );
 
-btn.disabled = true;
+    return;
 
-btn.textContent =
-'Agendando...';
+  }
 
 
-try {
+  const inicioNovo =
+    horaParaMinutos(
+      horarioSelecionado
+    );
 
 
-/*
-Antes de salvar, verifica novamente
-os agendamentos do dia.
+  const fimNovo =
+    inicioNovo +
+    Number(
+      servico.duracao
+    );
 
-Isso evita salvar um horário que
-acabou de ficar ocupado.
-*/
 
-const respostaAgenda =
-await fetch(
-API_URL +
-'?acao=agendamentos' +
-'&data=' +
-encodeURIComponent(data) +
-'&_=' +
-Date.now(),
-{
-cache:'no-store'
-}
-);
+  if (
+    fimNovo >
+    FIM_EXPEDIENTE
+  ) {
 
+    mostrarMensagem(
+      'mensagemModal',
+      'Este serviço termina após o horário de funcionamento.',
+      'erro'
+    );
 
-const agendaAtual =
-await respostaAgenda.json();
+    return;
 
+  }
 
-if (!Array.isArray(agendaAtual)) {
 
-throw new Error(
-'Não foi possível verificar a agenda.'
-);
+  const btn =
+    document.getElementById(
+      'btnSalvar'
+    );
 
-}
 
+  btn.disabled = true;
 
-const inicioNovo =
-horaParaMinutos(
-horarioSelecionado
-);
+  btn.textContent =
+    'Agendando...';
 
-const fimNovo =
-inicioNovo +
-Number(servico.duracao);
 
+  try {
 
-const conflito =
-!verificarDisponibilidade(
-inicioNovo,
-fimNovo,
-agendaAtual
-);
+    /*
+     * VERIFICA A AGENDA NOVAMENTE
+     * ANTES DE SALVAR.
+     */
 
+    const respostaAgenda =
+      await fetch(
+        API_URL +
+        '?acao=agendamentos' +
+        '&data=' +
+        encodeURIComponent(data) +
+        '&_=' +
+        Date.now(),
+        {
+          method: 'GET',
+          cache: 'no-store'
+        }
+      );
 
-if (conflito) {
 
-throw new Error(
-'Este horário acabou de ser ocupado. Escolha outro horário.'
-);
+    if (!respostaAgenda.ok) {
 
-}
+      throw new Error(
+        'Não foi possível verificar a agenda. HTTP ' +
+        respostaAgenda.status
+      );
 
+    }
 
-/*
-Envia a duração REAL do serviço.
-*/
 
-const dados = {
+    const dadosAgenda =
+      await respostaAgenda.json();
 
-acao:'agendar',
 
-cliente:cliente,
+    const agendaAtual =
+      Array.isArray(dadosAgenda)
+        ? dadosAgenda
+        : (
+            dadosAgenda &&
+            Array.isArray(
+              dadosAgenda.agendamentos
+            )
+              ? dadosAgenda.agendamentos
+              : []
+          );
 
-whatsapp:whatsapp,
 
-data:data,
+    const agendaNormalizada =
+      normalizarAgendamentos(
+        agendaAtual
+      );
 
-hora:horarioSelecionado,
 
-servico:servico.nome,
+    const conflito =
+      verificarConflito(
+        inicioNovo,
+        fimNovo,
+        agendaNormalizada
+      );
 
-/*
-AQUI está a duração real.
-*/
 
-duracao:Number(
-servico.duracao
-),
+    if (conflito) {
 
-observacao:observacao
+      throw new Error(
+        'Este horário acabou de ser ocupado. Escolha outro horário.'
+      );
 
-};
+    }
 
 
-const resposta =
-await fetch(
-API_URL,
-{
+    /*
+     * ======================================================
+     * ENVIA O ID E O NOME DO SERVIÇO.
+     *
+     * A duração enviada é a mesma que veio
+     * da aba Servicos.
+     * ======================================================
+     */
 
-method:'POST',
+    const dados = {
 
-headers:{
-'Content-Type':
-'text/plain;charset=utf-8'
-},
+      acao:
+        'agendar',
 
-body:
-JSON.stringify(dados)
+      cliente:
+        cliente,
 
-}
-);
+      whatsapp:
+        whatsapp,
 
+      data:
+        data,
 
-const resultado =
-await resposta.json();
+      hora:
+        horarioSelecionado,
 
+      servico:
+        servico.nome,
 
-if (!resultado.sucesso) {
+      servicoId:
+        servico.id,
 
-throw new Error(
-resultado.erro ||
-'Não foi possível realizar o agendamento.'
-);
+      duracao:
+        Number(
+          servico.duracao
+        ),
 
-}
+      observacao:
+        observacao
 
+    };
 
-mostrarMensagem(
-'mensagemPrincipal',
-'Agendamento realizado com sucesso!',
-'sucesso'
-);
 
+    const resposta =
+      await fetch(
+        API_URL,
+        {
 
-fecharModal();
+          method:
+            'POST',
 
+          headers: {
+            'Content-Type':
+              'text/plain;charset=utf-8'
+          },
 
-document.getElementById(
-'dataAgenda'
-).value = data;
+          body:
+            JSON.stringify(
+              dados
+            )
 
+        }
+      );
 
-carregarAgenda();
 
+    if (!resposta.ok) {
 
-} catch (erro) {
+      throw new Error(
+        'Erro HTTP ' +
+        resposta.status +
+        ' ao salvar.'
+      );
 
-console.error(erro);
+    }
 
-mostrarMensagem(
-'mensagemModal',
-erro.message,
-'erro'
-);
 
-} finally {
+    const resultado =
+      await resposta.json();
 
-btn.disabled = false;
 
-btn.textContent =
-'Agendar Cliente';
+    if (
+      !resultado.sucesso
+    ) {
 
-}
+      throw new Error(
+        resultado.erro ||
+        'Não foi possível realizar o agendamento.'
+      );
+
+    }
+
+
+    mostrarMensagem(
+      'mensagemPrincipal',
+      'Agendamento realizado com sucesso!',
+      'sucesso'
+    );
+
+
+    fecharModal();
+
+
+    document.getElementById(
+      'dataAgenda'
+    ).value =
+      data;
+
+
+    carregarAgenda();
+
+
+  } catch (erro) {
+
+    console.error(
+      'Erro ao salvar:',
+      erro
+    );
+
+
+    mostrarMensagem(
+      'mensagemModal',
+      erro.message,
+      'erro'
+    );
+
+
+  } finally {
+
+    btn.disabled =
+      false;
+
+
+    btn.textContent =
+      'Agendar Cliente';
+
+  }
 
 }
 
 
 /* =========================================================
-CARREGAR AGENDA
+   VERIFICAR CONFLITO
+========================================================= */
+
+function verificarConflito(
+  inicioNovo,
+  fimNovo,
+  agendamentos
+) {
+
+  return agendamentos.some(
+    function(agendamento) {
+
+      const inicioExistente =
+        horaParaMinutos(
+          agendamento.hora
+        );
+
+
+      const duracaoExistente =
+        Number(
+          agendamento.duracao || 0
+        );
+
+
+      if (
+        inicioExistente < 0 ||
+        duracaoExistente <= 0
+      ) {
+
+        return false;
+
+      }
+
+
+      const fimExistente =
+        inicioExistente +
+        duracaoExistente;
+
+
+      return (
+        inicioNovo <
+        fimExistente
+        &&
+        fimNovo >
+        inicioExistente
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   CARREGAR AGENDA
 ========================================================= */
 
 async function carregarAgenda() {
 
-const data =
-document.getElementById(
-'dataAgenda'
-).value;
-
-const area =
-document.getElementById(
-'listaAgendamentos'
-);
+  const data =
+    document.getElementById(
+      'dataAgenda'
+    ).value;
 
 
-if (!data) {
-
-area.innerHTML =
-'<div class="carregando">' +
-'Selecione uma data.' +
-'</div>';
-
-return;
-
-}
+  const area =
+    document.getElementById(
+      'listaAgendamentos'
+    );
 
 
-area.innerHTML =
-'<div class="carregando">' +
-'Carregando agendamentos...' +
-'</div>';
+  if (!data) {
+
+    area.innerHTML =
+      '<div class="carregando">' +
+      'Selecione uma data.' +
+      '</div>';
+
+    return;
+
+  }
 
 
-try {
-
-const resposta =
-await fetch(
-API_URL +
-'?acao=agendamentos' +
-'&data=' +
-encodeURIComponent(data) +
-'&_=' +
-Date.now(),
-{
-cache:'no-store'
-}
-);
+  area.innerHTML =
+    '<div class="carregando">' +
+    'Carregando agendamentos...' +
+    '</div>';
 
 
-const dados =
-await resposta.json();
+  try {
+
+    const resposta =
+      await fetch(
+        API_URL +
+        '?acao=agendamentos' +
+        '&data=' +
+        encodeURIComponent(data) +
+        '&_=' +
+        Date.now(),
+        {
+          method: 'GET',
+          cache: 'no-store'
+        }
+      );
 
 
-if (!Array.isArray(dados)) {
+    if (!resposta.ok) {
 
-throw new Error(
-'Resposta inválida.'
-);
+      throw new Error(
+        'HTTP ' +
+        resposta.status
+      );
 
-}
-
-
-renderizarAgenda(dados);
+    }
 
 
-} catch (erro) {
+    const dados =
+      await resposta.json();
 
-area.innerHTML =
-'<div class="sem-horarios">' +
-'Erro ao carregar a agenda.<br>' +
-escapeHtml(erro.message) +
-'</div>';
 
-}
+    const agendamentos =
+      Array.isArray(dados)
+        ? dados
+        : (
+            dados &&
+            Array.isArray(
+              dados.agendamentos
+            )
+              ? dados.agendamentos
+              : null
+          );
+
+
+    if (!agendamentos) {
+
+      throw new Error(
+        'Resposta inválida.'
+      );
+
+    }
+
+
+    renderizarAgenda(
+      agendamentos
+    );
+
+
+  } catch (erro) {
+
+    console.error(
+      'Erro agenda:',
+      erro
+    );
+
+
+    area.innerHTML =
+      '<div class="sem-horarios">' +
+      'Erro ao carregar a agenda.<br>' +
+      escapeHtml(
+        erro.message
+      ) +
+      '</div>';
+
+  }
 
 }
 
 
 /* =========================================================
-RENDERIZAR AGENDA
+   RENDERIZAR AGENDA
 ========================================================= */
 
 function renderizarAgenda(
-agendamentos
+  agendamentos
 ) {
 
-const area =
-document.getElementById(
-'listaAgendamentos'
-);
+  const area =
+    document.getElementById(
+      'listaAgendamentos'
+    );
 
 
-if (
-!agendamentos ||
-agendamentos.length === 0
-) {
+  if (
+    !agendamentos ||
+    agendamentos.length === 0
+  ) {
 
-area.innerHTML =
-'<h3>Agendamentos do dia</h3>' +
-'<div class="carregando">' +
-'Nenhum agendamento para esta data.' +
-'</div>';
+    area.innerHTML =
+      '<h3>Agendamentos do dia</h3>' +
+      '<div class="carregando">' +
+      'Nenhum agendamento para esta data.' +
+      '</div>';
 
-return;
+    return;
 
-}
-
-
-agendamentos.sort(
-function(a,b) {
-
-return horaParaMinutos(a.hora) -
-horaParaMinutos(b.hora);
-
-}
-);
+  }
 
 
-let html =
-'<h3>Agendamentos do dia</h3>';
+  agendamentos.sort(
+    function(a,b) {
+
+      return (
+        horaParaMinutos(a.hora) -
+        horaParaMinutos(b.hora)
+      );
+
+    }
+  );
 
 
-agendamentos.forEach(
-function(item) {
-
-html +=
-
-'<div class="agendamento">' +
-
-'<div class="agendamento-topo">' +
-
-'<div>' +
-
-'<strong>' +
-
-escapeHtml(item.hora) +
-
-' - ' +
-
-escapeHtml(item.cliente) +
-
-'</strong>' +
-
-'</div>' +
-
-'<button ' +
-
-'class="btn-cancelar" ' +
-
-'onclick="cancelarAgendamento(\'' +
-
-escapeHtmlJS(item.id) +
-
-'\')">' +
-
-'Cancelar' +
-
-'</button>' +
-
-'</div>' +
-
-'<div class="info">' +
-
-'<strong>Serviço:</strong> ' +
-
-escapeHtml(item.servico) +
-
-' (' +
-
-Number(item.duracao || 0) +
-
-' min)' +
-
-'</div>' +
-
-'<div class="info">' +
-
-'<strong>WhatsApp:</strong> ' +
-
-escapeHtml(item.whatsapp) +
-
-'</div>' +
-
-(
-item.observacao
-?
-'<div class="info">' +
-'<strong>Observação:</strong> ' +
-escapeHtml(item.observacao) +
-'</div>'
-:
-''
-) +
-
-'</div>';
-
-}
-);
+  let html =
+    '<h3>Agendamentos do dia</h3>';
 
 
-area.innerHTML =
-html;
+  agendamentos.forEach(
+    function(item) {
+
+      html +=
+
+        '<div class="agendamento">' +
+
+          '<div class="agendamento-topo">' +
+
+            '<div>' +
+
+              '<strong>' +
+
+                escapeHtml(
+                  item.hora
+                ) +
+
+                ' - ' +
+
+                escapeHtml(
+                  item.cliente
+                ) +
+
+              '</strong>' +
+
+            '</div>' +
+
+            '<button ' +
+
+              'class="btn-cancelar" ' +
+
+              'onclick="cancelarAgendamento(\'' +
+
+                escapeHtmlJS(
+                  item.id
+                ) +
+
+              '\')">' +
+
+              'Cancelar' +
+
+            '</button>' +
+
+          '</div>' +
+
+
+          '<div class="info">' +
+
+            '<strong>Serviço:</strong> ' +
+
+            escapeHtml(
+              item.servico
+            ) +
+
+            ' (' +
+
+            Number(
+              item.duracao || 0
+            ) +
+
+            ' min)' +
+
+          '</div>' +
+
+
+          '<div class="info">' +
+
+            '<strong>Término:</strong> ' +
+
+            calcularTermino(
+              item.hora,
+              item.duracao
+            ) +
+
+          '</div>' +
+
+
+          '<div class="info">' +
+
+            '<strong>WhatsApp:</strong> ' +
+
+            escapeHtml(
+              item.whatsapp
+            ) +
+
+          '</div>' +
+
+
+          (
+            item.observacao
+              ?
+                '<div class="info">' +
+                  '<strong>Observação:</strong> ' +
+                  escapeHtml(
+                    item.observacao
+                  ) +
+                '</div>'
+              :
+                ''
+          ) +
+
+        '</div>';
+
+    }
+  );
+
+
+  area.innerHTML =
+    html;
 
 }
 
 
 /* =========================================================
-CANCELAR
+   CANCELAR
 ========================================================= */
 
-async function cancelarAgendamento(id) {
-
-if (
-!confirm(
-'Deseja realmente cancelar este agendamento?'
-)
+async function cancelarAgendamento(
+  id
 ) {
-return;
-}
+
+  if (
+    !confirm(
+      'Deseja realmente cancelar este agendamento?'
+    )
+  ) {
+
+    return;
+
+  }
 
 
-try {
+  try {
 
-const resposta =
-await fetch(
-API_URL,
-{
+    const resposta =
+      await fetch(
+        API_URL,
+        {
 
-method:'POST',
+          method:
+            'POST',
 
-headers:{
-'Content-Type':
-'text/plain;charset=utf-8'
-},
+          headers: {
+            'Content-Type':
+              'text/plain;charset=utf-8'
+          },
 
-body:
-JSON.stringify({
-acao:'cancelar',
-id:id
-})
+          body:
+            JSON.stringify({
 
-}
-);
+              acao:
+                'cancelar',
 
+              id:
+                id
 
-const resultado =
-await resposta.json();
+            })
 
-
-if (!resultado.sucesso) {
-
-throw new Error(
-resultado.erro ||
-'Erro ao cancelar.'
-);
-
-}
+        }
+      );
 
 
-mostrarMensagem(
-'mensagemPrincipal',
-'Agendamento cancelado com sucesso.',
-'sucesso'
-);
+    if (!resposta.ok) {
+
+      throw new Error(
+        'Erro HTTP ' +
+        resposta.status
+      );
+
+    }
 
 
-carregarAgenda();
+    const resultado =
+      await resposta.json();
 
 
-} catch (erro) {
+    if (
+      !resultado.sucesso
+    ) {
 
-mostrarMensagem(
-'mensagemPrincipal',
-erro.message,
-'erro'
-);
+      throw new Error(
+        resultado.erro ||
+        'Erro ao cancelar.'
+      );
 
-}
+    }
+
+
+    mostrarMensagem(
+      'mensagemPrincipal',
+      'Agendamento cancelado com sucesso.',
+      'sucesso'
+    );
+
+
+    carregarAgenda();
+
+
+  } catch (erro) {
+
+    mostrarMensagem(
+      'mensagemPrincipal',
+      erro.message,
+      'erro'
+    );
+
+  }
 
 }
 
 
 /* =========================================================
-CONVERSÕES DE HORÁRIO
+   CALCULAR TÉRMINO
 ========================================================= */
 
-function horaParaMinutos(hora) {
+function calcularTermino(
+  hora,
+  duracao
+) {
 
-const partes =
-String(
-hora || '00:00'
-).split(':');
+  const inicio =
+    horaParaMinutos(
+      hora
+    );
 
 
-return (
-Number(partes[0] || 0) * 60 +
-Number(partes[1] || 0)
-);
+  const fim =
+    inicio +
+    Number(
+      duracao || 0
+    );
+
+
+  return minutosParaHora(
+    fim
+  );
 
 }
 
+
+/* =========================================================
+   CONVERSÃO DE NÚMERO
+========================================================= */
+
+function converterNumero(
+  valor
+) {
+
+  if (
+    valor === null ||
+    valor === undefined ||
+    valor === ''
+  ) {
+
+    return 0;
+
+  }
+
+
+  if (
+    typeof valor === 'number'
+  ) {
+
+    return valor;
+
+  }
+
+
+  let texto =
+    String(
+      valor
+    ).trim();
+
+
+  texto =
+    texto.replace(
+      /R\$/gi,
+      ''
+    ).trim();
+
+
+  if (
+    texto.includes(',') &&
+    texto.includes('.')
+  ) {
+
+    texto =
+      texto
+        .replace(/\./g,'')
+        .replace(',','.');
+
+  } else {
+
+    texto =
+      texto.replace(',','.');
+
+  }
+
+
+  const numero =
+    Number(
+      texto
+    );
+
+
+  return isNaN(numero)
+    ? 0
+    : numero;
+
+}
+
+
+/* =========================================================
+   HORA → MINUTOS
+========================================================= */
+
+function horaParaMinutos(
+  hora
+) {
+
+  const texto =
+    String(
+      hora || ''
+    ).trim();
+
+
+  const partes =
+    texto.split(':');
+
+
+  if (
+    partes.length < 2
+  ) {
+
+    return -1;
+
+  }
+
+
+  const horas =
+    Number(
+      partes[0]
+    );
+
+
+  const minutos =
+    Number(
+      partes[1]
+    );
+
+
+  if (
+    isNaN(horas) ||
+    isNaN(minutos)
+  ) {
+
+    return -1;
+
+  }
+
+
+  return (
+    horas * 60 +
+    minutos
+  );
+
+}
+
+
+/* =========================================================
+   MINUTOS → HORA
+========================================================= */
 
 function minutosParaHora(
-minutos
+  minutos
 ) {
 
-const horas =
-Math.floor(
-minutos / 60
-);
-
-const mins =
-minutos % 60;
+  const valor =
+    Number(
+      minutos
+    );
 
 
-return (
-String(horas).padStart(2,'0') +
-':' +
-String(mins).padStart(2,'0')
-);
+  const horas =
+    Math.floor(
+      valor / 60
+    );
+
+
+  const mins =
+    valor % 60;
+
+
+  return (
+    String(
+      horas
+    ).padStart(2,'0') +
+
+    ':' +
+
+    String(
+      mins
+    ).padStart(2,'0')
+  );
 
 }
 
 
 /* =========================================================
-DATA BR
+   DATA BR
 ========================================================= */
 
-function formatarDataBR(data) {
+function formatarDataBR(
+  data
+) {
 
-const partes =
-String(data).split('-');
+  const partes =
+    String(
+      data
+    ).split('-');
 
-if (partes.length !== 3) {
-return data;
-}
 
-return (
-partes[2] +
-'/' +
-partes[1] +
-'/' +
-partes[0]
-);
+  if (
+    partes.length !== 3
+  ) {
+
+    return data;
+
+  }
+
+
+  return (
+    partes[2] +
+    '/' +
+    partes[1] +
+    '/' +
+    partes[0]
+  );
 
 }
 
 
 /* =========================================================
-MENSAGENS
+   MENSAGEM
 ========================================================= */
 
 function mostrarMensagem(
-id,
-texto,
-tipo
+  id,
+  texto,
+  tipo
 ) {
 
-const elemento =
-document.getElementById(id);
-
-if (!elemento) {
-return;
-}
-
-elemento.textContent =
-texto;
-
-elemento.className =
-'mensagem ' + tipo;
-
-setTimeout(
-function() {
-esconderMensagem(id);
-},
-5000
-);
-
-}
+  const elemento =
+    document.getElementById(
+      id
+    );
 
 
-function esconderMensagem(id) {
+  if (!elemento) {
+    return;
+  }
 
-const elemento =
-document.getElementById(id);
 
-if (!elemento) {
-return;
-}
+  elemento.textContent =
+    texto;
 
-elemento.className =
-'mensagem';
 
-elemento.textContent =
-'';
+  elemento.className =
+    'mensagem ' +
+    tipo;
+
+
+  setTimeout(
+    function() {
+
+      esconderMensagem(
+        id
+      );
+
+    },
+    5000
+  );
 
 }
 
 
 /* =========================================================
-SEGURANÇA
+   ESCONDER MENSAGEM
 ========================================================= */
 
-function escapeHtml(texto) {
+function esconderMensagem(
+  id
+) {
 
-return String(texto || '')
-.replace(/&/g,'&amp;')
-.replace(/</g,'&lt;')
-.replace(/>/g,'&gt;')
-.replace(/"/g,'&quot;')
-.replace(/'/g,'&#039;');
-
-}
+  const elemento =
+    document.getElementById(
+      id
+    );
 
 
-function escapeHtmlJS(texto) {
+  if (!elemento) {
+    return;
+  }
 
-return String(texto || '')
-.replace(/\\/g,'\\\\')
-.replace(/'/g,"\\'")
-.replace(/"/g,'\\"');
+
+  elemento.className =
+    'mensagem';
+
+
+  elemento.textContent =
+    '';
 
 }
 
 
 /* =========================================================
-FECHAR CLICANDO FORA
+   SEGURANÇA HTML
+========================================================= */
+
+function escapeHtml(
+  texto
+) {
+
+  return String(
+    texto || ''
+  )
+  .replace(
+    /&/g,
+    '&amp;'
+  )
+  .replace(
+    /</g,
+    '&lt;'
+  )
+  .replace(
+    />/g,
+    '&gt;'
+  )
+  .replace(
+    /"/g,
+    '&quot;'
+  )
+  .replace(
+    /'/g,
+    '&#039;'
+  );
+
+}
+
+
+/* =========================================================
+   SEGURANÇA JAVASCRIPT
+========================================================= */
+
+function escapeHtmlJS(
+  texto
+) {
+
+  return String(
+    texto || ''
+  )
+  .replace(
+    /\\/g,
+    '\\\\'
+  )
+  .replace(
+    /'/g,
+    "\\'"
+  )
+  .replace(
+    /"/g,
+    '\\"'
+  );
+
+}
+
+
+/* =========================================================
+   FECHAR CLICANDO FORA
 ========================================================= */
 
 document
-.getElementById('modal')
-.addEventListener(
-'click',
-function(event) {
+  .getElementById('modal')
+  .addEventListener(
+    'click',
+    function(event) {
 
-if (
-event.target === this
-) {
+      if (
+        event.target === this
+      ) {
 
-fecharModal();
+        fecharModal();
 
-}
+      }
 
-}
-);
+    }
+  );
+
 
 </script>
 
 </body>
+
 </html>
