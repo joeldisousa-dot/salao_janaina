@@ -141,15 +141,13 @@ textarea {
 }
 
 
-/* =========================================================
+/* =====================================================
    HORÁRIOS
-   ========================================================= */
+   ===================================================== */
 
 .horarios {
   display: grid;
-  grid-template-columns:
-    repeat(auto-fill,minmax(90px,1fr));
-
+  grid-template-columns: repeat(auto-fill,minmax(95px,1fr));
   gap: 10px;
   margin-top: 10px;
 }
@@ -162,7 +160,6 @@ textarea {
   border: 2px solid transparent;
   font-size: 15px;
   font-weight: bold;
-  transition: .15s;
 }
 
 .horario:hover {
@@ -176,34 +173,26 @@ textarea {
 }
 
 .horario.ocupado {
-  background: #eee;
+  background: #eeeeee;
   color: #aaa;
   cursor: not-allowed;
   text-decoration: line-through;
 }
 
-
-/* =========================================================
-   INFORMAÇÃO DA DURAÇÃO
-   ========================================================= */
-
-.info-duracao {
-  background: #f8f1f5;
-  color: #713253;
-  border-radius: 9px;
-  padding: 10px 12px;
-  margin-top: 8px;
-  font-size: 14px;
-}
-
-.info-duracao strong {
+.horario.informacao {
+  background: #fff8fb;
   color: #8e4168;
+  border: 1px dashed #d89abc;
+  cursor: default;
+  font-size: 13px;
+  grid-column: 1 / -1;
+  text-decoration: none;
 }
 
 
-/* =========================================================
+/* =====================================================
    MENSAGENS
-   ========================================================= */
+   ===================================================== */
 
 .mensagem {
   padding: 12px;
@@ -239,9 +228,9 @@ textarea {
 }
 
 
-/* =========================================================
-   AGENDAMENTOS
-   ========================================================= */
+/* =====================================================
+   AGENDA
+   ===================================================== */
 
 .agendamento {
   border: 1px solid #eee;
@@ -283,9 +272,9 @@ textarea {
 }
 
 
-/* =========================================================
+/* =====================================================
    MODAL
-   ========================================================= */
+   ===================================================== */
 
 .modal {
   display: none;
@@ -385,9 +374,9 @@ textarea {
 }
 
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
+/* =====================================================
+   RESPONSIVO
+   ===================================================== */
 
 @media (max-width:600px) {
 
@@ -414,8 +403,7 @@ textarea {
   }
 
   .horarios {
-    grid-template-columns:
-      repeat(3,1fr);
+    grid-template-columns: repeat(3,1fr);
   }
 
 }
@@ -430,9 +418,9 @@ textarea {
 
 <header>
 
-  <h1>Salão Janaina</h1>
+<h1>Salão Janaina</h1>
 
-  <p>Agenda de clientes</p>
+<p>Agenda de clientes</p>
 
 </header>
 
@@ -440,240 +428,229 @@ textarea {
 <div class="container">
 
 
-  <div class="topo">
+<div class="topo">
 
-    <h2>Agenda</h2>
+<h2>Agenda</h2>
 
-    <button
-      class="btn-principal"
-      onclick="abrirNovoAgendamento()"
-    >
-      + Novo Agendamento
-    </button>
+<button
+  class="btn-principal"
+  onclick="abrirNovoAgendamento()">
 
-  </div>
+  + Novo Agendamento
 
+</button>
 
-  <div
-    id="mensagemPrincipal"
-    class="mensagem"
-  ></div>
+</div>
 
 
-  <div class="card">
-
-    <h3>Agendamentos do dia</h3>
-
-    <div class="filtro">
-
-      <div
-        style="width:100%;max-width:250px"
-      >
-
-        <label for="dataAgenda">
-          Data
-        </label>
-
-        <input
-          type="date"
-          id="dataAgenda"
-          onchange="carregarAgenda()"
-        >
-
-      </div>
-
-    </div>
-
-  </div>
+<div
+  id="mensagemPrincipal"
+  class="mensagem">
+</div>
 
 
-  <div
-    id="listaAgendamentos"
-    class="card"
-  >
+<div class="card">
 
-    <div class="carregando">
-      Carregando...
-    </div>
+<h3>Agendamentos do dia</h3>
 
-  </div>
+<div class="filtro">
+
+<div style="width:100%;max-width:250px">
+
+<label for="dataAgenda">
+Data
+</label>
+
+<input
+  type="date"
+  id="dataAgenda"
+  onchange="carregarAgenda()">
+
+</div>
+
+</div>
+
+</div>
+
+
+<div
+  id="listaAgendamentos"
+  class="card">
+
+<div class="carregando">
+Carregando...
+</div>
+
+</div>
 
 
 </div>
 
 
 
-<!-- =======================================================
-     MODAL
-======================================================== -->
+<!-- =====================================================
+     MODAL NOVO AGENDAMENTO
+     ===================================================== -->
 
 <div
   id="modal"
-  class="modal"
->
+  class="modal">
 
-  <div class="modal-conteudo">
-
-
-    <div class="modal-header">
-
-      <h2>Novo Agendamento</h2>
-
-      <button
-        class="fechar"
-        onclick="fecharModal()"
-      >
-        ×
-      </button>
-
-    </div>
+<div class="modal-conteudo">
 
 
-    <div
-      id="mensagemModal"
-      class="mensagem"
-    ></div>
+<div class="modal-header">
+
+<h2>Novo Agendamento</h2>
+
+<button
+  class="fechar"
+  onclick="fecharModal()">
+
+  ×
+
+</button>
+
+</div>
 
 
-    <div class="campo">
-
-      <label for="cliente">
-        Nome da cliente *
-      </label>
-
-      <input
-        type="text"
-        id="cliente"
-        placeholder="Digite o nome da cliente"
-      >
-
-    </div>
+<div
+  id="mensagemModal"
+  class="mensagem">
+</div>
 
 
-    <div class="campo">
+<div class="campo">
 
-      <label for="whatsapp">
-        WhatsApp *
-      </label>
+<label for="cliente">
+Nome da cliente *
+</label>
 
-      <input
-        type="tel"
-        id="whatsapp"
-        placeholder="(31) 99999-9999"
-      >
+<input
+  type="text"
+  id="cliente"
+  placeholder="Digite o nome da cliente">
 
-    </div>
-
-
-    <div class="grid">
+</div>
 
 
-      <div class="campo">
+<div class="campo">
 
-        <label for="data">
-          Data *
-        </label>
+<label for="whatsapp">
+WhatsApp *
+</label>
 
-        <input
-          type="date"
-          id="data"
-          onchange="atualizarHorarios()"
-        >
+<input
+  type="tel"
+  id="whatsapp"
+  placeholder="(31) 99999-9999">
 
-      </div>
-
-
-      <div class="campo">
-
-        <label for="servico">
-          Serviço *
-        </label>
-
-        <select
-          id="servico"
-          onchange="atualizarHorarios()"
-        >
-
-          <option value="">
-            Selecione o serviço
-          </option>
-
-        </select>
+</div>
 
 
-        <div
-          id="informacaoDuracao"
-          class="info-duracao"
-          style="display:none"
-        ></div>
-
-      </div>
-
-    </div>
+<div class="grid">
 
 
-    <div class="campo">
+<div class="campo">
 
-      <label>
-        Horários disponíveis *
-      </label>
+<label for="data">
+Data *
+</label>
 
-      <div
-        id="areaHorarios"
-        class="horarios"
-      >
+<input
+  type="date"
+  id="data"
+  onchange="atualizarHorarios()">
 
-        <div class="carregando">
-          Selecione a data e o serviço.
-        </div>
-
-      </div>
-
-    </div>
+</div>
 
 
-    <div class="campo">
+<div class="campo">
 
-      <label for="observacao">
-        Observação
-      </label>
+<label for="servico">
+Serviço *
+</label>
 
-      <textarea
-        id="observacao"
-        placeholder="Observações da cliente..."
-      ></textarea>
+<select
+  id="servico"
+  onchange="atualizarHorarios()">
 
-    </div>
+<option value="">
+Selecione o serviço
+</option>
 
+</select>
 
-    <div
-      id="resumo"
-      class="resumo"
-      style="display:none"
-    ></div>
+</div>
 
 
-    <div class="acoes">
-
-      <button
-        class="btn-secundario"
-        onclick="fecharModal()"
-      >
-        Cancelar
-      </button>
-
-      <button
-        id="btnSalvar"
-        class="btn-salvar"
-        onclick="salvarAgendamento()"
-      >
-        Agendar Cliente
-      </button>
-
-    </div>
+</div>
 
 
-  </div>
+<div class="campo">
+
+<label>
+Horários disponíveis *
+</label>
+
+
+<div
+  id="areaHorarios"
+  class="horarios">
+
+<div class="carregando">
+Selecione a data e o serviço.
+</div>
+
+</div>
+
+</div>
+
+
+<div class="campo">
+
+<label for="observacao">
+Observação
+</label>
+
+<textarea
+  id="observacao"
+  placeholder="Observações da cliente..."></textarea>
+
+</div>
+
+
+<div
+  id="resumo"
+  class="resumo"
+  style="display:none">
+</div>
+
+
+<div class="acoes">
+
+<button
+  class="btn-secundario"
+  onclick="fecharModal()">
+
+  Cancelar
+
+</button>
+
+
+<button
+  id="btnSalvar"
+  class="btn-salvar"
+  onclick="salvarAgendamento()">
+
+  Agendar Cliente
+
+</button>
+
+</div>
+
+
+</div>
 
 </div>
 
@@ -684,28 +661,56 @@ textarea {
 
 /* =========================================================
    CONFIGURAÇÃO
-========================================================= */
+   ========================================================= */
 
 const API_URL =
-  'https://script.google.com/macros/s/AKfycbwp9RPaerz5Qe0k-DVjlUMoEn16Pdw4JYyayCR9-CXW0ImT8XkRUmKjbNmXCzaZQqRc/exec';
+'https://script.google.com/macros/s/AKfycbzGWzCjQsNGfPfFZuRp2Xw3TgqKQ2lslr_bT7sS2_p7YZOqhF_zwTU5KCl_jGqGYrZj/exec';
 
 
 /*
- * Horário de funcionamento.
+ * HORÁRIO DO SALÃO
  */
+
 const INICIO_EXPEDIENTE = 8 * 60;
+
 const FIM_EXPEDIENTE = 18 * 60;
 
 
 /*
- * IMPORTANTE:
+ * IMPORTANTE
  *
- * NÃO existe intervalo fixo de 30 minutos.
+ * NÃO EXISTE INTERVALO 30 MINUTOS.
  *
- * O intervalo é SEMPRE a duração
- * do serviço selecionado.
+ * Os horários são calculados a partir
+ * da duração real do serviço e dos
+ * agendamentos existentes.
+ *
+ * Exemplo:
+ *
+ * Mão = 50 minutos
+ *
+ * Agendamento:
+ *
+ * 10:00 -> 10:50
+ *
+ * Próximo horário:
+ *
+ * 10:50
+ *
+ *
+ * Mão = 40 minutos
+ *
+ * 10:00 -> 10:40
+ *
+ * Próximo horário:
+ *
+ * 10:40
  */
 
+
+/* =========================================================
+   VARIÁVEIS
+   ========================================================= */
 
 let servicos = [];
 
@@ -713,12 +718,12 @@ let agendamentosDoDia = [];
 
 let horarioSelecionado = '';
 
-let carregandoServicos = false;
+let servicoSelecionado = null;
 
 
 /* =========================================================
    INICIALIZAÇÃO
-========================================================= */
+   ========================================================= */
 
 document.addEventListener(
   'DOMContentLoaded',
@@ -745,7 +750,6 @@ document.addEventListener(
 
     await carregarServicos();
 
-
     carregarAgenda();
 
   }
@@ -753,8 +757,8 @@ document.addEventListener(
 
 
 /* =========================================================
-   DATA DE HOJE
-========================================================= */
+   DATA HOJE
+   ========================================================= */
 
 function obterDataHoje() {
 
@@ -791,7 +795,7 @@ function obterDataHoje() {
 
 /* =========================================================
    ABRIR MODAL
-========================================================= */
+   ========================================================= */
 
 async function abrirNovoAgendamento() {
 
@@ -831,8 +835,8 @@ async function abrirNovoAgendamento() {
 
 
 /* =========================================================
-   FECHAR MODAL
-========================================================= */
+   FECHAR
+   ========================================================= */
 
 function fecharModal() {
 
@@ -844,8 +848,8 @@ function fecharModal() {
 
 
 /* =========================================================
-   LIMPAR FORMULÁRIO
-========================================================= */
+   LIMPAR
+   ========================================================= */
 
 function limparFormulario() {
 
@@ -871,14 +875,11 @@ function limparFormulario() {
 
   horarioSelecionado = '';
 
+  servicoSelecionado = null;
+
 
   document.getElementById(
     'resumo'
-  ).style.display = 'none';
-
-
-  document.getElementById(
-    'informacaoDuracao'
   ).style.display = 'none';
 
 
@@ -899,17 +900,9 @@ function limparFormulario() {
 
 /* =========================================================
    CARREGAR SERVIÇOS
-========================================================= */
+   ========================================================= */
 
 async function carregarServicos() {
-
-  if (carregandoServicos) {
-    return;
-  }
-
-
-  carregandoServicos = true;
-
 
   try {
 
@@ -919,7 +912,6 @@ async function carregarServicos() {
         '?acao=servicos&_=' +
         Date.now(),
         {
-          method: 'GET',
           cache: 'no-store'
         }
       );
@@ -928,7 +920,7 @@ async function carregarServicos() {
     if (!resposta.ok) {
 
       throw new Error(
-        'Erro HTTP ' +
+        'HTTP ' +
         resposta.status
       );
 
@@ -939,39 +931,96 @@ async function carregarServicos() {
       await resposta.json();
 
 
-    if (!Array.isArray(dados)) {
+    /*
+     * Seu Code.gs retorna diretamente
+     * um ARRAY ou pode retornar:
+     *
+     * {
+     *   sucesso:true,
+     *   servicos:[...]
+     * }
+     */
 
-      /*
-       * Seu Code.gs pode retornar
-       * diretamente array ou objeto.
-       */
+    let lista = dados;
 
-      if (
-        dados &&
-        Array.isArray(dados.servicos)
-      ) {
 
-        servicos =
-          normalizarServicos(
-            dados.servicos
-          );
+    if (
+      dados &&
+      Array.isArray(
+        dados.servicos
+      )
+    ) {
 
-      } else {
-
-        throw new Error(
-          'Resposta inválida dos serviços.'
-        );
-
-      }
-
-    } else {
-
-      servicos =
-        normalizarServicos(
-          dados
-        );
+      lista =
+        dados.servicos;
 
     }
+
+
+    if (
+      !Array.isArray(lista)
+    ) {
+
+      throw new Error(
+        'Resposta inválida dos serviços.'
+      );
+
+    }
+
+
+    servicos =
+      lista
+        .map(
+          function(item) {
+
+            return {
+
+              id:
+                String(
+                  item.id || ''
+                ),
+
+              nome:
+                String(
+                  item.nome ||
+                  item.servico ||
+                  ''
+                ),
+
+              /*
+               * AQUI está a regra principal:
+               *
+               * DURAÇÃO VEM DA ABA SERVICOS.
+               */
+
+              duracao:
+                Number(
+                  item.duracao
+                ),
+
+              preco:
+                Number(
+                  item.preco || 0
+                )
+
+            };
+
+          }
+        )
+        .filter(
+          function(item) {
+
+            return (
+              item.id &&
+              item.nome &&
+              Number.isFinite(
+                item.duracao
+              ) &&
+              item.duracao > 0
+            );
+
+          }
+        );
 
 
     preencherSelectServicos();
@@ -980,7 +1029,7 @@ async function carregarServicos() {
   } catch (erro) {
 
     console.error(
-      'Erro serviços:',
+      'Erro ao carregar serviços:',
       erro
     );
 
@@ -992,71 +1041,14 @@ async function carregarServicos() {
       'erro'
     );
 
-
-  } finally {
-
-    carregandoServicos = false;
-
   }
 
 }
 
 
 /* =========================================================
-   NORMALIZAR SERVIÇOS
-========================================================= */
-
-function normalizarServicos(lista) {
-
-  return lista
-    .map(function(servico) {
-
-      return {
-
-        id:
-          String(
-            servico.id ?? ''
-          ),
-
-        nome:
-          String(
-            servico.nome ||
-            servico.servico ||
-            ''
-          ),
-
-        /*
-         * A duração vem da aba SERVICOS.
-         */
-        duracao:
-          converterNumero(
-            servico.duracao
-          ),
-
-        preco:
-          converterNumero(
-            servico.preco
-          )
-
-      };
-
-    })
-    .filter(function(servico) {
-
-      return (
-        servico.id &&
-        servico.nome &&
-        servico.duracao > 0
-      );
-
-    });
-
-}
-
-
-/* =========================================================
-   PREENCHER SERVIÇOS
-========================================================= */
+   SELECT SERVIÇOS
+   ========================================================= */
 
 function preencherSelectServicos() {
 
@@ -1064,10 +1056,6 @@ function preencherSelectServicos() {
     document.getElementById(
       'servico'
     );
-
-
-  const valorAtual =
-    select.value;
 
 
   select.innerHTML =
@@ -1085,9 +1073,6 @@ function preencherSelectServicos() {
         );
 
 
-      /*
-       * O VALUE é o ID do serviço.
-       */
       option.value =
         servico.id;
 
@@ -1126,24 +1111,18 @@ function preencherSelectServicos() {
     }
   );
 
-
-  if (valorAtual) {
-
-    select.value =
-      valorAtual;
-
-  }
-
 }
 
 
 /* =========================================================
-   DATA OU SERVIÇO ALTERADO
-========================================================= */
+   DATA / SERVIÇO ALTERADOS
+   ========================================================= */
 
-function atualizarHorarios() {
+async function atualizarHorarios() {
 
   horarioSelecionado = '';
+
+  servicoSelecionado = null;
 
 
   document.getElementById(
@@ -1169,17 +1148,7 @@ function atualizarHorarios() {
     );
 
 
-  const infoDuracao =
-    document.getElementById(
-      'informacaoDuracao'
-    );
-
-
   if (!data) {
-
-    infoDuracao.style.display =
-      'none';
-
 
     area.innerHTML =
       '<div class="carregando">' +
@@ -1193,13 +1162,9 @@ function atualizarHorarios() {
 
   if (!servicoId) {
 
-    infoDuracao.style.display =
-      'none';
-
-
     area.innerHTML =
       '<div class="carregando">' +
-      'Agora selecione o serviço.' +
+      'Selecione o serviço.' +
       '</div>';
 
     return;
@@ -1211,8 +1176,11 @@ function atualizarHorarios() {
     servicos.find(
       function(item) {
 
-        return String(item.id) ===
-          String(servicoId);
+        return String(
+          item.id
+        ) === String(
+          servicoId
+        );
 
       }
     );
@@ -1220,12 +1188,9 @@ function atualizarHorarios() {
 
   if (
     !servico ||
+    !servico.duracao ||
     servico.duracao <= 0
   ) {
-
-    infoDuracao.style.display =
-      'none';
-
 
     area.innerHTML =
       '<div class="sem-horarios">' +
@@ -1237,128 +1202,54 @@ function atualizarHorarios() {
   }
 
 
-  /*
-   * Mostra claramente qual duração
-   * está sendo usada.
-   */
-
-  infoDuracao.innerHTML =
-    '<strong>Duração:</strong> ' +
-    servico.duracao +
-    ' minutos';
-
-
-  infoDuracao.style.display =
-    'block';
+  servicoSelecionado =
+    servico;
 
 
   area.innerHTML =
     '<div class="carregando">' +
     'Calculando horários usando ' +
-    '<strong>' +
     servico.duracao +
-    ' minutos' +
-    '</strong>...' +
+    ' minutos...' +
     '</div>';
 
 
-  carregarAgendamentosParaHorarios(
-    data,
-    servico
-  );
-
-}
-
-
-/* =========================================================
-   BUSCAR AGENDAMENTOS
-========================================================= */
-
-async function carregarAgendamentosParaHorarios(
-  data,
-  servico
-) {
-
   try {
 
-    const resposta =
-      await fetch(
-        API_URL +
-        '?acao=agendamentos' +
-        '&data=' +
-        encodeURIComponent(data) +
-        '&_=' +
-        Date.now(),
-        {
-          method: 'GET',
-          cache: 'no-store'
-        }
+    const agendamentos =
+      await buscarAgendamentos(
+        data
       );
-
-
-    if (!resposta.ok) {
-
-      throw new Error(
-        'Erro HTTP ' +
-        resposta.status
-      );
-
-    }
-
-
-    const dados =
-      await resposta.json();
-
-
-    let agenda;
-
-
-    if (Array.isArray(dados)) {
-
-      agenda = dados;
-
-    } else if (
-      dados &&
-      Array.isArray(dados.agendamentos)
-    ) {
-
-      agenda =
-        dados.agendamentos;
-
-    } else {
-
-      throw new Error(
-        'Resposta inválida dos agendamentos.'
-      );
-
-    }
 
 
     agendamentosDoDia =
-      normalizarAgendamentos(
-        agenda
-      );
+      agendamentos;
 
 
-    renderizarHorariosPorDuracao(
-      servico.duracao,
-      agendamentosDoDia
+    /*
+     * NÃO usamos a função "horarios"
+     * do Code.gs.
+     *
+     * O HTML calcula tudo usando
+     * a duração real do serviço.
+     */
+
+    renderizarHorarios(
+      servico,
+      agendamentos
     );
 
 
   } catch (erro) {
 
     console.error(
-      'Erro agendamentos:',
       erro
     );
 
 
-    document.getElementById(
-      'areaHorarios'
-    ).innerHTML =
+    area.innerHTML =
       '<div class="sem-horarios">' +
-      'Não foi possível carregar os horários.<br><br>' +
+      'Erro ao carregar horários.<br><br>' +
       '<small>' +
       escapeHtml(
         erro.message
@@ -1372,124 +1263,93 @@ async function carregarAgendamentosParaHorarios(
 
 
 /* =========================================================
-   NORMALIZAR AGENDAMENTOS
-========================================================= */
+   BUSCAR AGENDAMENTOS
+   ========================================================= */
 
-function normalizarAgendamentos(lista) {
+async function buscarAgendamentos(
+  data
+) {
 
-  return lista
-    .map(function(item) {
+  const url =
+    API_URL +
+    '?acao=agendamentos' +
+    '&data=' +
+    encodeURIComponent(data) +
+    '&_=' +
+    Date.now();
 
-      return {
 
-        id:
-          String(
-            item.id || ''
-          ),
+  const resposta =
+    await fetch(
+      url,
+      {
+        cache: 'no-store'
+      }
+    );
 
-        data:
-          String(
-            item.data || ''
-          ),
 
-        hora:
-          String(
-            item.hora || ''
-          ),
+  if (!resposta.ok) {
 
-        cliente:
-          String(
-            item.cliente || ''
-          ),
+    throw new Error(
+      'HTTP ' +
+      resposta.status
+    );
 
-        whatsapp:
-          String(
-            item.whatsapp || ''
-          ),
+  }
 
-        servico:
-          String(
-            item.servico || ''
-          ),
 
-        /*
-         * A duração do agendamento
-         * existente também é real.
-         */
-        duracao:
-          converterNumero(
-            item.duracao
-          ),
+  const dados =
+    await resposta.json();
 
-        observacao:
-          String(
-            item.observacao || ''
-          ),
 
-        status:
-          String(
-            item.status ||
-            'AGENDADO'
-          )
+  /*
+   * Seu Code.gs retorna:
+   *
+   * [
+   *   {...}
+   * ]
+   *
+   * Mas aceitamos também:
+   *
+   * {
+   *   agendamentos:[...]
+   * }
+   */
 
-      };
+  if (
+    Array.isArray(dados)
+  ) {
 
-    })
-    .filter(function(item) {
+    return dados;
 
-      return (
-        item.hora &&
-        item.duracao > 0 &&
-        item.status.toUpperCase() !==
-        'CANCELADO'
-      );
+  }
 
-    });
+
+  if (
+    dados &&
+    Array.isArray(
+      dados.agendamentos
+    )
+  ) {
+
+    return dados.agendamentos;
+
+  }
+
+
+  throw new Error(
+    'Resposta inválida dos agendamentos.'
+  );
 
 }
 
 
 /* =========================================================
-   GERAR HORÁRIOS
-========================================================= */
+   RENDERIZAR HORÁRIOS
+   ========================================================= */
 
-/*
- * ============================================================
- *
- * ESTA É A PARTE MAIS IMPORTANTE DO HTML.
- *
- * NÃO EXISTE INTERVALO FIXO DE 30 MINUTOS.
- *
- * O intervalo usado é:
- *
- *     DURACAO DO SERVIÇO
- *
- * ============================================================
- *
- * Exemplo:
- *
- * duração = 40
- *
- * 08:00
- * 08:40
- * 09:20
- * 10:00
- * 10:40
- *
- *
- * Se houver:
- *
- * 10:00 → 10:40
- *
- * então 10:00 fica ocupado
- * e o próximo horário possível
- * será 10:40.
- *
- * ============================================================
- */
-
-function renderizarHorariosPorDuracao(
-  duracaoServico,
+function renderizarHorarios(
+  servico,
   agendamentos
 ) {
 
@@ -1501,18 +1361,24 @@ function renderizarHorariosPorDuracao(
 
   const duracao =
     Number(
-      duracaoServico
+      servico.duracao
     );
 
 
+  /*
+   * Segurança:
+   */
+
   if (
-    !duracao ||
+    !Number.isFinite(
+      duracao
+    ) ||
     duracao <= 0
   ) {
 
     area.innerHTML =
       '<div class="sem-horarios">' +
-      'Duração do serviço inválida.' +
+      'Duração inválida.' +
       '</div>';
 
     return;
@@ -1520,210 +1386,124 @@ function renderizarHorariosPorDuracao(
   }
 
 
-  const inicioExpediente =
-    INICIO_EXPEDIENTE;
-
-
-  const fimExpediente =
-    FIM_EXPEDIENTE;
-
-
   /*
-   * Copia e ordena os agendamentos.
+   * ========================================================
+   * REGRA NOVA
+   * ========================================================
+   *
+   * NÃO existe:
+   *
+   * minutos += 30
+   *
+   * NÃO existe:
+   *
+   * intervalo = 30
+   *
+   *
+   * Os horários são gerados minuto a minuto.
+   *
+   * Isso permite:
+   *
+   * 10:00
+   * 10:40
+   * 10:50
+   * 11:30
+   *
+   * dependendo da duração e dos agendamentos.
+   *
+   * Principalmente:
+   *
+   * 10:00 + 50 = 10:50
+   *
+   * Portanto 10:30 NÃO será considerado
+   * próximo horário disponível.
    */
-
-  const agenda =
-    Array.isArray(agendamentos)
-      ? agendamentos
-          .filter(function(item) {
-
-            return (
-              horaParaMinutos(
-                item.hora
-              ) >= 0 &&
-              Number(item.duracao) > 0
-            );
-
-          })
-          .sort(function(a,b) {
-
-            return (
-              horaParaMinutos(a.hora) -
-              horaParaMinutos(b.hora)
-            );
-
-          })
-      : [];
 
 
   const horarios = [];
 
 
   /*
-   * ========================================================
-   * COMEÇA ÀS 08:00.
-   * ========================================================
+   * Geramos todos os minutos possíveis.
+   *
+   * Isso elimina completamente o
+   * intervalo fixo de 30 minutos.
    */
 
-  let cursor =
-    inicioExpediente;
+  for (
+    let inicio = INICIO_EXPEDIENTE;
 
+    inicio < FIM_EXPEDIENTE;
 
-  /*
-   * Segurança contra loop.
-   */
-
-  let contador =
-    0;
-
-
-  while (
-    cursor + duracao <= fimExpediente &&
-    contador < 100
+    inicio++
   ) {
 
-    contador++;
+    const fim =
+      inicio +
+      duracao;
 
 
     /*
-     * Procura se o horário atual
-     * entra em conflito com algum
-     * agendamento existente.
+     * O serviço precisa terminar
+     * dentro do expediente.
      */
 
-    const conflito =
-      agenda.find(
-        function(agendamento) {
-
-          const inicioExistente =
-            horaParaMinutos(
-              agendamento.hora
-            );
-
-
-          const duracaoExistente =
-            Number(
-              agendamento.duracao
-            );
-
-
-          const fimExistente =
-            inicioExistente +
-            duracaoExistente;
-
-
-          /*
-           * INTERVALOS:
-           *
-           * Novo:
-           * cursor → cursor + duração
-           *
-           * Existente:
-           * início → fim
-           *
-           * Se cruzar, está ocupado.
-           */
-
-          return (
-            cursor <
-              fimExistente
-            &&
-            cursor + duracao >
-              inicioExistente
-          );
-
-        }
-      );
-
-
-    /*
-     * ======================================================
-     * HORÁRIO LIVRE
-     * ======================================================
-     */
-
-    if (!conflito) {
-
-      horarios.push({
-
-        hora:
-          minutosParaHora(
-            cursor
-          ),
-
-        disponivel: true
-
-      });
-
-
-      /*
-       * PRÓXIMO HORÁRIO:
-       *
-       * horário atual
-       * +
-       * duração do serviço
-       */
-
-      cursor =
-        cursor +
-        duracao;
-
+    if (
+      fim >
+      FIM_EXPEDIENTE
+    ) {
 
       continue;
 
     }
 
 
-    /*
-     * ======================================================
-     * HORÁRIO OCUPADO
-     * ======================================================
-     */
-
-    const inicioOcupado =
-      horaParaMinutos(
-        conflito.hora
+    const disponivel =
+      verificarDisponibilidadeLocal(
+        inicio,
+        fim,
+        agendamentos
       );
 
 
-    const duracaoOcupada =
-      Number(
-        conflito.duracao
-      );
+    horarios.push({
 
+      inicio:
+        inicio,
 
-    const fimOcupado =
-      inicioOcupado +
-      duracaoOcupada;
+      fim:
+        fim,
 
+      hora:
+        minutosParaHora(
+          inicio
+        ),
 
-    /*
-     * O próximo horário começa
-     * exatamente quando termina
-     * o agendamento que bloqueou.
-     *
-     * Exemplo:
-     *
-     * 10:00 + 50 = 10:50
-     *
-     * próximo = 10:50
-     */
+      termino:
+        minutosParaHora(
+          fim
+        ),
 
-    cursor =
-      Math.max(
-        cursor + 1,
-        fimOcupado
-      );
+      disponivel:
+        disponivel
+
+    });
 
   }
 
 
-  /*
-   * Nenhum horário.
-   */
+  const disponiveis =
+    horarios.filter(
+      function(item) {
+
+        return item.disponivel;
+
+      }
+    );
+
 
   if (
-    horarios.length === 0
+    disponiveis.length === 0
   ) {
 
     area.innerHTML =
@@ -1736,14 +1516,44 @@ function renderizarHorariosPorDuracao(
   }
 
 
-  /*
-   * ========================================================
-   * DESENHAR HORÁRIOS
-   * ========================================================
-   */
-
   area.innerHTML = '';
 
+
+  /*
+   * Informação mostrando a duração
+   * real usada.
+   */
+
+  const info =
+    document.createElement(
+      'div'
+    );
+
+
+  info.className =
+    'horario informacao';
+
+
+  info.textContent =
+    'Duração do serviço: ' +
+    duracao +
+    ' minutos';
+
+
+  area.appendChild(
+    info
+  );
+
+
+  /*
+   * IMPORTANTE:
+   *
+   * Mostrar TODOS os minutos pode
+   * gerar muitos botões.
+   *
+   * Porém é exatamente o que garante
+   * que 10:40, 10:50 etc. possam aparecer.
+   */
 
   horarios.forEach(
     function(item) {
@@ -1766,20 +1576,44 @@ function renderizarHorariosPorDuracao(
         'horario';
 
 
-      /*
-       * Todos que chegaram aqui
-       * estão disponíveis.
-       */
+      if (
+        item.disponivel
+      ) {
 
-      botao.onclick =
-        function() {
+        botao.onclick =
+          function() {
 
-          selecionarHorario(
-            item.hora,
-            botao
-          );
+            selecionarHorario(
+              item.hora,
+              botao
+            );
 
-        };
+          };
+
+
+        botao.title =
+          'Início: ' +
+          item.hora +
+          ' | Término: ' +
+          item.termino;
+
+      } else {
+
+        botao.classList.add(
+          'ocupado'
+        );
+
+
+        botao.disabled =
+          true;
+
+
+        botao.title =
+          'Este horário não comporta a duração de ' +
+          duracao +
+          ' minutos.';
+
+      }
 
 
       area.appendChild(
@@ -1793,8 +1627,134 @@ function renderizarHorariosPorDuracao(
 
 
 /* =========================================================
+   DISPONIBILIDADE
+   ========================================================= */
+
+function verificarDisponibilidadeLocal(
+  inicioNovo,
+  fimNovo,
+  agendamentos
+) {
+
+  return !agendamentos.some(
+    function(agendamento) {
+
+      const inicioExistente =
+        horaParaMinutos(
+          agendamento.hora
+        );
+
+
+      if (
+        inicioExistente < 0
+      ) {
+
+        return false;
+
+      }
+
+
+      /*
+       * SEMPRE usa a duração do
+       * agendamento.
+       */
+
+      let duracaoExistente =
+        Number(
+          agendamento.duracao
+        );
+
+
+      /*
+       * Se vier inválida,
+       * tenta buscar pelo serviço.
+       */
+
+      if (
+        !Number.isFinite(
+          duracaoExistente
+        ) ||
+        duracaoExistente <= 0
+      ) {
+
+        const servico =
+          servicos.find(
+            function(item) {
+
+              return (
+                String(
+                  item.nome
+                ).trim().toLowerCase() ===
+                String(
+                  agendamento.servico
+                ).trim().toLowerCase()
+              );
+
+            }
+          );
+
+
+        if (servico) {
+
+          duracaoExistente =
+            Number(
+              servico.duracao
+            );
+
+        }
+
+      }
+
+
+      if (
+        duracaoExistente <= 0
+      ) {
+
+        return false;
+
+      }
+
+
+      const fimExistente =
+        inicioExistente +
+        duracaoExistente;
+
+
+      /*
+       * INTERVALOS:
+       *
+       * Novo:
+       * 10:00 -------- 10:50
+       *
+       * Existente:
+       * 10:50 -------- 11:40
+       *
+       * NÃO conflita.
+       *
+       *
+       * Novo:
+       * 10:00 -------- 10:50
+       *
+       * Existente:
+       * 10:40 -------- 11:30
+       *
+       * CONFLITA.
+       */
+
+      return (
+        inicioNovo < fimExistente &&
+        fimNovo > inicioExistente
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================================================
    SELECIONAR HORÁRIO
-========================================================= */
+   ========================================================= */
 
 function selecionarHorario(
   hora,
@@ -1832,7 +1792,7 @@ function selecionarHorario(
 
 /* =========================================================
    RESUMO
-========================================================= */
+   ========================================================= */
 
 function atualizarResumo() {
 
@@ -1872,8 +1832,11 @@ function atualizarResumo() {
     servicos.find(
       function(item) {
 
-        return String(item.id) ===
-          String(servicoId);
+        return String(
+          item.id
+        ) === String(
+          servicoId
+        );
 
       }
     );
@@ -1940,8 +1903,8 @@ function atualizarResumo() {
 
 
 /* =========================================================
-   SALVAR AGENDAMENTO
-========================================================= */
+   SALVAR
+   ========================================================= */
 
 async function salvarAgendamento() {
 
@@ -1992,7 +1955,7 @@ async function salvarAgendamento() {
 
     mostrarMensagem(
       'mensagemModal',
-      'Informe o WhatsApp da cliente.',
+      'Informe o WhatsApp.',
       'erro'
     );
 
@@ -2044,8 +2007,11 @@ async function salvarAgendamento() {
     servicos.find(
       function(item) {
 
-        return String(item.id) ===
-          String(servicoId);
+        return String(
+          item.id
+        ) === String(
+          servicoId
+        );
 
       }
     );
@@ -2053,12 +2019,13 @@ async function salvarAgendamento() {
 
   if (
     !servico ||
-    !servico.duracao
+    !servico.duracao ||
+    servico.duracao <= 0
   ) {
 
     mostrarMensagem(
       'mensagemModal',
-      'Não foi possível identificar a duração do serviço.',
+      'Duração do serviço inválida.',
       'erro'
     );
 
@@ -2066,6 +2033,10 @@ async function salvarAgendamento() {
 
   }
 
+
+  /*
+   * Verificação local final.
+   */
 
   const inicioNovo =
     horaParaMinutos(
@@ -2096,97 +2067,63 @@ async function salvarAgendamento() {
   }
 
 
+  /*
+   * Busca novamente antes de salvar.
+   */
+
   const btn =
     document.getElementById(
       'btnSalvar'
     );
 
 
-  btn.disabled = true;
+  btn.disabled =
+    true;
+
 
   btn.textContent =
-    'Agendando...';
+    'Verificando...';
 
 
   try {
 
-    /*
-     * VERIFICA A AGENDA NOVAMENTE
-     * ANTES DE SALVAR.
-     */
-
-    const respostaAgenda =
-      await fetch(
-        API_URL +
-        '?acao=agendamentos' +
-        '&data=' +
-        encodeURIComponent(data) +
-        '&_=' +
-        Date.now(),
-        {
-          method: 'GET',
-          cache: 'no-store'
-        }
-      );
-
-
-    if (!respostaAgenda.ok) {
-
-      throw new Error(
-        'Não foi possível verificar a agenda. HTTP ' +
-        respostaAgenda.status
-      );
-
-    }
-
-
-    const dadosAgenda =
-      await respostaAgenda.json();
-
-
     const agendaAtual =
-      Array.isArray(dadosAgenda)
-        ? dadosAgenda
-        : (
-            dadosAgenda &&
-            Array.isArray(
-              dadosAgenda.agendamentos
-            )
-              ? dadosAgenda.agendamentos
-              : []
-          );
-
-
-    const agendaNormalizada =
-      normalizarAgendamentos(
-        agendaAtual
+      await buscarAgendamentos(
+        data
       );
 
 
     const conflito =
-      verificarConflito(
+      !verificarDisponibilidadeLocal(
         inicioNovo,
         fimNovo,
-        agendaNormalizada
+        agendaAtual
       );
 
 
     if (conflito) {
 
       throw new Error(
-        'Este horário acabou de ser ocupado. Escolha outro horário.'
+        'Este horário não está mais disponível. Escolha outro.'
       );
 
     }
 
 
+    btn.textContent =
+      'Agendando...';
+
+
     /*
-     * ======================================================
-     * ENVIA O ID E O NOME DO SERVIÇO.
+     * Enviamos:
      *
-     * A duração enviada é a mesma que veio
-     * da aba Servicos.
-     * ======================================================
+     * servicoId
+     * servico
+     * duracao
+     *
+     * Porém o Code.gs deve usar
+     * a coluna Duração da aba Servicos
+     * como fonte oficial.
      */
 
     const dados = {
@@ -2232,8 +2169,10 @@ async function salvarAgendamento() {
             'POST',
 
           headers: {
+
             'Content-Type':
               'text/plain;charset=utf-8'
+
           },
 
           body:
@@ -2248,9 +2187,8 @@ async function salvarAgendamento() {
     if (!resposta.ok) {
 
       throw new Error(
-        'Erro HTTP ' +
-        resposta.status +
-        ' ao salvar.'
+        'HTTP ' +
+        resposta.status
       );
 
     }
@@ -2274,7 +2212,7 @@ async function salvarAgendamento() {
 
     mostrarMensagem(
       'mensagemPrincipal',
-      'Agendamento realizado com sucesso!',
+      'Agendamento realizado com sucesso.',
       'sucesso'
     );
 
@@ -2301,7 +2239,8 @@ async function salvarAgendamento() {
 
     mostrarMensagem(
       'mensagemModal',
-      erro.message,
+      erro.message ||
+      'Erro ao realizar agendamento.',
       'erro'
     );
 
@@ -2321,62 +2260,8 @@ async function salvarAgendamento() {
 
 
 /* =========================================================
-   VERIFICAR CONFLITO
-========================================================= */
-
-function verificarConflito(
-  inicioNovo,
-  fimNovo,
-  agendamentos
-) {
-
-  return agendamentos.some(
-    function(agendamento) {
-
-      const inicioExistente =
-        horaParaMinutos(
-          agendamento.hora
-        );
-
-
-      const duracaoExistente =
-        Number(
-          agendamento.duracao || 0
-        );
-
-
-      if (
-        inicioExistente < 0 ||
-        duracaoExistente <= 0
-      ) {
-
-        return false;
-
-      }
-
-
-      const fimExistente =
-        inicioExistente +
-        duracaoExistente;
-
-
-      return (
-        inicioNovo <
-        fimExistente
-        &&
-        fimNovo >
-        inicioExistente
-      );
-
-    }
-  );
-
-}
-
-
-/* =========================================================
    CARREGAR AGENDA
-========================================================= */
+   ========================================================= */
 
 async function carregarAgenda() {
 
@@ -2412,59 +2297,14 @@ async function carregarAgenda() {
 
   try {
 
-    const resposta =
-      await fetch(
-        API_URL +
-        '?acao=agendamentos' +
-        '&data=' +
-        encodeURIComponent(data) +
-        '&_=' +
-        Date.now(),
-        {
-          method: 'GET',
-          cache: 'no-store'
-        }
-      );
-
-
-    if (!resposta.ok) {
-
-      throw new Error(
-        'HTTP ' +
-        resposta.status
-      );
-
-    }
-
-
     const dados =
-      await resposta.json();
-
-
-    const agendamentos =
-      Array.isArray(dados)
-        ? dados
-        : (
-            dados &&
-            Array.isArray(
-              dados.agendamentos
-            )
-              ? dados.agendamentos
-              : null
-          );
-
-
-    if (!agendamentos) {
-
-      throw new Error(
-        'Resposta inválida.'
+      await buscarAgendamentos(
+        data
       );
-
-    }
 
 
     renderizarAgenda(
-      agendamentos
+      dados
     );
 
 
@@ -2478,10 +2318,12 @@ async function carregarAgenda() {
 
     area.innerHTML =
       '<div class="sem-horarios">' +
-      'Erro ao carregar a agenda.<br>' +
+      'Erro ao carregar a agenda.<br><br>' +
+      '<small>' +
       escapeHtml(
         erro.message
       ) +
+      '</small>' +
       '</div>';
 
   }
@@ -2491,7 +2333,7 @@ async function carregarAgenda() {
 
 /* =========================================================
    RENDERIZAR AGENDA
-========================================================= */
+   ========================================================= */
 
 function renderizarAgenda(
   agendamentos
@@ -2510,6 +2352,7 @@ function renderizarAgenda(
 
     area.innerHTML =
       '<h3>Agendamentos do dia</h3>' +
+
       '<div class="carregando">' +
       'Nenhum agendamento para esta data.' +
       '</div>';
@@ -2538,103 +2381,131 @@ function renderizarAgenda(
   agendamentos.forEach(
     function(item) {
 
+      const inicio =
+        horaParaMinutos(
+          item.hora
+        );
+
+
+      const duracao =
+        Number(
+          item.duracao || 0
+        );
+
+
+      const fim =
+        inicio +
+        duracao;
+
+
       html +=
 
         '<div class="agendamento">' +
 
-          '<div class="agendamento-topo">' +
+        '<div class="agendamento-topo">' +
 
-            '<div>' +
+        '<div>' +
 
-              '<strong>' +
+        '<strong>' +
 
-                escapeHtml(
-                  item.hora
-                ) +
+        escapeHtml(
+          item.hora
+        ) +
 
-                ' - ' +
+        ' - ' +
 
-                escapeHtml(
-                  item.cliente
-                ) +
+        escapeHtml(
+          item.cliente
+        ) +
 
-              '</strong>' +
+        '</strong>' +
 
-            '</div>' +
-
-            '<button ' +
-
-              'class="btn-cancelar" ' +
-
-              'onclick="cancelarAgendamento(\'' +
-
-                escapeHtmlJS(
-                  item.id
-                ) +
-
-              '\')">' +
-
-              'Cancelar' +
-
-            '</button>' +
-
-          '</div>' +
+        '</div>' +
 
 
-          '<div class="info">' +
+        '<button ' +
 
-            '<strong>Serviço:</strong> ' +
+        'class="btn-cancelar" ' +
+
+        'onclick="cancelarAgendamento(\'' +
+
+        escapeHtmlJS(
+          item.id
+        ) +
+
+        '\')">' +
+
+        'Cancelar' +
+
+        '</button>' +
+
+        '</div>' +
+
+
+        '<div class="info">' +
+
+        '<strong>Serviço:</strong> ' +
+
+        escapeHtml(
+          item.servico
+        ) +
+
+        ' (' +
+
+        duracao +
+
+        ' min)' +
+
+        '</div>' +
+
+
+        '<div class="info">' +
+
+        '<strong>Horário:</strong> ' +
+
+        escapeHtml(
+          item.hora
+        ) +
+
+        ' até ' +
+
+        minutosParaHora(
+          fim
+        ) +
+
+        '</div>' +
+
+
+        '<div class="info">' +
+
+        '<strong>WhatsApp:</strong> ' +
+
+        escapeHtml(
+          item.whatsapp
+        ) +
+
+        '</div>' +
+
+
+        (
+          item.observacao
+            ?
+
+            '<div class="info">' +
+
+            '<strong>Observação:</strong> ' +
 
             escapeHtml(
-              item.servico
+              item.observacao
             ) +
 
-            ' (' +
+            '</div>'
 
-            Number(
-              item.duracao || 0
-            ) +
+            :
 
-            ' min)' +
+            ''
+        ) +
 
-          '</div>' +
-
-
-          '<div class="info">' +
-
-            '<strong>Término:</strong> ' +
-
-            calcularTermino(
-              item.hora,
-              item.duracao
-            ) +
-
-          '</div>' +
-
-
-          '<div class="info">' +
-
-            '<strong>WhatsApp:</strong> ' +
-
-            escapeHtml(
-              item.whatsapp
-            ) +
-
-          '</div>' +
-
-
-          (
-            item.observacao
-              ?
-                '<div class="info">' +
-                  '<strong>Observação:</strong> ' +
-                  escapeHtml(
-                    item.observacao
-                  ) +
-                '</div>'
-              :
-                ''
-          ) +
 
         '</div>';
 
@@ -2650,7 +2521,7 @@ function renderizarAgenda(
 
 /* =========================================================
    CANCELAR
-========================================================= */
+   ========================================================= */
 
 async function cancelarAgendamento(
   id
@@ -2678,8 +2549,10 @@ async function cancelarAgendamento(
             'POST',
 
           headers: {
+
             'Content-Type':
               'text/plain;charset=utf-8'
+
           },
 
           body:
@@ -2700,7 +2573,7 @@ async function cancelarAgendamento(
     if (!resposta.ok) {
 
       throw new Error(
-        'Erro HTTP ' +
+        'HTTP ' +
         resposta.status
       );
 
@@ -2735,6 +2608,11 @@ async function cancelarAgendamento(
 
   } catch (erro) {
 
+    console.error(
+      erro
+    );
+
+
     mostrarMensagem(
       'mensagemPrincipal',
       erro.message,
@@ -2747,122 +2625,22 @@ async function cancelarAgendamento(
 
 
 /* =========================================================
-   CALCULAR TÉRMINO
-========================================================= */
-
-function calcularTermino(
-  hora,
-  duracao
-) {
-
-  const inicio =
-    horaParaMinutos(
-      hora
-    );
-
-
-  const fim =
-    inicio +
-    Number(
-      duracao || 0
-    );
-
-
-  return minutosParaHora(
-    fim
-  );
-
-}
-
-
-/* =========================================================
-   CONVERSÃO DE NÚMERO
-========================================================= */
-
-function converterNumero(
-  valor
-) {
-
-  if (
-    valor === null ||
-    valor === undefined ||
-    valor === ''
-  ) {
-
-    return 0;
-
-  }
-
-
-  if (
-    typeof valor === 'number'
-  ) {
-
-    return valor;
-
-  }
-
-
-  let texto =
-    String(
-      valor
-    ).trim();
-
-
-  texto =
-    texto.replace(
-      /R\$/gi,
-      ''
-    ).trim();
-
-
-  if (
-    texto.includes(',') &&
-    texto.includes('.')
-  ) {
-
-    texto =
-      texto
-        .replace(/\./g,'')
-        .replace(',','.');
-
-  } else {
-
-    texto =
-      texto.replace(',','.');
-
-  }
-
-
-  const numero =
-    Number(
-      texto
-    );
-
-
-  return isNaN(numero)
-    ? 0
-    : numero;
-
-}
-
-
-/* =========================================================
-   HORA → MINUTOS
-========================================================= */
+   HORA -> MINUTOS
+   ========================================================= */
 
 function horaParaMinutos(
   hora
 ) {
 
-  const texto =
-    String(
-      hora || ''
-    ).trim();
+  if (!hora) {
+    return -1;
+  }
 
 
   const partes =
-    texto.split(':');
+    String(
+      hora
+    ).split(':');
 
 
   if (
@@ -2887,8 +2665,8 @@ function horaParaMinutos(
 
 
   if (
-    isNaN(horas) ||
-    isNaN(minutos)
+    !Number.isFinite(horas) ||
+    !Number.isFinite(minutos)
   ) {
 
     return -1;
@@ -2905,8 +2683,8 @@ function horaParaMinutos(
 
 
 /* =========================================================
-   MINUTOS → HORA
-========================================================= */
+   MINUTOS -> HORA
+   ========================================================= */
 
 function minutosParaHora(
   minutos
@@ -2916,6 +2694,15 @@ function minutosParaHora(
     Number(
       minutos
     );
+
+
+  if (
+    !Number.isFinite(valor)
+  ) {
+
+    return '';
+
+  }
 
 
   const horas =
@@ -2932,9 +2719,7 @@ function minutosParaHora(
     String(
       horas
     ).padStart(2,'0') +
-
     ':' +
-
     String(
       mins
     ).padStart(2,'0')
@@ -2945,7 +2730,7 @@ function minutosParaHora(
 
 /* =========================================================
    DATA BR
-========================================================= */
+   ========================================================= */
 
 function formatarDataBR(
   data
@@ -2979,7 +2764,7 @@ function formatarDataBR(
 
 /* =========================================================
    MENSAGEM
-========================================================= */
+   ========================================================= */
 
 function mostrarMensagem(
   id,
@@ -3023,7 +2808,7 @@ function mostrarMensagem(
 
 /* =========================================================
    ESCONDER MENSAGEM
-========================================================= */
+   ========================================================= */
 
 function esconderMensagem(
   id
@@ -3051,8 +2836,8 @@ function esconderMensagem(
 
 
 /* =========================================================
-   SEGURANÇA HTML
-========================================================= */
+   ESCAPE HTML
+   ========================================================= */
 
 function escapeHtml(
   texto
@@ -3061,22 +2846,27 @@ function escapeHtml(
   return String(
     texto || ''
   )
+
   .replace(
     /&/g,
     '&amp;'
   )
+
   .replace(
     /</g,
     '&lt;'
   )
+
   .replace(
     />/g,
     '&gt;'
   )
+
   .replace(
     /"/g,
     '&quot;'
   )
+
   .replace(
     /'/g,
     '&#039;'
@@ -3086,8 +2876,8 @@ function escapeHtml(
 
 
 /* =========================================================
-   SEGURANÇA JAVASCRIPT
-========================================================= */
+   ESCAPE JS
+   ========================================================= */
 
 function escapeHtmlJS(
   texto
@@ -3096,14 +2886,17 @@ function escapeHtmlJS(
   return String(
     texto || ''
   )
+
   .replace(
     /\\/g,
     '\\\\'
   )
+
   .replace(
     /'/g,
     "\\'"
   )
+
   .replace(
     /"/g,
     '\\"'
@@ -3114,10 +2907,12 @@ function escapeHtmlJS(
 
 /* =========================================================
    FECHAR CLICANDO FORA
-========================================================= */
+   ========================================================= */
 
 document
-  .getElementById('modal')
+  .getElementById(
+    'modal'
+  )
   .addEventListener(
     'click',
     function(event) {
