@@ -5,37 +5,19 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Agenda - Salão Janaina</title>
 
 <style>
 
 /* =====================================================
-   RESET / BASE
+   RESET
    ===================================================== */
 
 * {
   box-sizing: border-box;
-}
-
-:root {
-  --primary: #8e4168;
-  --primary-dark: #68304d;
-  --primary-light: #c66d9c;
-  --pink-soft: #f8edf3;
-  --pink-light: #fdf7fa;
-  --text: #2f2930;
-  --text-soft: #746d73;
-  --border: #eadfe5;
-  --white: #ffffff;
-  --success-bg: #eaf8ef;
-  --success: #18713a;
-  --error-bg: #fff0f0;
-  --error: #a52222;
-  --shadow-sm: 0 4px 16px rgba(76, 32, 56, .06);
-  --shadow-md: 0 12px 35px rgba(76, 32, 56, .10);
-  --shadow-lg: 0 24px 70px rgba(43, 20, 34, .18);
 }
 
 html {
@@ -44,49 +26,25 @@ html {
 
 body {
   margin: 0;
-  min-height: 100vh;
   font-family:
     Inter,
     -apple-system,
     BlinkMacSystemFont,
     "Segoe UI",
+    Roboto,
     Arial,
     Helvetica,
     sans-serif;
+
   background:
-    radial-gradient(
-      circle at top left,
-      rgba(198,109,156,.12),
-      transparent 32%
-    ),
     linear-gradient(
-      135deg,
-      #fbf8fa 0%,
-      #f8f4f7 50%,
-      #f5f0f4 100%
+      180deg,
+      #faf7f9 0%,
+      #f7f2f5 100%
     );
-  color: var(--text);
-  -webkit-font-smoothing: antialiased;
-}
 
-button,
-input,
-select,
-textarea {
-  font-family: inherit;
-}
-
-button {
-  border: 0;
-  cursor: pointer;
-}
-
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  outline: 3px solid rgba(198,109,156,.22);
-  outline-offset: 2px;
+  color: #30272c;
+  min-height: 100vh;
 }
 
 
@@ -96,70 +54,71 @@ textarea:focus-visible {
 
 header {
   position: relative;
-  overflow: hidden;
+
   background:
-    radial-gradient(
-      circle at 15% 20%,
-      rgba(255,255,255,.16),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 85% 80%,
-      rgba(255,255,255,.10),
-      transparent 30%
-    ),
     linear-gradient(
       135deg,
-      #67304d 0%,
-      #8e4168 48%,
+      #713253 0%,
+      #8e4168 45%,
       #c66d9c 100%
     );
-  color: white;
-  padding: 34px 20px 38px;
-  text-align: center;
-  box-shadow:
-    0 8px 30px rgba(72, 29, 52, .18);
-}
 
-header::before {
-  content: "";
-  position: absolute;
-  width: 260px;
-  height: 260px;
-  right: -90px;
-  top: -150px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.08);
+  color: white;
+
+  padding: 32px 20px;
+
+  text-align: center;
+
+  box-shadow:
+    0 8px 25px rgba(113, 50, 83, .16);
 }
 
 header::after {
   content: "";
+
   position: absolute;
-  width: 180px;
-  height: 180px;
-  left: -80px;
-  bottom: -130px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.06);
+
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(255,255,255,.12),
+      transparent 35%
+    ),
+
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(255,255,255,.08),
+      transparent 35%
+    );
+
+  pointer-events: none;
 }
 
 header h1 {
   position: relative;
   z-index: 1;
+
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(30px, 5vw, 42px);
-  font-weight: 600;
+
+  font-size: 30px;
+  font-weight: 800;
+
   letter-spacing: -.5px;
 }
 
 header p {
   position: relative;
   z-index: 1;
+
   margin: 8px 0 0;
-  color: rgba(255,255,255,.88);
-  font-size: 14px;
-  letter-spacing: .7px;
+
+  opacity: .92;
+
+  font-size: 15px;
+
+  font-weight: 400;
 }
 
 
@@ -168,88 +127,132 @@ header p {
    ===================================================== */
 
 .container {
-  position: relative;
   width: 100%;
-  max-width: 1120px;
+  max-width: 1100px;
+
   margin: 0 auto;
-  padding: 30px 20px 60px;
+
+  padding: 30px 20px 50px;
 }
 
 
 /* =====================================================
-   TOPO
+   TOPO DA AGENDA
    ===================================================== */
 
 .topo {
   display: flex;
+
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
+
+  width: 100%;
+
   margin-bottom: 24px;
+
+  gap: 20px;
 }
 
 .topo h2 {
   margin: 0;
-  color: var(--primary-dark);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 30px;
-  font-weight: 600;
+  padding: 0;
+
+  color: #713253;
+
+  font-size: 28px;
+  font-weight: 750;
+
+  line-height: 1.2;
+
+  text-align: left;
+
+  letter-spacing: -.5px;
 }
 
-.topo h2::after {
-  content: "";
-  display: block;
-  width: 42px;
-  height: 3px;
-  margin-top: 8px;
-  border-radius: 10px;
-  background: linear-gradient(
-    90deg,
-    var(--primary),
-    var(--primary-light)
-  );
+.topo .btn-principal {
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 
 /* =====================================================
-   BOTÕES
+   BOTÃO PRINCIPAL
    ===================================================== */
 
+button {
+  border: 0;
+  cursor: pointer;
+
+  font-family: inherit;
+}
+
 .btn-principal {
+
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
+
   gap: 8px;
-  min-height: 48px;
-  padding: 13px 20px;
-  border-radius: 12px;
+
   background:
     linear-gradient(
       135deg,
-      var(--primary),
-      var(--primary-light)
+      #8e4168 0%,
+      #a95780 100%
     );
+
   color: white;
+
+  padding: 14px 20px;
+
+  min-height: 46px;
+
+  border-radius: 11px;
+
   font-size: 14px;
   font-weight: 700;
-  letter-spacing: .1px;
+
+  line-height: 1;
+
   box-shadow:
-    0 8px 20px rgba(142,65,104,.22);
+    0 6px 18px rgba(
+      142,
+      65,
+      104,
+      .20
+    );
+
   transition:
     transform .2s ease,
     box-shadow .2s ease,
-    filter .2s ease;
+    background .2s ease;
 }
 
 .btn-principal:hover {
-  transform: translateY(-2px);
+
+  background:
+    linear-gradient(
+      135deg,
+      #713253 0%,
+      #8e4168 100%
+    );
+
+  transform:
+    translateY(-1px);
+
   box-shadow:
-    0 12px 26px rgba(142,65,104,.28);
-  filter: brightness(.98);
+    0 9px 24px rgba(
+      142,
+      65,
+      104,
+      .28
+    );
 }
 
 .btn-principal:active {
-  transform: translateY(0);
+  transform:
+    translateY(0);
 }
 
 
@@ -258,36 +261,56 @@ header p {
    ===================================================== */
 
 .card {
-  position: relative;
-  background: rgba(255,255,255,.92);
-  border: 1px solid rgba(234,223,229,.85);
+
+  background:
+    rgba(255,255,255,.96);
+
+  border:
+    1px solid rgba(
+      113,
+      50,
+      83,
+      .07
+    );
+
   border-radius: 18px;
+
   padding: 24px;
+
   margin-bottom: 20px;
-  box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 5px 25px rgba(
+      45,
+      30,
+      38,
+      .06
+    );
+
+  transition:
+    box-shadow .2s ease;
+}
+
+.card:hover {
+
+  box-shadow:
+    0 8px 30px rgba(
+      45,
+      30,
+      38,
+      .08
+    );
 }
 
 .card h3 {
-  margin: 0 0 20px;
-  color: var(--primary-dark);
-  font-size: 17px;
-  font-weight: 700;
-}
 
-.card h3::before {
-  content: "";
-  display: inline-block;
-  width: 4px;
-  height: 18px;
-  margin-right: 9px;
-  vertical-align: -3px;
-  border-radius: 5px;
-  background: linear-gradient(
-    180deg,
-    var(--primary-light),
-    var(--primary)
-  );
+  margin-top: 0;
+  margin-bottom: 20px;
+
+  color: #713253;
+
+  font-size: 17px;
+  font-weight: 750;
 }
 
 
@@ -296,30 +319,106 @@ header p {
    ===================================================== */
 
 .filtro {
-  display: flex;
-  align-items: flex-end;
-  gap: 15px;
-  flex-wrap: wrap;
-}
 
-.filtro > div {
-  width: 100%;
-  max-width: 280px !important;
+  display: flex;
+
+  align-items: flex-end;
+
+  gap: 15px;
+
+  flex-wrap: wrap;
 }
 
 
 /* =====================================================
-   LABEL
+   LABELS
    ===================================================== */
 
 label {
+
   display: block;
-  margin-bottom: 8px;
-  color: #504950;
-  font-size: 12px;
+
+  font-size: 13px;
+
   font-weight: 700;
-  letter-spacing: .3px;
-  text-transform: uppercase;
+
+  margin-bottom: 8px;
+
+  color: #5c5257;
+}
+
+
+/* =====================================================
+   INPUTS
+   ===================================================== */
+
+input,
+select,
+textarea {
+
+  width: 100%;
+
+  padding: 13px 14px;
+
+  border:
+    1px solid #e2dce0;
+
+  border-radius: 10px;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  color: #352c31;
+
+  outline: none;
+
+  background: #fff;
+
+  transition:
+    border-color .2s ease,
+    box-shadow .2s ease,
+    background .2s ease;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+
+  border-color:
+    #d4bcc9;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+
+  border-color:
+    #b65f8d;
+
+  background: #fff;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(
+      182,
+      95,
+      141,
+      .10
+    );
+}
+
+input::placeholder,
+textarea::placeholder {
+
+  color: #aaa1a6;
+}
+
+textarea {
+
+  min-height: 90px;
+
+  resize: vertical;
 }
 
 
@@ -327,61 +426,23 @@ label {
    CAMPOS
    ===================================================== */
 
-input,
-select,
-textarea {
-  width: 100%;
-  padding: 13px 14px;
-  border: 1px solid var(--border);
-  border-radius: 11px;
-  outline: none;
-  background: #fff;
-  color: var(--text);
-  font-size: 14px;
-  transition:
-    border-color .2s ease,
-    box-shadow .2s ease,
-    background .2s ease;
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: #aaa2a8;
-}
-
-input:hover,
-select:hover,
-textarea:hover {
-  border-color: #d9c7d1;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: var(--primary-light);
-  background: #fff;
-  box-shadow:
-    0 0 0 4px rgba(198,109,156,.10);
-}
-
-input[type="date"] {
-  color-scheme: light;
-}
-
-textarea {
-  min-height: 100px;
-  resize: vertical;
-  line-height: 1.5;
-}
-
 .campo {
   margin-bottom: 18px;
 }
 
+
+/* =====================================================
+   GRID
+   ===================================================== */
+
 .grid {
+
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 16px;
 }
 
 
@@ -390,77 +451,119 @@ textarea {
    ===================================================== */
 
 .horarios {
+
   display: grid;
+
   grid-template-columns:
-    repeat(auto-fill, minmax(105px, 1fr));
+    repeat(
+      auto-fill,
+      minmax(105px, 1fr)
+    );
+
   gap: 10px;
+
   margin-top: 10px;
 }
 
 .horario {
-  min-height: 48px;
-  padding: 12px 8px;
-  border-radius: 11px;
-  background: var(--pink-soft);
-  color: var(--primary-dark);
-  border: 1px solid #efd9e5;
+
+  padding: 13px 8px;
+
+  min-height: 46px;
+
+  border-radius: 10px;
+
+  background:
+    #f7eaf1;
+
+  color:
+    #713253;
+
+  border:
+    2px solid transparent;
+
   font-size: 14px;
+
   font-weight: 700;
+
   transition:
-    transform .18s ease,
-    background .18s ease,
-    border-color .18s ease,
-    box-shadow .18s ease;
+    background .2s ease,
+    transform .2s ease,
+    border-color .2s ease;
 }
 
 .horario:hover {
-  transform: translateY(-1px);
-  background: #f2dce8;
-  border-color: #dcaec5;
-  box-shadow:
-    0 5px 12px rgba(142,65,104,.10);
+
+  background:
+    #ecd4e1;
+
+  transform:
+    translateY(-1px);
 }
 
 .horario.selecionado {
+
   background:
     linear-gradient(
       135deg,
-      var(--primary-dark),
-      var(--primary)
+      #8e4168,
+      #a95780
     );
+
   color: white;
-  border-color: var(--primary);
+
+  border-color:
+    #713253;
+
   box-shadow:
-    0 7px 18px rgba(142,65,104,.22);
+    0 5px 15px
+    rgba(
+      142,
+      65,
+      104,
+      .22
+    );
 }
 
 .horario.ocupado {
-  background: #f1f0f1;
-  color: #aaa5a8;
-  border-color: #e7e4e6;
-  cursor: not-allowed;
-  text-decoration: line-through;
-  box-shadow: none;
+
+  background:
+    #eeeeee;
+
+  color:
+    #aaa;
+
+  cursor:
+    not-allowed;
+
+  text-decoration:
+    line-through;
 }
 
 .horario.informacao {
-  min-height: auto;
-  padding: 10px 13px;
-  background: #fff9fc;
-  color: var(--primary);
-  border: 1px dashed #d9a8c0;
-  cursor: default;
-  font-size: 12px;
-  grid-column: 1 / -1;
-  text-decoration: none;
-  text-align: left;
-}
 
-.horario.informacao:hover {
-  transform: none;
-  background: #fff9fc;
-  border-color: #d9a8c0;
-  box-shadow: none;
+  background:
+    #fff8fb;
+
+  color:
+    #8e4168;
+
+  border:
+    1px dashed #d89abc;
+
+  cursor:
+    default;
+
+  font-size: 13px;
+
+  grid-column:
+    1 / -1;
+
+  text-decoration:
+    none;
+
+  box-shadow:
+    none;
 }
 
 
@@ -469,44 +572,77 @@ textarea {
    ===================================================== */
 
 .mensagem {
+
   padding: 13px 15px;
-  border-radius: 11px;
+
+  border-radius: 10px;
+
   margin-bottom: 18px;
+
   display: none;
+
   font-size: 14px;
-  line-height: 1.5;
-  border: 1px solid transparent;
+
+  font-weight: 600;
 }
 
 .mensagem.erro {
+
   display: block;
-  background: var(--error-bg);
-  color: var(--error);
-  border-color: #f4cccc;
+
+  background:
+    #fff0f0;
+
+  color:
+    #a00000;
+
+  border:
+    1px solid #ffd4d4;
 }
 
 .mensagem.sucesso {
+
   display: block;
-  background: var(--success-bg);
-  color: var(--success);
-  border-color: #c8ead3;
+
+  background:
+    #edf9f1;
+
+  color:
+    #176b2d;
+
+  border:
+    1px solid #ccebd5;
 }
 
 .carregando {
+
   text-align: center;
-  color: var(--text-soft);
-  padding: 25px 15px;
+
+  color: #8b8186;
+
+  padding: 20px;
+
   font-size: 14px;
 }
 
 .sem-horarios {
-  background: #fff5f5;
-  color: #a33;
+
+  background:
+    #fff5f5;
+
+  color:
+    #a33;
+
   padding: 16px;
-  border: 1px solid #f1d5d5;
+
   border-radius: 11px;
+
   text-align: center;
+
   font-size: 14px;
+
+  border:
+    1px solid #f4dddd;
 }
 
 
@@ -515,78 +651,107 @@ textarea {
    ===================================================== */
 
 .agendamento {
-  position: relative;
-  border: 1px solid #eee5e9;
-  border-left: 4px solid var(--primary);
+
+  border:
+    1px solid #eee6ea;
+
+  border-left:
+    5px solid #8e4168;
+
   padding: 17px;
-  border-radius: 13px;
+
+  border-radius: 11px;
+
   margin-bottom: 12px;
+
   background:
-    linear-gradient(
-      135deg,
-      #fff 0%,
-      #fdf9fb 100%
-    );
+    #fff;
+
   transition:
-    transform .18s ease,
-    box-shadow .18s ease,
-    border-color .18s ease;
+    transform .2s ease,
+    box-shadow .2s ease;
 }
 
 .agendamento:hover {
-  transform: translateY(-1px);
-  border-color: #e5d2dc;
-  box-shadow:
-    0 8px 22px rgba(76,32,56,.07);
-}
 
-.agendamento:last-child {
-  margin-bottom: 0;
+  transform:
+    translateY(-1px);
+
+  box-shadow:
+    0 5px 18px
+    rgba(
+      45,
+      30,
+      38,
+      .06
+    );
 }
 
 .agendamento-topo {
+
   display: flex;
+
   justify-content: space-between;
+
   align-items: center;
-  gap: 12px;
+
+  gap: 10px;
+
   flex-wrap: wrap;
 }
 
 .agendamento strong {
-  color: var(--primary-dark);
-}
 
-.agendamento-topo strong {
-  font-size: 15px;
+  color:
+    #713253;
 }
 
 .info {
+
   margin-top: 8px;
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--text-soft);
+
+  font-size: 14px;
+
+  color:
+    #5d5559;
+
+  line-height:
+    1.45;
 }
 
-.info strong {
-  color: #514950;
-}
+
+/* =====================================================
+   BOTÃO CANCELAR
+   ===================================================== */
 
 .btn-cancelar {
-  background: #fff0f0;
-  color: #a00000;
-  padding: 8px 12px;
-  border: 1px solid #f4d4d4;
-  border-radius: 9px;
-  font-size: 12px;
-  font-weight: 700;
+
+  background:
+    #fff0f0;
+
+  color:
+    #a00000;
+
+  padding:
+    8px 12px;
+
+  border-radius:
+    8px;
+
+  font-size:
+    12px;
+
+  font-weight:
+    700;
+
   transition:
-    background .18s ease,
-    transform .18s ease;
+    background .2s ease;
 }
 
 .btn-cancelar:hover {
-  background: #ffe0e0;
-  transform: translateY(-1px);
+
+  background:
+    #ffdede;
 }
 
 
@@ -595,163 +760,338 @@ textarea {
    ===================================================== */
 
 .modal {
+
   display: none;
+
   position: fixed;
+
   inset: 0;
+
   background:
-    rgba(36, 18, 29, .68);
+    rgba(
+      37,
+      24,
+      31,
+      .62
+    );
+
+  backdrop-filter:
+    blur(4px);
+
+  -webkit-backdrop-filter:
+    blur(4px);
+
   z-index: 999;
+
   padding: 20px;
+
   overflow-y: auto;
-  backdrop-filter: blur(5px);
 }
 
 .modal.ativo {
+
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+
+  align-items:
+    flex-start;
+
+  justify-content:
+    center;
 }
 
 .modal-conteudo {
-  position: relative;
+
   background:
-    linear-gradient(
-      180deg,
-      #fff 0%,
-      #fffafd 100%
-    );
+    #fff;
+
   width: 100%;
-  max-width: 680px;
-  margin: 25px auto;
-  border: 1px solid rgba(255,255,255,.5);
-  border-radius: 22px;
-  padding: 28px;
-  box-shadow: var(--shadow-lg);
-  animation: aparecerModal .22s ease-out;
+
+  max-width: 650px;
+
+  margin: 20px auto;
+
+  border-radius: 20px;
+
+  padding: 26px;
+
+  box-shadow:
+    0 20px 60px
+    rgba(
+      0,
+      0,
+      0,
+      .25
+    );
+
+  animation:
+    abrirModal .2s ease;
 }
 
-@keyframes aparecerModal {
+@keyframes abrirModal {
+
   from {
     opacity: 0;
-    transform: translateY(15px) scale(.98);
+
+    transform:
+      translateY(10px)
+      scale(.98);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+
+    transform:
+      translateY(0)
+      scale(1);
   }
+
 }
 
+
+/* =====================================================
+   CABEÇALHO DO MODAL
+   ===================================================== */
+
 .modal-header {
+
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 25px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid #eee3e9;
+
+  justify-content:
+    space-between;
+
+  align-items:
+    center;
+
+  margin-bottom:
+    24px;
+
+  padding-bottom:
+    18px;
+
+  border-bottom:
+    1px solid #eee6ea;
 }
 
 .modal-header h2 {
+
   margin: 0;
-  color: var(--primary-dark);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 25px;
-  font-weight: 600;
+
+  color:
+    #713253;
+
+  font-size:
+    22px;
+
+  font-weight:
+    750;
 }
 
+
+/* =====================================================
+   FECHAR MODAL
+   ===================================================== */
+
 .fechar {
-  flex: 0 0 auto;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: #f5e9ef;
-  color: var(--primary-dark);
-  font-size: 22px;
-  line-height: 1;
+
+  width: 36px;
+  height: 36px;
+
+  border-radius:
+    50%;
+
+  background:
+    #f7edf2;
+
+  color:
+    #713253;
+
+  font-size:
+    21px;
+
+  display: flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
   transition:
-    background .18s ease,
-    transform .18s ease;
+    background .2s ease,
+    transform .2s ease;
 }
 
 .fechar:hover {
-  background: #ead7e1;
-  transform: rotate(90deg);
+
+  background:
+    #ead4df;
+
+  transform:
+    rotate(3deg);
 }
 
+
+/* =====================================================
+   RESUMO
+   ===================================================== */
+
 .resumo {
+
   background:
     linear-gradient(
       135deg,
-      #fbf0f6,
-      #fff8fb
+      #fbf3f7,
+      #f7eaf1
     );
-  border: 1px solid #efd9e5;
-  border-radius: 12px;
-  padding: 14px;
-  margin-top: 15px;
-  color: var(--primary-dark);
-  font-size: 13px;
-  line-height: 1.65;
+
+  border:
+    1px solid #ecd8e2;
+
+  border-radius:
+    11px;
+
+  padding:
+    14px;
+
+  margin-top:
+    15px;
+
+  color:
+    #713253;
+
+  font-size:
+    13px;
+
+  line-height:
+    1.7;
 }
 
+
+/* =====================================================
+   AÇÕES DO MODAL
+   ===================================================== */
+
 .acoes {
+
   display: flex;
+
   gap: 10px;
-  justify-content: flex-end;
-  margin-top: 25px;
-  padding-top: 20px;
-  border-top: 1px solid #eee3e9;
+
+  justify-content:
+    flex-end;
+
+  margin-top:
+    24px;
+
+  padding-top:
+    18px;
+
+  border-top:
+    1px solid #eee6ea;
 }
 
 .btn-secundario {
-  background: #f1eff0;
-  color: #4d484b;
-  padding: 12px 18px;
-  border: 1px solid #e5e0e3;
-  border-radius: 10px;
-  font-weight: 700;
+
+  background:
+    #f1eff0;
+
+  color:
+    #4b4548;
+
+  padding:
+    12px 18px;
+
+  min-height:
+    44px;
+
+  border-radius:
+    9px;
+
+  font-weight:
+    700;
+
+  font-size:
+    13px;
+
   transition:
-    background .18s ease,
-    transform .18s ease;
+    background .2s ease;
 }
 
 .btn-secundario:hover {
-  background: #e8e4e6;
-  transform: translateY(-1px);
+
+  background:
+    #e5e1e3;
 }
 
 .btn-salvar {
+
   background:
     linear-gradient(
       135deg,
-      var(--primary-dark),
-      var(--primary)
+      #8e4168,
+      #a95780
     );
-  color: white;
-  padding: 12px 20px;
-  border-radius: 10px;
-  font-weight: 700;
+
+  color:
+    white;
+
+  padding:
+    12px 20px;
+
+  min-height:
+    44px;
+
+  border-radius:
+    9px;
+
+  font-weight:
+    700;
+
+  font-size:
+    13px;
+
   box-shadow:
-    0 7px 18px rgba(142,65,104,.18);
+    0 5px 15px
+    rgba(
+      142,
+      65,
+      104,
+      .20
+    );
+
   transition:
-    transform .18s ease,
-    box-shadow .18s ease,
-    filter .18s ease;
+    transform .2s ease,
+    box-shadow .2s ease;
 }
 
 .btn-salvar:hover {
-  transform: translateY(-1px);
+
+  transform:
+    translateY(-1px);
+
   box-shadow:
-    0 10px 22px rgba(142,65,104,.25);
-  filter: brightness(.98);
+    0 7px 19px
+    rgba(
+      142,
+      65,
+      104,
+      .27
+    );
 }
 
 .btn-salvar:disabled {
-  background: #aaa;
-  box-shadow: none;
-  cursor: not-allowed;
-  transform: none;
+
+  background:
+    #aaa;
+
+  cursor:
+    not-allowed;
+
+  box-shadow:
+    none;
+
+  transform:
+    none;
 }
 
 
@@ -759,101 +1099,134 @@ textarea {
    RESPONSIVO
    ===================================================== */
 
-@media (max-width: 760px) {
-
-  header {
-    padding: 28px 18px 32px;
-  }
+@media (max-width: 700px) {
 
   .container {
+
     padding:
-      22px 14px 45px;
+      24px 15px 40px;
+  }
+
+  header {
+
+    padding:
+      27px 15px;
+  }
+
+  header h1 {
+
+    font-size:
+      26px;
   }
 
   .topo {
-    align-items: stretch;
-    flex-direction: column;
-    gap: 15px;
+
+    flex-direction:
+      column;
+
+    align-items:
+      stretch;
+
+    gap:
+      14px;
   }
 
   .topo h2 {
-    font-size: 27px;
+
+    text-align:
+      left;
+
+    font-size:
+      25px;
   }
 
   .topo .btn-principal {
-    width: 100%;
-  }
 
-  .card {
-    padding: 18px;
-    border-radius: 15px;
+    width:
+      100%;
+
+    margin-left:
+      0;
   }
 
   .grid {
-    grid-template-columns: 1fr;
-    gap: 0;
+
+    grid-template-columns:
+      1fr;
+  }
+
+  .card {
+
+    padding:
+      18px;
+
+    border-radius:
+      15px;
+  }
+
+  .horarios {
+
+    grid-template-columns:
+      repeat(3, 1fr);
+
+    gap:
+      8px;
+  }
+
+  .horario {
+
+    font-size:
+      13px;
+
+    padding:
+      11px 5px;
   }
 
   .modal {
-    padding: 10px;
+
+    padding:
+      10px;
   }
 
   .modal-conteudo {
-    margin: 5px auto;
-    padding: 20px 17px;
-    border-radius: 17px;
+
+    margin:
+      5px auto;
+
+    padding:
+      19px;
+
+    border-radius:
+      16px;
   }
 
   .modal-header h2 {
-    font-size: 22px;
+
+    font-size:
+      19px;
   }
 
   .acoes {
-    flex-direction: column-reverse;
+
+    flex-direction:
+      column-reverse;
   }
 
   .acoes button {
-    width: 100%;
+
+    width:
+      100%;
   }
 
 }
 
-@media (max-width: 480px) {
 
-  header h1 {
-    font-size: 31px;
-  }
-
-  header p {
-    font-size: 13px;
-  }
+@media (max-width: 380px) {
 
   .horarios {
+
     grid-template-columns:
-      repeat(3, 1fr);
-    gap: 8px;
-  }
-
-  .horario {
-    min-height: 44px;
-    padding: 10px 5px;
-    font-size: 13px;
-  }
-
-  .horario.informacao {
-    font-size: 11px;
-  }
-
-  .agendamento {
-    padding: 14px;
-  }
-
-  .agendamento-topo {
-    align-items: flex-start;
-  }
-
-  .btn-cancelar {
-    width: 100%;
+      repeat(2, 1fr);
   }
 
 }
@@ -864,20 +1237,30 @@ textarea {
    ===================================================== */
 
 ::-webkit-scrollbar {
-  width: 9px;
+
+  width:
+    8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f5f0f3;
+
+  background:
+    #f5f1f3;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cda1b7;
-  border-radius: 20px;
+
+  background:
+    #c99ab1;
+
+  border-radius:
+    10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a96b8c;
+
+  background:
+    #a95780;
 }
 
 </style>
@@ -892,13 +1275,17 @@ textarea {
 
 <h1>Salão Janaina</h1>
 
-<p>Agenda de clientes</p>
+<p>Gestão de agenda e atendimento</p>
 
 </header>
 
 
 <div class="container">
 
+
+<!-- =====================================================
+     TOPO
+     ===================================================== -->
 
 <div class="topo">
 
@@ -915,11 +1302,19 @@ textarea {
 </div>
 
 
+<!-- =====================================================
+     MENSAGEM PRINCIPAL
+     ===================================================== -->
+
 <div
   id="mensagemPrincipal"
   class="mensagem">
 </div>
 
+
+<!-- =====================================================
+     FILTRO DE DATA
+     ===================================================== -->
 
 <div class="card">
 
@@ -936,7 +1331,7 @@ Data
 <input
   type="date"
   id="dataAgenda"
-  onchange="carregarAgenda">
+  onchange="carregarAgenda()">
 
 </div>
 
@@ -944,6 +1339,10 @@ Data
 
 </div>
 
+
+<!-- =====================================================
+     LISTA DE AGENDAMENTOS
+     ===================================================== -->
 
 <div
   id="listaAgendamentos"
@@ -991,6 +1390,8 @@ Carregando...
 </div>
 
 
+<!-- CLIENTE -->
+
 <div class="campo">
 
 <label for="cliente">
@@ -1005,6 +1406,8 @@ Nome da cliente *
 </div>
 
 
+<!-- WHATSAPP -->
+
 <div class="campo">
 
 <label for="whatsapp">
@@ -1018,6 +1421,8 @@ WhatsApp *
 
 </div>
 
+
+<!-- DATA + SERVIÇO -->
 
 <div class="grid">
 
@@ -1057,6 +1462,8 @@ Selecione o serviço
 </div>
 
 
+<!-- HORÁRIOS -->
+
 <div class="campo">
 
 <label>
@@ -1076,6 +1483,8 @@ Selecione a data e o serviço.
 </div>
 
 
+<!-- OBSERVAÇÃO -->
+
 <div class="campo">
 
 <label for="observacao">
@@ -1089,12 +1498,16 @@ Observação
 </div>
 
 
+<!-- RESUMO -->
+
 <div
   id="resumo"
   class="resumo"
   style="display:none">
 </div>
 
+
+<!-- AÇÕES -->
 
 <div class="acoes">
 
@@ -1637,6 +2050,7 @@ function renderizarHorarios(
         }
       );
 
+
   while (
     cursor +
     duracao <=
@@ -1672,6 +2086,7 @@ function renderizarHorarios(
 
   }
 
+
   const unicos = [];
 
   possiveis.forEach(
@@ -1696,6 +2111,7 @@ function renderizarHorarios(
     }
   );
 
+
   if (unicos.length === 0) {
 
     area.innerHTML =
@@ -1707,7 +2123,9 @@ function renderizarHorarios(
 
   }
 
+
   area.innerHTML = '';
+
 
   const info =
     document.createElement(
@@ -1723,6 +2141,7 @@ function renderizarHorarios(
     ' minutos';
 
   area.appendChild(info);
+
 
   unicos.forEach(
     function(item) {
@@ -1927,7 +2346,7 @@ function atualizarResumo() {
 
 
 /* =====================================================
-   SALVAR + WHATSAPP
+   SALVAR AGENDAMENTO
    ===================================================== */
 
 async function salvarAgendamento() {
@@ -1956,6 +2375,7 @@ async function salvarAgendamento() {
     document.getElementById(
       'observacao'
     ).value.trim();
+
 
   if (!cliente) {
 
@@ -2017,6 +2437,7 @@ async function salvarAgendamento() {
 
   }
 
+
   const servico =
     servicos.find(
       function(item) {
@@ -2026,6 +2447,7 @@ async function salvarAgendamento() {
 
       }
     );
+
 
   if (!servico) {
 
@@ -2039,13 +2461,16 @@ async function salvarAgendamento() {
 
   }
 
+
   let janelaWhatsApp = null;
+
 
   janelaWhatsApp =
     window.open(
       'about:blank',
       '_blank'
     );
+
 
   const btn =
     document.getElementById(
@@ -2058,12 +2483,14 @@ async function salvarAgendamento() {
   btn.textContent =
     'Verificando...';
 
+
   try {
 
     const agendaAtual =
       await buscarAgendamentos(
         data
       );
+
 
     const inicioNovo =
       horaParaMinutos(
@@ -2075,6 +2502,7 @@ async function salvarAgendamento() {
       Number(
         servico.duracao
       );
+
 
     const conflito =
       encontrarConflito(
@@ -2107,6 +2535,7 @@ async function salvarAgendamento() {
         )
       );
 
+
     if (conflito) {
 
       throw new Error(
@@ -2115,8 +2544,10 @@ async function salvarAgendamento() {
 
     }
 
+
     btn.textContent =
       'Agendando...';
+
 
     const dados = {
 
@@ -2151,6 +2582,7 @@ async function salvarAgendamento() {
 
     };
 
+
     const resposta =
       await fetch(
         API_URL,
@@ -2174,6 +2606,7 @@ async function salvarAgendamento() {
         }
       );
 
+
     if (!resposta.ok) {
 
       throw new Error(
@@ -2183,8 +2616,10 @@ async function salvarAgendamento() {
 
     }
 
+
     const resultado =
       await resposta.json();
+
 
     if (
       !resultado.sucesso
@@ -2197,8 +2632,10 @@ async function salvarAgendamento() {
 
     }
 
+
     const dataFormatada =
       formatarDataBR(data);
+
 
     const termino =
       minutosParaHora(
@@ -2207,6 +2644,7 @@ async function salvarAgendamento() {
           servico.duracao
         )
       );
+
 
     let mensagem =
 
@@ -2238,6 +2676,7 @@ async function salvarAgendamento() {
       servico.duracao +
       ' minutos';
 
+
     if (
       servico.preco > 0
     ) {
@@ -2251,6 +2690,7 @@ async function salvarAgendamento() {
 
     }
 
+
     if (observacao) {
 
       mensagem +=
@@ -2260,6 +2700,7 @@ async function salvarAgendamento() {
 
     }
 
+
     mensagem +=
 
       '\n\n' +
@@ -2268,10 +2709,12 @@ async function salvarAgendamento() {
 
       NOME_SALAO;
 
+
     const numero =
       prepararWhatsApp(
         whatsapp
       );
+
 
     if (!numero) {
 
@@ -2297,6 +2740,7 @@ async function salvarAgendamento() {
           mensagem
         );
 
+
       if (janelaWhatsApp) {
 
         janelaWhatsApp.location.href =
@@ -2311,20 +2755,25 @@ async function salvarAgendamento() {
 
     }
 
+
     mostrarMensagem(
       'mensagemPrincipal',
       'Agendamento realizado com sucesso.',
       'sucesso'
     );
 
+
     fecharModal();
+
 
     document.getElementById(
       'dataAgenda'
     ).value =
       data;
 
+
     carregarAgenda();
+
 
   } catch (erro) {
 
@@ -2333,11 +2782,13 @@ async function salvarAgendamento() {
       erro
     );
 
+
     if (janelaWhatsApp) {
 
       janelaWhatsApp.close();
 
     }
+
 
     mostrarMensagem(
       'mensagemModal',
@@ -2345,6 +2796,7 @@ async function salvarAgendamento() {
       'Erro ao realizar agendamento.',
       'erro'
     );
+
 
   } finally {
 
@@ -2375,11 +2827,13 @@ function prepararWhatsApp(
       ''
     );
 
+
   if (!telefone) {
 
     return '';
 
   }
+
 
   if (
     telefone.length === 10 ||
@@ -2391,6 +2845,7 @@ function prepararWhatsApp(
       telefone;
 
   }
+
 
   if (
     telefone.startsWith('55') &&
@@ -2404,13 +2859,14 @@ function prepararWhatsApp(
 
   }
 
+
   return '';
 
 }
 
 
 /* =====================================================
-   AGENDA
+   BUSCAR AGENDAMENTOS
    ===================================================== */
 
 async function buscarAgendamentos(
@@ -2425,6 +2881,7 @@ async function buscarAgendamentos(
     '&_=' +
     Date.now();
 
+
   const resposta =
     await fetch(
       url,
@@ -2432,6 +2889,7 @@ async function buscarAgendamentos(
         cache: 'no-store'
       }
     );
+
 
   if (!resposta.ok) {
 
@@ -2442,8 +2900,10 @@ async function buscarAgendamentos(
 
   }
 
+
   const dados =
     await resposta.json();
+
 
   if (
     Array.isArray(dados)
@@ -2452,6 +2912,7 @@ async function buscarAgendamentos(
     return dados;
 
   }
+
 
   if (
     dados &&
@@ -2464,12 +2925,17 @@ async function buscarAgendamentos(
 
   }
 
+
   throw new Error(
     'Resposta inválida dos agendamentos.'
   );
 
 }
 
+
+/* =====================================================
+   CARREGAR AGENDA
+   ===================================================== */
 
 async function carregarAgenda() {
 
@@ -2478,10 +2944,12 @@ async function carregarAgenda() {
       'dataAgenda'
     ).value;
 
+
   const area =
     document.getElementById(
       'listaAgendamentos'
     );
+
 
   if (!data) {
 
@@ -2489,10 +2957,12 @@ async function carregarAgenda() {
 
   }
 
+
   area.innerHTML =
     '<div class="carregando">' +
     'Carregando agendamentos...' +
     '</div>';
+
 
   try {
 
@@ -2522,6 +2992,10 @@ async function carregarAgenda() {
 }
 
 
+/* =====================================================
+   RENDERIZAR AGENDA
+   ===================================================== */
+
 function renderizarAgenda(
   agendamentos
 ) {
@@ -2530,6 +3004,7 @@ function renderizarAgenda(
     document.getElementById(
       'listaAgendamentos'
     );
+
 
   if (
     !agendamentos ||
@@ -2546,6 +3021,7 @@ function renderizarAgenda(
 
   }
 
+
   agendamentos.sort(
     function(a,b) {
 
@@ -2557,8 +3033,10 @@ function renderizarAgenda(
     }
   );
 
+
   let html =
     '<h3>Agendamentos do dia</h3>';
+
 
   agendamentos.forEach(
     function(item) {
@@ -2568,14 +3046,17 @@ function renderizarAgenda(
           item.hora
         );
 
+
       const duracao =
         Number(
           item.duracao || 0
         );
 
+
       const fim =
         inicio +
         duracao;
+
 
       html +=
 
@@ -2673,6 +3154,7 @@ function renderizarAgenda(
     }
   );
 
+
   area.innerHTML =
     html;
 
@@ -2696,6 +3178,7 @@ async function cancelarAgendamento(
     return;
 
   }
+
 
   try {
 
@@ -2728,8 +3211,10 @@ async function cancelarAgendamento(
         }
       );
 
+
     const resultado =
       await resposta.json();
+
 
     if (
       !resultado.sucesso
@@ -2742,13 +3227,16 @@ async function cancelarAgendamento(
 
     }
 
+
     mostrarMensagem(
       'mensagemPrincipal',
       'Agendamento cancelado com sucesso.',
       'sucesso'
     );
 
+
     carregarAgenda();
+
 
   } catch (erro) {
 
@@ -2777,10 +3265,12 @@ function horaParaMinutos(
 
   }
 
+
   const partes =
     String(
       hora
     ).split(':');
+
 
   if (
     partes.length < 2
@@ -2789,6 +3279,7 @@ function horaParaMinutos(
     return -1;
 
   }
+
 
   const h =
     Number(
@@ -2800,6 +3291,7 @@ function horaParaMinutos(
       partes[1]
     );
 
+
   if (
     !Number.isFinite(h) ||
     !Number.isFinite(m)
@@ -2808,6 +3300,7 @@ function horaParaMinutos(
     return -1;
 
   }
+
 
   return h * 60 + m;
 
@@ -2823,6 +3316,7 @@ function minutosParaHora(
       minutos
     );
 
+
   if (
     !Number.isFinite(valor)
   ) {
@@ -2830,6 +3324,7 @@ function minutosParaHora(
     return '';
 
   }
+
 
   return (
     String(
@@ -2855,6 +3350,7 @@ function formatarDataBR(
       data
     ).split('-');
 
+
   if (
     partes.length !== 3
   ) {
@@ -2862,6 +3358,7 @@ function formatarDataBR(
     return data;
 
   }
+
 
   return (
     partes[2] +
@@ -2885,11 +3382,13 @@ function mostrarMensagem(
       id
     );
 
+
   if (!elemento) {
 
     return;
 
   }
+
 
   elemento.textContent =
     texto;
@@ -2897,6 +3396,7 @@ function mostrarMensagem(
   elemento.className =
     'mensagem ' +
     tipo;
+
 
   setTimeout(
     function() {
@@ -2921,11 +3421,13 @@ function esconderMensagem(
       id
     );
 
+
   if (!elemento) {
 
     return;
 
   }
+
 
   elemento.className =
     'mensagem';
@@ -3020,6 +3522,7 @@ document
 
     }
   );
+
 
 </script>
 
