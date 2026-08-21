@@ -5,19 +5,36 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Agenda - Salão Janaina</title>
 
 <style>
 
 /* =====================================================
-   RESET
+   CONFIGURAÇÃO GERAL
    ===================================================== */
 
 * {
   box-sizing: border-box;
+}
+
+:root {
+  --primary: #8e4168;
+  --primary-dark: #68304d;
+  --primary-light: #c66d9c;
+  --soft: #f8eef4;
+  --soft-2: #fdf8fb;
+  --text: #29252a;
+  --muted: #777078;
+  --border: #eadfe6;
+  --white: #ffffff;
+  --success: #16834b;
+  --success-bg: #eaf8f0;
+  --danger: #b42318;
+  --danger-bg: #fff0ee;
+  --shadow: 0 12px 35px rgba(87, 38, 65, .08);
+  --radius: 18px;
 }
 
 html {
@@ -31,51 +48,18 @@ body {
     -apple-system,
     BlinkMacSystemFont,
     "Segoe UI",
+    Roboto,
     Arial,
-    Helvetica,
     sans-serif;
 
   background:
     linear-gradient(
-      135deg,
-      #fbf8fa 0%,
-      #f7f1f5 100%
+      180deg,
+      #fbf7f9 0%,
+      #f7f3f6 100%
     );
 
-  color: #29232a;
-  min-height: 100vh;
-}
-
-
-/* =====================================================
-   VARIÁVEIS VISUAIS
-   ===================================================== */
-
-:root {
-
-  --rosa-escuro: #7a3159;
-  --rosa: #a94d7d;
-  --rosa-claro: #d982ad;
-
-  --rosa-pale: #f9edf4;
-  --rosa-pale-2: #f5e3ec;
-
-  --texto: #29232a;
-  --texto-secundario: #70676e;
-
-  --branco: #ffffff;
-
-  --borda: #eadfe5;
-
-  --verde: #198754;
-  --vermelho: #b42318;
-
-  --sombra:
-    0 12px 35px rgba(72, 30, 53, .08);
-
-  --sombra-forte:
-    0 22px 60px rgba(46, 20, 35, .18);
-
+  color: var(--text);
 }
 
 
@@ -84,40 +68,38 @@ body {
    ===================================================== */
 
 header {
-
-  position: relative;
-
   background:
     radial-gradient(
-      circle at top right,
+      circle at 15% 20%,
       rgba(255,255,255,.16),
-      transparent 35%
+      transparent 30%
     ),
     linear-gradient(
       135deg,
-      #672544 0%,
-      #8f3f67 45%,
-      #bd6796 100%
+      #6f3152 0%,
+      #8e4168 45%,
+      #c66d9c 100%
     );
 
   color: white;
 
-  padding: 34px 24px;
+  padding: 30px 20px;
+
+  position: relative;
 
   overflow: hidden;
 }
 
 header::after {
-
   content: "";
 
   position: absolute;
 
-  width: 260px;
-  height: 260px;
+  width: 280px;
+  height: 280px;
 
-  right: -90px;
-  top: -120px;
+  right: -100px;
+  top: -150px;
 
   border-radius: 50%;
 
@@ -126,64 +108,29 @@ header::after {
 }
 
 .header-inner {
-
-  width: 100%;
   max-width: 1180px;
 
   margin: 0 auto;
 
   position: relative;
-  z-index: 2;
-}
 
-.logo-area {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 16px;
-}
-
-.logo-icon {
-
-  width: 52px;
-  height: 52px;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 15px;
-
-  background:
-    rgba(255,255,255,.15);
-
-  border:
-    1px solid rgba(255,255,255,.2);
-
-  font-size: 25px;
-
-  backdrop-filter: blur(8px);
+  z-index: 1;
 }
 
 header h1 {
-
   margin: 0;
 
-  font-size: 28px;
+  font-size: 29px;
 
-  font-weight: 750;
+  font-weight: 800;
 
   letter-spacing: -.5px;
 }
 
 header p {
+  margin: 7px 0 0;
 
-  margin: 4px 0 0;
-
-  color: rgba(255,255,255,.82);
+  opacity: .9;
 
   font-size: 14px;
 }
@@ -201,7 +148,7 @@ header p {
 
   margin: 0 auto;
 
-  padding: 30px 22px 60px;
+  padding: 30px 20px 60px;
 }
 
 
@@ -213,57 +160,39 @@ header p {
 
   display: flex;
 
-  justify-content: space-between;
-
   align-items: center;
+
+  justify-content: space-between;
 
   gap: 20px;
 
-  margin-bottom: 25px;
-
-  width: 100%;
+  margin-bottom: 24px;
 }
 
-.titulo-agenda {
-
-  flex: 1;
-
+.topo-info {
   min-width: 0;
 }
 
-.titulo-agenda h2 {
+.topo h2 {
 
   margin: 0;
 
-  color: #4d2439;
+  color: var(--primary-dark);
 
-  font-size: 26px;
+  font-size: 25px;
 
-  font-weight: 750;
+  font-weight: 800;
 
-  letter-spacing: -.5px;
+  letter-spacing: -.4px;
 }
 
-.titulo-agenda p {
+.topo-subtitulo {
 
-  margin: 5px 0 0;
+  margin-top: 5px;
 
-  color: var(--texto-secundario);
+  color: var(--muted);
 
   font-size: 14px;
-}
-
-.acoes-topo {
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: flex-end;
-
-  gap: 10px;
-
-  flex-shrink: 0;
 }
 
 
@@ -280,14 +209,11 @@ button {
   font-family: inherit;
 
   transition:
-    transform .18s ease,
-    box-shadow .18s ease,
-    background .18s ease;
+    .2s ease;
 }
 
 button:active {
-
-  transform: scale(.98);
+  transform: translateY(1px);
 }
 
 .btn-principal {
@@ -303,22 +229,25 @@ button:active {
   background:
     linear-gradient(
       135deg,
-      #8c3b63,
-      #ad4f80
+      var(--primary),
+      #a9507f
     );
 
   color: white;
 
-  padding: 13px 18px;
+  padding: 13px 20px;
 
-  border-radius: 11px;
+  border-radius: 12px;
 
   font-size: 14px;
 
   font-weight: 700;
 
   box-shadow:
-    0 7px 18px rgba(126,49,89,.22);
+    0 7px 18px
+    rgba(142,65,104,.22);
+
+  white-space: nowrap;
 }
 
 .btn-principal:hover {
@@ -326,47 +255,59 @@ button:active {
   background:
     linear-gradient(
       135deg,
-      #713052,
-      #963f6c
+      var(--primary-dark),
+      var(--primary)
     );
 
-  box-shadow:
-    0 10px 24px rgba(126,49,89,.28);
+  transform: translateY(-1px);
 }
 
-.btn-gerenciar {
+.btn-secundario {
 
-  display: inline-flex;
+  background: #f1edf0;
 
-  align-items: center;
+  color: #4d464b;
 
-  justify-content: center;
+  padding: 12px 18px;
 
-  gap: 8px;
-
-  background: white;
-
-  color: var(--rosa-escuro);
-
-  border: 1px solid var(--borda);
-
-  padding: 12px 17px;
-
-  border-radius: 11px;
-
-  font-size: 14px;
+  border-radius: 10px;
 
   font-weight: 700;
-
-  box-shadow:
-    0 4px 14px rgba(50,20,35,.05);
 }
 
-.btn-gerenciar:hover {
+.btn-secundario:hover {
+  background: #e7e0e5;
+}
 
-  background: var(--rosa-pale);
+.btn-salvar {
 
-  border-color: #d9bdcb;
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      #a9507f
+    );
+
+  color: white;
+
+  padding: 12px 20px;
+
+  border-radius: 10px;
+
+  font-weight: 700;
+}
+
+.btn-salvar:hover {
+  background: var(--primary-dark);
+}
+
+.btn-salvar:disabled {
+
+  background: #aaa;
+
+  cursor: not-allowed;
+
+  box-shadow: none;
 }
 
 
@@ -376,29 +317,30 @@ button:active {
 
 .card {
 
-  background: rgba(255,255,255,.96);
+  background: var(--white);
 
   border:
-    1px solid rgba(234,223,229,.8);
+    1px solid rgba(142,65,104,.07);
 
-  border-radius: 18px;
+  border-radius: var(--radius);
 
   padding: 22px;
 
   margin-bottom: 20px;
 
-  box-shadow: var(--sombra);
+  box-shadow: var(--shadow);
 }
 
 .card h3 {
 
-  margin: 0 0 18px;
+  margin:
+    0 0 18px;
 
-  color: #54283f;
+  color: var(--primary-dark);
 
   font-size: 17px;
 
-  font-weight: 750;
+  font-weight: 800;
 }
 
 
@@ -417,13 +359,6 @@ button:active {
   flex-wrap: wrap;
 }
 
-.filtro-data {
-
-  width: 100%;
-
-  max-width: 280px;
-}
-
 
 /* =====================================================
    FORMULÁRIOS
@@ -439,7 +374,7 @@ label {
 
   margin-bottom: 7px;
 
-  color: #514950;
+  color: #504a4f;
 }
 
 input,
@@ -451,9 +386,11 @@ textarea {
   padding: 12px 13px;
 
   border:
-    1px solid #ded4db;
+    1px solid var(--border);
 
   border-radius: 10px;
+
+  font-family: inherit;
 
   font-size: 14px;
 
@@ -461,27 +398,28 @@ textarea {
 
   background: white;
 
-  color: #29232a;
+  color: var(--text);
 
   transition:
-    border-color .18s ease,
-    box-shadow .18s ease;
+    border-color .2s,
+    box-shadow .2s;
 }
 
 input::placeholder,
 textarea::placeholder {
-
-  color: #aaa2a8;
+  color: #aaa1a8;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
 
-  border-color: #b85e8c;
+  border-color:
+    var(--primary-light);
 
   box-shadow:
-    0 0 0 3px rgba(184,94,140,.10);
+    0 0 0 3px
+    rgba(198,109,156,.12);
 }
 
 textarea {
@@ -492,8 +430,7 @@ textarea {
 }
 
 .campo {
-
-  margin-bottom: 17px;
+  margin-bottom: 16px;
 }
 
 .grid {
@@ -508,99 +445,6 @@ textarea {
 
 
 /* =====================================================
-   HORÁRIOS
-   ===================================================== */
-
-.horarios {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(auto-fill, minmax(105px,1fr));
-
-  gap: 10px;
-
-  margin-top: 10px;
-}
-
-.horario {
-
-  padding: 12px 8px;
-
-  border-radius: 10px;
-
-  background:
-    #f7eaf1;
-
-  color:
-    #743355;
-
-  border:
-    2px solid transparent;
-
-  font-size: 14px;
-
-  font-weight: 750;
-}
-
-.horario:hover {
-
-  background:
-    #edd5e2;
-}
-
-.horario.selecionado {
-
-  background:
-    linear-gradient(
-      135deg,
-      #84365e,
-      #aa4e7d
-    );
-
-  color: white;
-
-  border-color:
-    #713052;
-
-  box-shadow:
-    0 6px 15px
-    rgba(126,49,89,.20);
-}
-
-.horario.ocupado {
-
-  background: #eeeeee;
-
-  color: #aaa;
-
-  cursor: not-allowed;
-
-  text-decoration: line-through;
-}
-
-.horario.informacao {
-
-  background:
-    #fff8fb;
-
-  color:
-    #8e4168;
-
-  border:
-    1px dashed #d89abc;
-
-  cursor: default;
-
-  font-size: 13px;
-
-  grid-column: 1 / -1;
-
-  text-decoration: none;
-}
-
-
-/* =====================================================
    MENSAGENS
    ===================================================== */
 
@@ -610,7 +454,7 @@ textarea {
 
   border-radius: 10px;
 
-  margin-bottom: 17px;
+  margin-bottom: 18px;
 
   display: none;
 
@@ -624,13 +468,13 @@ textarea {
   display: block;
 
   background:
-    #fff0ef;
+    var(--danger-bg);
 
   color:
-    #a32019;
+    var(--danger);
 
   border:
-    1px solid #f2c7c3;
+    1px solid #ffd2cd;
 }
 
 .mensagem.sucesso {
@@ -638,35 +482,33 @@ textarea {
   display: block;
 
   background:
-    #edf9f1;
+    var(--success-bg);
 
   color:
-    #176b35;
+    var(--success);
 
   border:
-    1px solid #c8e8d1;
+    1px solid #ccebd9;
 }
 
 .carregando {
 
   text-align: center;
 
-  color: #827981;
+  color: var(--muted);
 
-  padding: 22px;
-
-  font-size: 14px;
+  padding: 20px;
 }
 
 .sem-horarios {
 
   background:
-    #fff5f5;
+    #fff6f6;
 
   color:
     #a33;
 
-  padding: 17px;
+  padding: 16px;
 
   border-radius: 11px;
 
@@ -677,16 +519,112 @@ textarea {
 
 
 /* =====================================================
-   AGENDA
+   HORÁRIOS
+   ===================================================== */
+
+.horarios {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fill,minmax(100px,1fr));
+
+  gap: 10px;
+
+  margin-top: 10px;
+}
+
+.horario {
+
+  padding: 12px 8px;
+
+  border-radius: 10px;
+
+  background:
+    #f6e9f0;
+
+  color:
+    var(--primary-dark);
+
+  border:
+    2px solid transparent;
+
+  font-size: 14px;
+
+  font-weight: 800;
+}
+
+.horario:hover {
+
+  background:
+    #ebd3e0;
+}
+
+.horario.selecionado {
+
+  background:
+    var(--primary);
+
+  color: white;
+
+  border-color:
+    var(--primary-dark);
+
+  box-shadow:
+    0 5px 12px
+    rgba(142,65,104,.2);
+}
+
+.horario.ocupado {
+
+  background:
+    #eeeeee;
+
+  color:
+    #aaa;
+
+  cursor:
+    not-allowed;
+
+  text-decoration:
+    line-through;
+}
+
+.horario.informacao {
+
+  background:
+    var(--soft-2);
+
+  color:
+    var(--primary);
+
+  border:
+    1px dashed #d89abc;
+
+  cursor:
+    default;
+
+  font-size: 13px;
+
+  grid-column:
+    1 / -1;
+
+  text-decoration:
+    none;
+}
+
+
+/* =====================================================
+   AGENDAMENTOS
    ===================================================== */
 
 .agendamento {
 
   border:
-    1px solid #eee4e9;
+    1px solid #eee7eb;
 
   border-left:
-    5px solid #9b4773;
+    5px solid var(--primary);
 
   padding: 17px;
 
@@ -694,22 +632,19 @@ textarea {
 
   margin-bottom: 12px;
 
-  background:
-    #fff;
+  background: #fff;
 
-  transition:
-    transform .15s ease,
-    box-shadow .15s ease;
+  transition: .2s ease;
 }
 
 .agendamento:hover {
 
-  transform:
-    translateY(-1px);
+  border-color:
+    #e1ccd8;
 
   box-shadow:
-    0 7px 20px
-    rgba(50,20,35,.06);
+    0 6px 20px
+    rgba(80,40,60,.06);
 }
 
 .agendamento-topo {
@@ -718,17 +653,15 @@ textarea {
 
   justify-content: space-between;
 
-  align-items: center;
-
   gap: 10px;
+
+  align-items: center;
 
   flex-wrap: wrap;
 }
 
 .agendamento strong {
-
-  color:
-    #713253;
+  color: var(--primary-dark);
 }
 
 .info {
@@ -737,17 +670,16 @@ textarea {
 
   font-size: 13px;
 
-  color:
-    #625a60;
+  color: #625b60;
 }
 
 .btn-cancelar {
 
   background:
-    #fff0f0;
+    var(--danger-bg);
 
   color:
-    #a00000;
+    var(--danger);
 
   padding:
     8px 12px;
@@ -759,16 +691,246 @@ textarea {
     12px;
 
   font-weight:
-    750;
-
-  border:
-    1px solid #f3d3d3;
+    800;
 }
 
 .btn-cancelar:hover {
+  background: #ffdeda;
+}
+
+
+/* =====================================================
+   GERENCIAMENTO DE SERVIÇOS
+   ===================================================== */
+
+.servicos-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 18px;
+}
+
+.servicos-header h3 {
+  margin-bottom: 0;
+}
+
+.btn-servico {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
 
   background:
-    #ffe0e0;
+    #f7edf3;
+
+  color:
+    var(--primary-dark);
+
+  padding:
+    10px 14px;
+
+  border-radius:
+    9px;
+
+  font-size:
+    13px;
+
+  font-weight:
+    800;
+}
+
+.btn-servico:hover {
+  background: #ecd9e4;
+}
+
+.lista-servicos {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 14px;
+}
+
+.servico-card {
+
+  border:
+    1px solid #eee4e9;
+
+  border-radius:
+    14px;
+
+  padding:
+    17px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff,
+      #fdf9fb
+    );
+
+  position:
+    relative;
+}
+
+.servico-nome {
+
+  font-weight:
+    800;
+
+  font-size:
+    15px;
+
+  color:
+    var(--primary-dark);
+
+  padding-right:
+    10px;
+}
+
+.servico-detalhes {
+
+  display:
+    flex;
+
+  gap:
+    8px;
+
+  flex-wrap:
+    wrap;
+
+  margin-top:
+    11px;
+}
+
+.servico-tag {
+
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  padding:
+    6px 9px;
+
+  border-radius:
+    7px;
+
+  background:
+    var(--soft);
+
+  color:
+    var(--primary);
+
+  font-size:
+    12px;
+
+  font-weight:
+    700;
+}
+
+.servico-acoes {
+
+  display:
+    flex;
+
+  gap:
+    8px;
+
+  margin-top:
+    15px;
+}
+
+.btn-editar {
+
+  flex:
+    1;
+
+  background:
+    #f1eef5;
+
+  color:
+    #60466b;
+
+  padding:
+    9px;
+
+  border-radius:
+    8px;
+
+  font-size:
+    12px;
+
+  font-weight:
+    800;
+}
+
+.btn-editar:hover {
+  background: #e5deeb;
+}
+
+.btn-excluir {
+
+  flex:
+    1;
+
+  background:
+    #fff0ee;
+
+  color:
+    #a4261c;
+
+  padding:
+    9px;
+
+  border-radius:
+    8px;
+
+  font-size:
+    12px;
+
+  font-weight:
+    800;
+}
+
+.btn-excluir:hover {
+  background:
+    #ffe0dc;
+}
+
+.sem-servicos {
+
+  grid-column:
+    1 / -1;
+
+  text-align:
+    center;
+
+  padding:
+    25px;
+
+  border:
+    1px dashed #decbd6;
+
+  border-radius:
+    12px;
+
+  color:
+    var(--muted);
+
+  background:
+    #fdf9fb;
 }
 
 
@@ -785,10 +947,10 @@ textarea {
   inset: 0;
 
   background:
-    rgba(31,18,25,.62);
+    rgba(38,20,30,.62);
 
   backdrop-filter:
-    blur(5px);
+    blur(4px);
 
   z-index: 999;
 
@@ -813,47 +975,50 @@ textarea {
   background:
     white;
 
-  width: 100%;
+  width:
+    100%;
 
-  max-width: 650px;
+  max-width:
+    650px;
 
-  margin: 25px auto;
+  margin:
+    20px auto;
 
-  border-radius: 20px;
+  border-radius:
+    20px;
 
-  padding: 25px;
+  padding:
+    25px;
 
   box-shadow:
-    var(--sombra-forte);
+    0 20px 60px
+    rgba(0,0,0,.25);
 
   animation:
-    aparecerModal .18s ease-out;
+    modalEntrada .2s ease;
 }
 
-@keyframes aparecerModal {
+@keyframes modalEntrada {
 
   from {
-
     opacity: 0;
-
-    transform:
-      translateY(12px)
-      scale(.98);
+    transform: translateY(10px);
   }
 
   to {
-
     opacity: 1;
-
-    transform:
-      translateY(0)
-      scale(1);
+    transform: translateY(0);
   }
+}
+
+.modal-pequeno {
+  max-width: 500px;
 }
 
 .modal-header {
 
-  display: flex;
+  display:
+    flex;
 
   justify-content:
     space-between;
@@ -861,17 +1026,17 @@ textarea {
   align-items:
     center;
 
-  gap: 15px;
-
-  margin-bottom: 22px;
+  margin-bottom:
+    20px;
 }
 
 .modal-header h2 {
 
-  margin: 0;
+  margin:
+    0;
 
   color:
-    #54283f;
+    var(--primary-dark);
 
   font-size:
     21px;
@@ -879,37 +1044,30 @@ textarea {
 
 .fechar {
 
-  width: 36px;
+  width:
+    36px;
 
-  height: 36px;
+  height:
+    36px;
 
-  flex-shrink: 0;
-
-  border-radius: 50%;
+  border-radius:
+    50%;
 
   background:
-    #f5eaf0;
+    #f3eaf0;
 
   color:
-    #713253;
+    var(--primary-dark);
 
   font-size:
-    21px;
+    20px;
 
-  display:
-    flex;
-
-  align-items:
-    center;
-
-  justify-content:
-    center;
+  line-height:
+    36px;
 }
 
 .fechar:hover {
-
-  background:
-    #ead8e2;
+  background: #e8d8e2;
 }
 
 
@@ -922,24 +1080,24 @@ textarea {
   background:
     linear-gradient(
       135deg,
-      #fff8fb,
-      #f8edf3
+      #fbf2f7,
+      #f7eaf1
     );
 
   border:
-    1px solid #eddce5;
+    1px solid #eed9e4;
 
   border-radius:
     11px;
 
   padding:
-    14px;
+    13px;
 
   margin-top:
     15px;
 
   color:
-    #713253;
+    var(--primary-dark);
 
   font-size:
     13px;
@@ -947,11 +1105,6 @@ textarea {
   line-height:
     1.7;
 }
-
-
-/* =====================================================
-   AÇÕES
-   ===================================================== */
 
 .acoes {
 
@@ -965,271 +1118,27 @@ textarea {
     flex-end;
 
   margin-top:
-    22px;
-}
-
-.btn-secundario {
-
-  background:
-    #f1edef;
-
-  color:
-    #514950;
-
-  padding:
-    12px 18px;
-
-  border-radius:
-    9px;
-
-  font-weight:
-    700;
-}
-
-.btn-secundario:hover {
-
-  background:
-    #e7e0e4;
-}
-
-.btn-salvar {
-
-  background:
-    linear-gradient(
-      135deg,
-      #8b3b63,
-      #ad4f80
-    );
-
-  color:
-    white;
-
-  padding:
-    12px 20px;
-
-  border-radius:
-    9px;
-
-  font-weight:
-    750;
-}
-
-.btn-salvar:hover {
-
-  background:
-    linear-gradient(
-      135deg,
-      #713052,
-      #963f6c
-    );
-}
-
-.btn-salvar:disabled {
-
-  background:
-    #aaa;
-
-  cursor:
-    not-allowed;
-
-  box-shadow:
-    none;
+    20px;
 }
 
 
 /* =====================================================
-   GERENCIAMENTO DE SERVIÇOS
+   RODAPÉ
    ===================================================== */
 
-.servicos-header {
+.footer {
 
-  display:
-    flex;
-
-  justify-content:
-    space-between;
-
-  align-items:
+  text-align:
     center;
-
-  gap:
-    15px;
-
-  margin-bottom:
-    18px;
-}
-
-.servicos-header h3 {
-
-  margin:
-    0;
-}
-
-.btn-novo-servico {
-
-  display:
-    inline-flex;
-
-  align-items:
-    center;
-
-  gap:
-    7px;
-
-  background:
-    #f8e8f0;
 
   color:
-    #743355;
+    #999;
+
+  font-size:
+    12px;
 
   padding:
-    10px 13px;
-
-  border-radius:
-    9px;
-
-  font-size:
-    13px;
-
-  font-weight:
-    750;
-}
-
-.btn-novo-servico:hover {
-
-  background:
-    #efd7e3;
-}
-
-.lista-servicos {
-
-  display:
-    grid;
-
-  grid-template-columns:
-    repeat(2, 1fr);
-
-  gap:
-    12px;
-}
-
-.servico-card {
-
-  border:
-    1px solid #eee1e8;
-
-  border-radius:
-    13px;
-
-  padding:
-    15px;
-
-  background:
-    #fff;
-
-  display:
-    flex;
-
-  justify-content:
-    space-between;
-
-  align-items:
-    center;
-
-  gap:
-    12px;
-}
-
-.servico-info {
-
-  min-width:
-    0;
-}
-
-.servico-nome {
-
-  color:
-    #572940;
-
-  font-weight:
-    750;
-
-  font-size:
-    14px;
-
-  margin-bottom:
-    5px;
-}
-
-.servico-detalhes {
-
-  color:
-    #81767e;
-
-  font-size:
-    12px;
-}
-
-.servico-preco {
-
-  color:
-    #8c3b63;
-
-  font-size:
-    15px;
-
-  font-weight:
-    800;
-
-  white-space:
-    nowrap;
-}
-
-
-/* =====================================================
-   MODAL DE SERVIÇO
-   ===================================================== */
-
-.modal-servico {
-
-  max-width:
-    500px;
-}
-
-.preco-input {
-
-  position:
-    relative;
-}
-
-.preco-input span {
-
-  position:
-    absolute;
-
-  left:
-    13px;
-
-  top:
-    50%;
-
-  transform:
-    translateY(-50%);
-
-  color:
-    #777;
-
-  font-size:
-    14px;
-
-  font-weight:
-    700;
-}
-
-.preco-input input {
-
-  padding-left:
-    42px;
+    10px 0 20px;
 }
 
 
@@ -1237,92 +1146,79 @@ textarea {
    RESPONSIVO
    ===================================================== */
 
-@media (max-width: 800px) {
-
-  .topo {
-
-    align-items:
-      flex-start;
-
-    flex-direction:
-      column;
-  }
-
-  .acoes-topo {
-
-    width:
-      100%;
-
-    justify-content:
-      flex-start;
-  }
-
-  .btn-principal,
-  .btn-gerenciar {
-
-    flex:
-      1;
-  }
+@media (max-width: 900px) {
 
   .lista-servicos {
-
-    grid-template-columns:
-      1fr;
+    grid-template-columns: repeat(2,1fr);
   }
 
 }
 
-
 @media (max-width: 600px) {
 
   header {
-
-    padding:
-      25px 18px;
+    padding: 24px 18px;
   }
 
   header h1 {
-
-    font-size:
-      23px;
+    font-size: 24px;
   }
 
   .container {
-
     padding:
-      22px 13px 45px;
+      22px 14px 45px;
   }
 
-  .titulo-agenda h2 {
+  /*
+   * CORREÇÃO:
+   * título e botão ficam alinhados
+   * corretamente em telas maiores,
+   * e empilhados no celular.
+   */
 
-    font-size:
-      23px;
+  .topo {
+
+    align-items:
+      stretch;
+
+    flex-direction:
+      column;
+
   }
 
-  .acoes-topo {
+  .topo h2 {
+    font-size: 23px;
+  }
+
+  .topo .btn-principal {
+    width:
+      100%;
+  }
+
+  .grid {
+    grid-template-columns:
+      1fr;
+  }
+
+  .lista-servicos {
+    grid-template-columns:
+      1fr;
+  }
+
+  .servicos-header {
+    align-items:
+      stretch;
 
     flex-direction:
       column;
   }
 
-  .btn-principal,
-  .btn-gerenciar {
-
-    width:
-      100%;
-
-    flex:
-      none;
-  }
-
-  .grid {
-
-    grid-template-columns:
-      1fr;
+  .btn-servico {
+    justify-content:
+      center;
   }
 
   .modal {
-
     padding:
       10px;
   }
@@ -1340,19 +1236,16 @@ textarea {
   }
 
   .horarios {
-
     grid-template-columns:
       repeat(3,1fr);
   }
 
   .acoes {
-
     flex-direction:
       column-reverse;
   }
 
   .acoes button {
-
     width:
       100%;
   }
@@ -1361,15 +1254,38 @@ textarea {
 
 
 /* =====================================================
-   PEQUENOS CELULARES
+   ESTADO DE CARREGAMENTO
    ===================================================== */
 
-@media (max-width: 380px) {
+.loading-spinner {
 
-  .horarios {
+  width:
+    22px;
 
-    grid-template-columns:
-      repeat(2,1fr);
+  height:
+    22px;
+
+  border:
+    3px solid #eadce4;
+
+  border-top-color:
+    var(--primary);
+
+  border-radius:
+    50%;
+
+  animation:
+    girar .8s linear infinite;
+
+  margin:
+    0 auto 8px;
+}
+
+@keyframes girar {
+
+  to {
+    transform:
+      rotate(360deg);
   }
 
 }
@@ -1383,32 +1299,16 @@ textarea {
 
 
 <!-- =====================================================
-     CABEÇALHO
+     HEADER
      ===================================================== -->
 
 <header>
 
   <div class="header-inner">
 
-    <div class="logo-area">
+    <h1>Salão Janaina</h1>
 
-      <div class="logo-icon">
-        ✦
-      </div>
-
-      <div>
-
-        <h1>
-          Salão Janaina
-        </h1>
-
-        <p>
-          Gestão de agenda e atendimento
-        </p>
-
-      </div>
-
-    </div>
+    <p>Gestão de agenda e atendimento</p>
 
   </div>
 
@@ -1422,50 +1322,39 @@ textarea {
 <div class="container">
 
 
-  <!-- TOPO -->
+  <!-- ===================================================
+       TOPO
+       =================================================== -->
 
   <div class="topo">
 
-    <div class="titulo-agenda">
+    <div class="topo-info">
 
-      <h2>
-        Agenda
-      </h2>
+      <h2>Agenda</h2>
 
-      <p>
-        Controle seus horários e atendimentos
-      </p>
+      <div class="topo-subtitulo">
+        Controle seus agendamentos de forma simples e profissional.
+      </div>
 
     </div>
 
 
-    <div class="acoes-topo">
+    <button
+      class="btn-principal"
+      onclick="abrirNovoAgendamento()">
 
-      <button
-        class="btn-gerenciar"
-        onclick="abrirGerenciadorServicos()">
+      <span>＋</span>
 
-        ⚙
-        Gerenciar Serviços
+      Novo Agendamento
 
-      </button>
-
-
-      <button
-        class="btn-principal"
-        onclick="abrirNovoAgendamento()">
-
-        +
-        Novo Agendamento
-
-      </button>
-
-    </div>
+    </button>
 
   </div>
 
 
-  <!-- MENSAGEM PRINCIPAL -->
+  <!-- ===================================================
+       MENSAGEM PRINCIPAL
+       =================================================== -->
 
   <div
     id="mensagemPrincipal"
@@ -1479,13 +1368,11 @@ textarea {
 
   <div class="card">
 
-    <h3>
-      Agendamentos do dia
-    </h3>
+    <h3>Agendamentos do dia</h3>
 
     <div class="filtro">
 
-      <div class="filtro-data">
+      <div style="width:100%;max-width:250px">
 
         <label for="dataAgenda">
           Data
@@ -1494,7 +1381,7 @@ textarea {
         <input
           type="date"
           id="dataAgenda"
-          onchange="carregarAgenda">
+          onchange="carregarAgenda()">
 
       </div>
 
@@ -1512,8 +1399,76 @@ textarea {
     class="card">
 
     <div class="carregando">
+
+      <div class="loading-spinner"></div>
+
       Carregando...
+
     </div>
+
+  </div>
+
+
+  <!-- ===================================================
+       GERENCIAMENTO DE SERVIÇOS
+       =================================================== -->
+
+  <div class="card">
+
+    <div class="servicos-header">
+
+      <div>
+
+        <h3>
+          Serviços
+        </h3>
+
+        <div
+          style="
+            color:#888;
+            font-size:13px;
+            margin-top:-10px;
+          ">
+
+          Cadastre os serviços oferecidos pelo salão,
+          com preço e duração.
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="btn-servico"
+        onclick="abrirModalServico()">
+
+        ＋ Novo Serviço
+
+      </button>
+
+    </div>
+
+
+    <div
+      id="listaServicos"
+      class="lista-servicos">
+
+      <div class="carregando">
+
+        <div class="loading-spinner"></div>
+
+        Carregando serviços...
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer">
+
+    Salão Janaina • Gestão de agenda
 
   </div>
 
@@ -1534,9 +1489,7 @@ textarea {
 
     <div class="modal-header">
 
-      <h2>
-        Novo Agendamento
-      </h2>
+      <h2>Novo Agendamento</h2>
 
       <button
         class="fechar"
@@ -1618,6 +1571,7 @@ textarea {
 
       </div>
 
+
     </div>
 
 
@@ -1632,7 +1586,9 @@ textarea {
         class="horarios">
 
         <div class="carregando">
+
           Selecione a data e o serviço.
+
         </div>
 
       </div>
@@ -1689,94 +1645,25 @@ textarea {
 
 
 <!-- =====================================================
-     MODAL GERENCIAR SERVIÇOS
+     MODAL DE SERVIÇO
      ===================================================== -->
 
 <div
-  id="modalServicos"
+  id="modalServico"
   class="modal">
 
-  <div class="modal-conteudo">
+  <div class="modal-conteudo modal-pequeno">
 
 
     <div class="modal-header">
 
-      <h2>
-        Gerenciar Serviços
-      </h2>
-
-      <button
-        class="fechar"
-        onclick="fecharGerenciadorServicos()">
-
-        ×
-
-      </button>
-
-    </div>
-
-
-    <div
-      id="mensagemServicos"
-      class="mensagem">
-    </div>
-
-
-    <div class="servicos-header">
-
-      <h3>
-        Serviços cadastrados
-      </h3>
-
-      <button
-        class="btn-novo-servico"
-        onclick="abrirCadastroServico()">
-
-        +
+      <h2 id="tituloModalServico">
         Novo Serviço
-
-      </button>
-
-    </div>
-
-
-    <div
-      id="listaServicos"
-      class="lista-servicos">
-
-      <div class="carregando">
-        Carregando serviços...
-      </div>
-
-    </div>
-
-
-  </div>
-
-</div>
-
-
-<!-- =====================================================
-     MODAL CADASTRO DE SERVIÇO
-     ===================================================== -->
-
-<div
-  id="modalCadastroServico"
-  class="modal">
-
-  <div
-    class="modal-conteudo modal-servico">
-
-
-    <div class="modal-header">
-
-      <h2>
-        Cadastrar Serviço
       </h2>
 
       <button
         class="fechar"
-        onclick="fecharCadastroServico()">
+        onclick="fecharModalServico()">
 
         ×
 
@@ -1786,20 +1673,25 @@ textarea {
 
 
     <div
-      id="mensagemCadastroServico"
+      id="mensagemServico"
       class="mensagem">
     </div>
+
+
+    <input
+      type="hidden"
+      id="servicoEditandoId">
 
 
     <div class="campo">
 
-      <label for="novoServicoNome">
+      <label for="nomeServico">
         Nome do serviço *
       </label>
 
       <input
         type="text"
-        id="novoServicoNome"
+        id="nomeServico"
         placeholder="Ex.: Corte feminino">
 
     </div>
@@ -1810,40 +1702,78 @@ textarea {
 
       <div class="campo">
 
-        <label for="novoServicoPreco">
-          Preço *
+        <label for="duracaoServico">
+          Duração *
         </label>
 
-        <div class="preco-input">
+        <select
+          id="duracaoServico">
 
-          <span>
-            R$
-          </span>
+          <option value="">
+            Selecione
+          </option>
 
-          <input
-            type="number"
-            id="novoServicoPreco"
-            min="0"
-            step="0.01"
-            placeholder="0,00">
+          <option value="15">
+            15 minutos
+          </option>
 
-        </div>
+          <option value="30">
+            30 minutos
+          </option>
+
+          <option value="45">
+            45 minutos
+          </option>
+
+          <option value="60">
+            1 hora
+          </option>
+
+          <option value="75">
+            1h15
+          </option>
+
+          <option value="90">
+            1h30
+          </option>
+
+          <option value="105">
+            1h45
+          </option>
+
+          <option value="120">
+            2 horas
+          </option>
+
+          <option value="150">
+            2h30
+          </option>
+
+          <option value="180">
+            3 horas
+          </option>
+
+          <option value="240">
+            4 horas
+          </option>
+
+        </select>
 
       </div>
 
 
       <div class="campo">
 
-        <label for="novoServicoDuracao">
-          Duração *
+        <label for="precoServico">
+          Preço
         </label>
 
         <input
           type="number"
-          id="novoServicoDuracao"
-          min="1"
-          step="1"
-          placeholder="Ex.: 60">
+          id="precoServico"
+          min="0"
+          step="0.01"
+          placeholder="0,00">
 
       </div>
 
@@ -1851,13 +1781,19 @@ textarea {
     </div>
 
 
-    <div class="resumo">
+    <div
+      style="
+        background:#faf5f8;
+        border:1px solid #eee0e7;
+        border-radius:10px;
+        padding:12px;
+        font-size:12px;
+        color:#756d72;
+        margin-top:2px;
+      ">
 
-      <strong>
-        Exemplo:
-      </strong>
-
-      Corte feminino · R$ 80,00 · 60 minutos
+      O serviço ficará disponível imediatamente
+      para novos agendamentos.
 
     </div>
 
@@ -1866,7 +1802,7 @@ textarea {
 
       <button
         class="btn-secundario"
-        onclick="fecharCadastroServico()">
+        onclick="fecharModalServico()">
 
         Cancelar
 
@@ -1874,11 +1810,11 @@ textarea {
 
 
       <button
-        id="btnCadastrarServico"
+        id="btnSalvarServico"
         class="btn-salvar"
-        onclick="cadastrarNovoServico()">
+        onclick="salvarServico()">
 
-        Cadastrar Serviço
+        Salvar Serviço
 
       </button>
 
@@ -1933,17 +1869,21 @@ document.addEventListener(
     const hoje =
       obterDataHoje();
 
+
     document.getElementById(
       'dataAgenda'
     ).value = hoje;
 
+
     document.getElementById(
       'dataAgenda'
     ).min = hoje;
 
+
     document.getElementById(
       'data'
     ).min = hoje;
+
 
     await carregarServicos();
 
@@ -1962,16 +1902,23 @@ function obterDataHoje() {
   const agora =
     new Date();
 
+
   return (
+
     agora.getFullYear() +
+
     '-' +
+
     String(
       agora.getMonth() + 1
     ).padStart(2,'0') +
+
     '-' +
+
     String(
       agora.getDate()
     ).padStart(2,'0')
+
   );
 
 }
@@ -1985,10 +1932,12 @@ async function abrirNovoAgendamento() {
 
   limparFormulario();
 
+
   const dataAgenda =
     document.getElementById(
       'dataAgenda'
     ).value;
+
 
   document.getElementById(
     'data'
@@ -1996,15 +1945,18 @@ async function abrirNovoAgendamento() {
     dataAgenda ||
     obterDataHoje();
 
+
   document.getElementById(
     'modal'
   ).classList.add('ativo');
+
 
   if (servicos.length === 0) {
 
     await carregarServicos();
 
   }
+
 
   atualizarHorarios();
 
@@ -2026,32 +1978,43 @@ function limparFormulario() {
     'cliente'
   ).value = '';
 
+
   document.getElementById(
     'whatsapp'
   ).value = '';
+
 
   document.getElementById(
     'observacao'
   ).value = '';
 
+
   document.getElementById(
     'servico'
   ).value = '';
+
 
   horarioSelecionado = '';
 
   servicoSelecionado = null;
 
+
   document.getElementById(
     'resumo'
-  ).style.display = 'none';
+  ).style.display =
+    'none';
+
 
   document.getElementById(
     'areaHorarios'
   ).innerHTML =
+
     '<div class="carregando">' +
+
     'Selecione a data e o serviço.' +
+
     '</div>';
+
 
   esconderMensagem(
     'mensagemModal'
@@ -2070,13 +2033,18 @@ async function carregarServicos() {
 
     const resposta =
       await fetch(
+
         API_URL +
         '?acao=servicos&_=' +
         Date.now(),
+
         {
-          cache: 'no-store'
+          cache:
+            'no-store'
         }
+
       );
+
 
     if (!resposta.ok) {
 
@@ -2087,10 +2055,14 @@ async function carregarServicos() {
 
     }
 
+
     const dados =
       await resposta.json();
 
-    let lista = dados;
+
+    let lista =
+      dados;
+
 
     if (
       dados &&
@@ -2104,6 +2076,7 @@ async function carregarServicos() {
 
     }
 
+
     if (
       !Array.isArray(lista)
     ) {
@@ -2114,58 +2087,88 @@ async function carregarServicos() {
 
     }
 
+
     servicos =
-      lista.map(
-        function(item) {
 
-          return {
+      lista
 
-            id:
-              String(
-                item.id || ''
-              ),
+        .map(
+          function(item) {
 
-            nome:
-              String(
-                item.nome ||
-                item.servico ||
-                ''
-              ),
+            return {
 
-            duracao:
-              Number(
+              id:
+                String(
+                  item.id || ''
+                ),
+
+              nome:
+                String(
+                  item.nome ||
+                  item.servico ||
+                  ''
+                ),
+
+              duracao:
+                Number(
+                  item.duracao
+                ),
+
+              preco:
+                Number(
+                  item.preco || 0
+                )
+
+            };
+
+          }
+        )
+
+        .filter(
+          function(item) {
+
+            return (
+
+              item.id &&
+
+              item.nome &&
+
+              Number.isFinite(
                 item.duracao
-              ),
+              ) &&
 
-            preco:
-              Number(
-                item.preco || 0
-              )
+              item.duracao > 0
 
-          };
+            );
 
-        }
-      )
-      .filter(
-        function(item) {
+          }
+        );
 
-          return (
-            item.id &&
-            item.nome &&
-            Number.isFinite(
-              item.duracao
-            ) &&
-            item.duracao > 0
-          );
-
-        }
-      );
 
     preencherSelectServicos();
+
+    renderizarListaServicos();
+
 
   } catch (erro) {
 
     console.error(erro);
+
+
+    document.getElementById(
+      'listaServicos'
+    ).innerHTML =
+
+      '<div class="sem-servicos">' +
+
+      'Não foi possível carregar os serviços.<br><br>' +
+
+      escapeHtml(
+        erro.message
+      ) +
+
+      '</div>';
+
 
     mostrarMensagem(
       'mensagemModal',
@@ -2179,6 +2182,10 @@ async function carregarServicos() {
 }
 
 
+/* =====================================================
+   SELECT DE SERVIÇOS
+   ===================================================== */
+
 function preencherSelectServicos() {
 
   const select =
@@ -2186,10 +2193,15 @@ function preencherSelectServicos() {
       'servico'
     );
 
+
   select.innerHTML =
+
     '<option value="">' +
+
     'Selecione o serviço' +
+
     '</option>';
+
 
   servicos.forEach(
     function(servico) {
@@ -2199,29 +2211,40 @@ function preencherSelectServicos() {
           'option'
         );
 
+
       option.value =
         servico.id;
 
+
       let texto =
+
         servico.nome +
+
         ' - ' +
+
         servico.duracao +
+
         ' min';
+
 
       if (
         servico.preco > 0
       ) {
 
         texto +=
+
           ' - R$ ' +
+
           servico.preco
             .toFixed(2)
             .replace('.',',');
 
       }
 
+
       option.textContent =
         texto;
+
 
       select.appendChild(
         option
@@ -2234,238 +2257,248 @@ function preencherSelectServicos() {
 
 
 /* =====================================================
-   NOVA FUNÇÃO:
-   GERENCIADOR DE SERVIÇOS
+   RENDERIZAR SERVIÇOS
    ===================================================== */
 
-async function abrirGerenciadorServicos() {
-
-  document
-    .getElementById(
-      'modalServicos'
-    )
-    .classList.add('ativo');
-
-  await carregarListaServicos();
-
-}
-
-
-function fecharGerenciadorServicos() {
-
-  document
-    .getElementById(
-      'modalServicos'
-    )
-    .classList.remove('ativo');
-
-}
-
-
-function abrirCadastroServico() {
-
-  document.getElementById(
-    'novoServicoNome'
-  ).value = '';
-
-  document.getElementById(
-    'novoServicoPreco'
-  ).value = '';
-
-  document.getElementById(
-    'novoServicoDuracao'
-  ).value = '';
-
-  esconderMensagem(
-    'mensagemCadastroServico'
-  );
-
-  document
-    .getElementById(
-      'modalCadastroServico'
-    )
-    .classList.add('ativo');
-
-}
-
-
-function fecharCadastroServico() {
-
-  document
-    .getElementById(
-      'modalCadastroServico'
-    )
-    .classList.remove('ativo');
-
-}
-
-
-/* =====================================================
-   LISTA DE SERVIÇOS
-   ===================================================== */
-
-async function carregarListaServicos() {
+function renderizarListaServicos() {
 
   const area =
     document.getElementById(
       'listaServicos'
     );
 
-  area.innerHTML =
-    '<div class="carregando">' +
-    'Carregando serviços...' +
-    '</div>';
 
-  try {
+  if (
+    !servicos ||
+    servicos.length === 0
+  ) {
 
-    await carregarServicos();
+    area.innerHTML =
 
-    if (
-      servicos.length === 0
-    ) {
+      '<div class="sem-servicos">' +
 
-      area.innerHTML =
-        '<div class="sem-horarios">' +
-        'Nenhum serviço cadastrado.' +
-        '</div>';
+      '<strong>Nenhum serviço cadastrado.</strong>' +
 
-      return;
+      '<br><br>' +
 
-    }
+      'Clique em "Novo Serviço" para cadastrar o primeiro serviço.' +
 
-    area.innerHTML = '';
+      '</div>';
 
-    servicos.forEach(
-      function(servico) {
+    return;
 
-        const card =
-          document.createElement(
-            'div'
-          );
+  }
 
-        card.className =
-          'servico-card';
 
-        const info =
-          document.createElement(
-            'div'
-          );
+  area.innerHTML = '';
 
-        info.className =
-          'servico-info';
 
-        const nome =
-          document.createElement(
-            'div'
-          );
+  servicos.forEach(
+    function(servico) {
 
-        nome.className =
-          'servico-nome';
-
-        nome.textContent =
-          servico.nome;
-
-        const detalhes =
-          document.createElement(
-            'div'
-          );
-
-        detalhes.className =
-          'servico-detalhes';
-
-        detalhes.textContent =
-          servico.duracao +
-          ' minutos';
-
-        info.appendChild(nome);
-
-        info.appendChild(
-          detalhes
+      const card =
+        document.createElement(
+          'div'
         );
 
 
-        const preco =
-          document.createElement(
-            'div'
-          );
+      card.className =
+        'servico-card';
 
-        preco.className =
-          'servico-preco';
 
-        preco.textContent =
+      let preco =
+        'Preço não informado';
+
+
+      if (
+        servico.preco > 0
+      ) {
+
+        preco =
           'R$ ' +
-          Number(
-            servico.preco || 0
-          )
-          .toFixed(2)
-          .replace('.',',');
 
-
-        card.appendChild(info);
-
-        card.appendChild(preco);
-
-        area.appendChild(card);
+          servico.preco
+            .toFixed(2)
+            .replace('.',',');
 
       }
-    );
 
-  } catch (erro) {
 
-    area.innerHTML =
-      '<div class="sem-horarios">' +
-      'Erro ao carregar serviços.<br><br>' +
-      escapeHtml(
-        erro.message
-      ) +
-      '</div>';
+      card.innerHTML =
 
-  }
+        '<div class="servico-nome">' +
+
+        escapeHtml(
+          servico.nome
+        ) +
+
+        '</div>' +
+
+
+        '<div class="servico-detalhes">' +
+
+        '<span class="servico-tag">' +
+
+        '⏱ ' +
+
+        servico.duracao +
+
+        ' min' +
+
+        '</span>' +
+
+
+        '<span class="servico-tag">' +
+
+        '💰 ' +
+
+        preco +
+
+        '</span>' +
+
+        '</div>' +
+
+
+        '<div class="servico-acoes">' +
+
+        '<button ' +
+
+        'class="btn-editar" ' +
+
+        'onclick="editarServico(\'' +
+
+        escapeHtmlJS(
+          servico.id
+        ) +
+
+        '\')">' +
+
+        '✏ Editar' +
+
+        '</button>' +
+
+
+        '<button ' +
+
+        'class="btn-excluir" ' +
+
+        'onclick="excluirServico(\'' +
+
+        escapeHtmlJS(
+          servico.id
+        ) +
+
+        '\')">' +
+
+        '🗑 Excluir' +
+
+        '</button>' +
+
+        '</div>';
+
+
+      area.appendChild(
+        card
+      );
+
+    }
+  );
 
 }
 
 
 /* =====================================================
-   CADASTRAR NOVO SERVIÇO
+   MODAL SERVIÇO
    ===================================================== */
 
-async function cadastrarNovoServico() {
+function abrirModalServico() {
 
-  const nome =
-    document.getElementById(
-      'novoServicoNome'
-    ).value.trim();
-
-  const precoTexto =
-    document.getElementById(
-      'novoServicoPreco'
-    ).value;
-
-  const duracaoTexto =
-    document.getElementById(
-      'novoServicoDuracao'
-    ).value;
+  limparFormularioServico();
 
 
-  const preco =
-    Number(
-      String(
-        precoTexto
-      ).replace(',','.')
+  document.getElementById(
+    'tituloModalServico'
+  ).textContent =
+    'Novo Serviço';
+
+
+  document.getElementById(
+    'btnSalvarServico'
+  ).textContent =
+    'Salvar Serviço';
+
+
+  document.getElementById(
+    'modalServico'
+  ).classList.add(
+    'ativo'
+  );
+
+}
+
+
+function fecharModalServico() {
+
+  document.getElementById(
+    'modalServico'
+  ).classList.remove(
+    'ativo'
+  );
+
+}
+
+
+function limparFormularioServico() {
+
+  document.getElementById(
+    'servicoEditandoId'
+  ).value = '';
+
+
+  document.getElementById(
+    'nomeServico'
+  ).value = '';
+
+
+  document.getElementById(
+    'duracaoServico'
+  ).value = '';
+
+
+  document.getElementById(
+    'precoServico'
+  ).value = '';
+
+
+  esconderMensagem(
+    'mensagemServico'
+  );
+
+}
+
+
+/* =====================================================
+   EDITAR SERVIÇO
+   ===================================================== */
+
+function editarServico(id) {
+
+  const servico =
+    servicos.find(
+      function(item) {
+
+        return String(item.id) ===
+          String(id);
+
+      }
     );
 
 
-  const duracao =
-    Number(
-      duracaoTexto
-    );
-
-
-  if (!nome) {
+  if (!servico) {
 
     mostrarMensagem(
-      'mensagemCadastroServico',
-      'Informe o nome do serviço.',
+      'mensagemPrincipal',
+      'Serviço não encontrado.',
       'erro'
     );
 
@@ -2474,14 +2507,102 @@ async function cadastrarNovoServico() {
   }
 
 
-  if (
-    !Number.isFinite(preco) ||
-    preco < 0
-  ) {
+  document.getElementById(
+    'servicoEditandoId'
+  ).value =
+    servico.id;
+
+
+  document.getElementById(
+    'nomeServico'
+  ).value =
+    servico.nome;
+
+
+  document.getElementById(
+    'duracaoServico'
+  ).value =
+    servico.duracao;
+
+
+  document.getElementById(
+    'precoServico'
+  ).value =
+    servico.preco > 0
+      ? servico.preco
+      : '';
+
+
+  document.getElementById(
+    'tituloModalServico'
+  ).textContent =
+    'Editar Serviço';
+
+
+  document.getElementById(
+    'btnSalvarServico'
+  ).textContent =
+    'Salvar Alterações';
+
+
+  esconderMensagem(
+    'mensagemServico'
+  );
+
+
+  document.getElementById(
+    'modalServico'
+  ).classList.add(
+    'ativo'
+  );
+
+}
+
+
+/* =====================================================
+   SALVAR SERVIÇO
+   ===================================================== */
+
+async function salvarServico() {
+
+  const id =
+    document.getElementById(
+      'servicoEditandoId'
+    ).value;
+
+
+  const nome =
+    document.getElementById(
+      'nomeServico'
+    ).value.trim();
+
+
+  const duracao =
+    Number(
+      document.getElementById(
+        'duracaoServico'
+      ).value
+    );
+
+
+  const precoTexto =
+    document.getElementById(
+      'precoServico'
+    ).value;
+
+
+  const preco =
+    Number(
+      precoTexto
+        .replace(',', '.')
+    );
+
+
+  if (!nome) {
 
     mostrarMensagem(
-      'mensagemCadastroServico',
-      'Informe um preço válido.',
+      'mensagemServico',
+      'Informe o nome do serviço.',
       'erro'
     );
 
@@ -2496,8 +2617,27 @@ async function cadastrarNovoServico() {
   ) {
 
     mostrarMensagem(
-      'mensagemCadastroServico',
+      'mensagemServico',
       'Informe uma duração válida.',
+      'erro'
+    );
+
+    return;
+
+  }
+
+
+  if (
+    precoTexto !== '' &&
+    (
+      !Number.isFinite(preco) ||
+      preco < 0
+    )
+  ) {
+
+    mostrarMensagem(
+      'mensagemServico',
+      'Informe um preço válido.',
       'erro'
     );
 
@@ -2508,37 +2648,46 @@ async function cadastrarNovoServico() {
 
   const btn =
     document.getElementById(
-      'btnCadastrarServico'
+      'btnSalvarServico'
     );
+
 
   btn.disabled =
     true;
 
+
   btn.textContent =
-    'Cadastrando...';
+    id
+      ? 'Salvando...'
+      : 'Cadastrando...';
 
 
   try {
 
-    /*
-     * =================================================
-     * NOVA AÇÃO PARA O CODE.GS
-     * =================================================
-     */
+    const acao =
+      id
+        ? 'editarServico'
+        : 'cadastrarServico';
+
 
     const dados = {
 
       acao:
-        'cadastrarServico',
+        acao,
+
+      id:
+        id || '',
 
       nome:
         nome,
 
-      preco:
-        preco,
-
       duracao:
-        duracao
+        duracao,
+
+      preco:
+        Number.isFinite(preco)
+          ? preco
+          : 0
 
     };
 
@@ -2587,56 +2736,182 @@ async function cadastrarNovoServico() {
 
       throw new Error(
         resultado.erro ||
-        'Não foi possível cadastrar o serviço.'
+        'Não foi possível salvar o serviço.'
       );
 
     }
 
 
     mostrarMensagem(
-      'mensagemServicos',
-      'Serviço cadastrado com sucesso.',
+      'mensagemPrincipal',
+
+      id
+        ? 'Serviço atualizado com sucesso.'
+        : 'Serviço cadastrado com sucesso.',
+
       'sucesso'
     );
 
 
-    fecharCadastroServico();
+    fecharModalServico();
 
 
     await carregarServicos();
 
-    await carregarListaServicos();
-
-
-    /*
-     * Atualiza também o select
-     * do agendamento.
-     */
-
-    preencherSelectServicos();
-
 
   } catch (erro) {
 
-    console.error(
-      'Erro ao cadastrar serviço:',
-      erro
-    );
+    console.error(erro);
+
 
     mostrarMensagem(
-      'mensagemCadastroServico',
+      'mensagemServico',
       erro.message ||
-      'Erro ao cadastrar serviço.',
+      'Erro ao salvar serviço.',
       'erro'
     );
+
 
   } finally {
 
     btn.disabled =
       false;
 
+
     btn.textContent =
-      'Cadastrar Serviço';
+      id
+        ? 'Salvar Alterações'
+        : 'Salvar Serviço';
+
+  }
+
+}
+
+
+/* =====================================================
+   EXCLUIR SERVIÇO
+   ===================================================== */
+
+async function excluirServico(id) {
+
+  const servico =
+    servicos.find(
+      function(item) {
+
+        return String(item.id) ===
+          String(id);
+
+      }
+    );
+
+
+  if (!servico) {
+
+    return;
+
+  }
+
+
+  const confirmar =
+    confirm(
+
+      'Deseja realmente excluir o serviço "' +
+
+      servico.nome +
+
+      '"?\n\n' +
+
+      'Essa ação não poderá ser desfeita.'
+
+    );
+
+
+  if (!confirmar) {
+
+    return;
+
+  }
+
+
+  try {
+
+    const resposta =
+      await fetch(
+        API_URL,
+        {
+
+          method:
+            'POST',
+
+          headers: {
+
+            'Content-Type':
+              'text/plain;charset=utf-8'
+
+          },
+
+          body:
+            JSON.stringify({
+
+              acao:
+                'excluirServico',
+
+              id:
+                id
+
+            })
+
+        }
+      );
+
+
+    if (!resposta.ok) {
+
+      throw new Error(
+        'HTTP ' +
+        resposta.status
+      );
+
+    }
+
+
+    const resultado =
+      await resposta.json();
+
+
+    if (
+      !resultado.sucesso
+    ) {
+
+      throw new Error(
+        resultado.erro ||
+        'Não foi possível excluir o serviço.'
+      );
+
+    }
+
+
+    mostrarMensagem(
+      'mensagemPrincipal',
+      'Serviço excluído com sucesso.',
+      'sucesso'
+    );
+
+
+    await carregarServicos();
+
+
+  } catch (erro) {
+
+    console.error(erro);
+
+
+    mostrarMensagem(
+      'mensagemPrincipal',
+      erro.message ||
+      'Erro ao excluir serviço.',
+      'erro'
+    );
 
   }
 
@@ -2653,46 +2928,60 @@ async function atualizarHorarios() {
 
   servicoSelecionado = null;
 
+
   document.getElementById(
     'resumo'
-  ).style.display = 'none';
+  ).style.display =
+    'none';
+
 
   const data =
     document.getElementById(
       'data'
     ).value;
 
+
   const servicoId =
     document.getElementById(
       'servico'
     ).value;
+
 
   const area =
     document.getElementById(
       'areaHorarios'
     );
 
+
   if (!data) {
 
     area.innerHTML =
+
       '<div class="carregando">' +
+
       'Selecione uma data.' +
+
       '</div>';
 
     return;
 
   }
+
 
   if (!servicoId) {
 
     area.innerHTML =
+
       '<div class="carregando">' +
+
       'Selecione o serviço.' +
+
       '</div>';
 
     return;
 
   }
+
 
   const servico =
     servicos.find(
@@ -2704,19 +2993,28 @@ async function atualizarHorarios() {
       }
     );
 
+
   if (!servico) {
 
     return;
 
   }
 
+
   servicoSelecionado =
     servico;
 
+
   area.innerHTML =
+
     '<div class="carregando">' +
+
+    '<div class="loading-spinner"></div>' +
+
     'Calculando horários...' +
+
     '</div>';
+
 
   try {
 
@@ -2725,22 +3023,29 @@ async function atualizarHorarios() {
         data
       );
 
+
     agendamentosDoDia =
       agendamentos;
+
 
     renderizarHorarios(
       servico,
       agendamentos
     );
 
+
   } catch (erro) {
 
     area.innerHTML =
+
       '<div class="sem-horarios">' +
+
       'Erro ao carregar horários.<br><br>' +
+
       escapeHtml(
         erro.message
       ) +
+
       '</div>';
 
   }
@@ -2758,18 +3063,23 @@ function renderizarHorarios(
       'areaHorarios'
     );
 
+
   const duracao =
     Number(
       servico.duracao
     );
 
+
   const possiveis = [];
+
 
   let cursor =
     INICIO_EXPEDIENTE;
 
+
   const agenda =
     agendamentos
+
       .map(
         function(item) {
 
@@ -2778,10 +3088,12 @@ function renderizarHorarios(
               item.hora
             );
 
+
           const d =
             Number(
               item.duracao
             );
+
 
           return {
 
@@ -2795,16 +3107,22 @@ function renderizarHorarios(
 
         }
       )
+
       .filter(
         function(item) {
 
           return (
+
             item.inicio >= 0 &&
-            item.fim > item.inicio
+
+            item.fim >
+              item.inicio
+
           );
 
         }
       )
+
       .sort(
         function(a,b) {
 
@@ -2828,6 +3146,7 @@ function renderizarHorarios(
         agenda
       );
 
+
     if (!conflito) {
 
       possiveis.push({
@@ -2839,6 +3158,7 @@ function renderizarHorarios(
           cursor + duracao
 
       });
+
 
       cursor +=
         duracao;
@@ -2858,6 +3178,7 @@ function renderizarHorarios(
 
   const unicos = [];
 
+
   possiveis.forEach(
     function(item) {
 
@@ -2870,6 +3191,7 @@ function renderizarHorarios(
 
           }
         );
+
 
       if (!existe) {
 
@@ -2886,8 +3208,11 @@ function renderizarHorarios(
   ) {
 
     area.innerHTML =
+
       '<div class="sem-horarios">' +
+
       'Não há horários disponíveis para este serviço nesta data.' +
+
       '</div>';
 
     return;
@@ -2903,15 +3228,23 @@ function renderizarHorarios(
       'div'
     );
 
+
   info.className =
     'horario informacao';
 
+
   info.textContent =
+
     'Duração: ' +
+
     duracao +
+
     ' minutos';
 
-  area.appendChild(info);
+
+  area.appendChild(
+    info
+  );
 
 
   unicos.forEach(
@@ -2922,22 +3255,28 @@ function renderizarHorarios(
           'button'
         );
 
+
       botao.type =
         'button';
 
+
       botao.className =
         'horario';
+
 
       botao.textContent =
         minutosParaHora(
           item.inicio
         );
 
+
       botao.title =
         'Término previsto: ' +
+
         minutosParaHora(
           item.fim
         );
+
 
       botao.onclick =
         function() {
@@ -2950,6 +3289,7 @@ function renderizarHorarios(
           );
 
         };
+
 
       area.appendChild(
         botao
@@ -2971,8 +3311,13 @@ function encontrarConflito(
     function(item) {
 
       return (
-        inicio < item.fim &&
-        fim > item.inicio
+
+        inicio <
+          item.fim &&
+
+        fim >
+          item.inicio
+
       );
 
     }
@@ -3004,12 +3349,15 @@ function selecionarHorario(
       }
     );
 
+
   botao.classList.add(
     'selecionado'
   );
 
+
   horarioSelecionado =
     hora;
+
 
   atualizarResumo();
 
@@ -3027,20 +3375,27 @@ function atualizarResumo() {
       'data'
     ).value;
 
+
   const servicoId =
     document.getElementById(
       'servico'
     ).value;
+
 
   const resumo =
     document.getElementById(
       'resumo'
     );
 
+
   if (
+
     !data ||
+
     !servicoId ||
+
     !horarioSelecionado
+
   ) {
 
     resumo.style.display =
@@ -3049,6 +3404,7 @@ function atualizarResumo() {
     return;
 
   }
+
 
   const servico =
     servicos.find(
@@ -3060,6 +3416,7 @@ function atualizarResumo() {
       }
     );
 
+
   if (!servico) {
 
     resumo.style.display =
@@ -3069,10 +3426,12 @@ function atualizarResumo() {
 
   }
 
+
   const inicio =
     horaParaMinutos(
       horarioSelecionado
     );
+
 
   const fim =
     inicio +
@@ -3080,9 +3439,10 @@ function atualizarResumo() {
       servico.duracao
     );
 
+
   resumo.innerHTML =
 
-    '<strong>Resumo:</strong><br>' +
+    '<strong>Resumo</strong><br>' +
 
     'Data: ' +
     formatarDataBR(data) +
@@ -3108,16 +3468,23 @@ function atualizarResumo() {
 
     'Duração: ' +
     servico.duracao +
-    ' minutos' +
+    ' minutos';
 
-    '<br>' +
 
-    'Valor: R$ ' +
-    Number(
-      servico.preco || 0
-    )
-    .toFixed(2)
-    .replace('.',',');
+  if (
+    servico.preco > 0
+  ) {
+
+    resumo.innerHTML +=
+
+      '<br>Valor: R$ ' +
+
+      servico.preco
+        .toFixed(2)
+        .replace('.',',');
+
+  }
+
 
   resumo.style.display =
     'block';
@@ -3136,20 +3503,24 @@ async function salvarAgendamento() {
       'cliente'
     ).value.trim();
 
+
   const whatsapp =
     document.getElementById(
       'whatsapp'
     ).value.trim();
+
 
   const data =
     document.getElementById(
       'data'
     ).value;
 
+
   const servicoId =
     document.getElementById(
       'servico'
     ).value;
+
 
   const observacao =
     document.getElementById(
@@ -3169,6 +3540,7 @@ async function salvarAgendamento() {
 
   }
 
+
   if (!whatsapp) {
 
     mostrarMensagem(
@@ -3180,6 +3552,7 @@ async function salvarAgendamento() {
     return;
 
   }
+
 
   if (!data) {
 
@@ -3193,6 +3566,7 @@ async function salvarAgendamento() {
 
   }
 
+
   if (!servicoId) {
 
     mostrarMensagem(
@@ -3204,6 +3578,7 @@ async function salvarAgendamento() {
     return;
 
   }
+
 
   if (!horarioSelecionado) {
 
@@ -3242,8 +3617,7 @@ async function salvarAgendamento() {
   }
 
 
-  let janelaWhatsApp =
-    null;
+  let janelaWhatsApp = null;
 
 
   janelaWhatsApp =
@@ -3258,8 +3632,10 @@ async function salvarAgendamento() {
       'btnSalvar'
     );
 
+
   btn.disabled =
     true;
+
 
   btn.textContent =
     'Verificando...';
@@ -3278,6 +3654,7 @@ async function salvarAgendamento() {
         horarioSelecionado
       );
 
+
     const fimNovo =
       inicioNovo +
       Number(
@@ -3287,8 +3664,11 @@ async function salvarAgendamento() {
 
     const conflito =
       encontrarConflito(
+
         inicioNovo,
+
         fimNovo,
+
         agendaAtual.map(
           function(item) {
 
@@ -3297,10 +3677,12 @@ async function salvarAgendamento() {
                 item.hora
               );
 
+
             const duracao =
               Number(
                 item.duracao
               );
+
 
             return {
 
@@ -3308,13 +3690,13 @@ async function salvarAgendamento() {
                 inicio,
 
               fim:
-                inicio +
-                duracao
+                inicio + duracao
 
             };
 
           }
         )
+
       );
 
 
@@ -3464,8 +3846,11 @@ async function salvarAgendamento() {
     ) {
 
       mensagem +=
+
         '\n' +
+
         '💰 *Valor:* R$ ' +
+
         servico.preco
           .toFixed(2)
           .replace('.',',');
@@ -3476,8 +3861,11 @@ async function salvarAgendamento() {
     if (observacao) {
 
       mensagem +=
+
         '\n\n' +
+
         '📝 *Observação:* ' +
+
         observacao;
 
     }
@@ -3506,6 +3894,7 @@ async function salvarAgendamento() {
 
       }
 
+
       mostrarMensagem(
         'mensagemPrincipal',
         'Agendamento realizado, mas o WhatsApp informado é inválido.',
@@ -3515,9 +3904,13 @@ async function salvarAgendamento() {
     } else {
 
       const urlWhatsApp =
+
         'https://wa.me/' +
+
         numero +
+
         '?text=' +
+
         encodeURIComponent(
           mensagem
         );
@@ -3585,6 +3978,7 @@ async function salvarAgendamento() {
     btn.disabled =
       false;
 
+
     btn.textContent =
       'Agendar Cliente';
 
@@ -3618,8 +4012,11 @@ function prepararWhatsApp(
 
 
   if (
+
     telefone.length === 10 ||
+
     telefone.length === 11
+
   ) {
 
     telefone =
@@ -3630,11 +4027,14 @@ function prepararWhatsApp(
 
 
   if (
+
     telefone.startsWith('55') &&
+
     (
       telefone.length === 12 ||
       telefone.length === 13
     )
+
   ) {
 
     return telefone;
@@ -3648,7 +4048,7 @@ function prepararWhatsApp(
 
 
 /* =====================================================
-   AGENDA
+   BUSCAR AGENDAMENTOS
    ===================================================== */
 
 async function buscarAgendamentos(
@@ -3656,11 +4056,17 @@ async function buscarAgendamentos(
 ) {
 
   const url =
+
     API_URL +
+
     '?acao=agendamentos' +
+
     '&data=' +
+
     encodeURIComponent(data) +
+
     '&_=' +
+
     Date.now();
 
 
@@ -3668,7 +4074,8 @@ async function buscarAgendamentos(
     await fetch(
       url,
       {
-        cache: 'no-store'
+        cache:
+          'no-store'
       }
     );
 
@@ -3697,10 +4104,13 @@ async function buscarAgendamentos(
 
 
   if (
+
     dados &&
+
     Array.isArray(
       dados.agendamentos
     )
+
   ) {
 
     return dados.agendamentos;
@@ -3714,6 +4124,10 @@ async function buscarAgendamentos(
 
 }
 
+
+/* =====================================================
+   CARREGAR AGENDA
+   ===================================================== */
 
 async function carregarAgenda() {
 
@@ -3737,8 +4151,13 @@ async function carregarAgenda() {
 
 
   area.innerHTML =
+
     '<div class="carregando">' +
+
+    '<div class="loading-spinner"></div>' +
+
     'Carregando agendamentos...' +
+
     '</div>';
 
 
@@ -3749,26 +4168,38 @@ async function carregarAgenda() {
         data
       );
 
+
     renderizarAgenda(
       dados
     );
 
+
   } catch (erro) {
 
     area.innerHTML =
+
       '<div class="sem-horarios">' +
+
       'Erro ao carregar a agenda.<br><br>' +
+
       '<small>' +
+
       escapeHtml(
         erro.message
       ) +
+
       '</small>' +
+
       '</div>';
 
   }
 
 }
 
+
+/* =====================================================
+   RENDERIZAR AGENDA
+   ===================================================== */
 
 function renderizarAgenda(
   agendamentos
@@ -3781,14 +4212,21 @@ function renderizarAgenda(
 
 
   if (
+
     !agendamentos ||
+
     agendamentos.length === 0
+
   ) {
 
     area.innerHTML =
+
       '<h3>Agendamentos do dia</h3>' +
+
       '<div class="carregando">' +
+
       'Nenhum agendamento para esta data.' +
+
       '</div>';
 
     return;
@@ -3800,8 +4238,15 @@ function renderizarAgenda(
     function(a,b) {
 
       return (
-        horaParaMinutos(a.hora) -
-        horaParaMinutos(b.hora)
+
+        horaParaMinutos(
+          a.hora
+        ) -
+
+        horaParaMinutos(
+          b.hora
+        )
+
       );
 
     }
@@ -3809,6 +4254,7 @@ function renderizarAgenda(
 
 
   let html =
+
     '<h3>Agendamentos do dia</h3>';
 
 
@@ -3856,10 +4302,17 @@ function renderizarAgenda(
 
         '</div>' +
 
+
         '<button ' +
+
         'class="btn-cancelar" ' +
+
         'onclick="cancelarAgendamento(\'' +
-        escapeHtmlJS(item.id) +
+
+        escapeHtmlJS(
+          item.id
+        ) +
+
         '\')">' +
 
         'Cancelar' +
@@ -3867,6 +4320,7 @@ function renderizarAgenda(
         '</button>' +
 
         '</div>' +
+
 
         '<div class="info">' +
 
@@ -3884,6 +4338,7 @@ function renderizarAgenda(
 
         '</div>' +
 
+
         '<div class="info">' +
 
         '<strong>Horário:</strong> ' +
@@ -3900,6 +4355,7 @@ function renderizarAgenda(
 
         '</div>' +
 
+
         '<div class="info">' +
 
         '<strong>WhatsApp:</strong> ' +
@@ -3910,18 +4366,29 @@ function renderizarAgenda(
 
         '</div>' +
 
+
         (
+
           item.observacao
-          ?
-          '<div class="info">' +
-          '<strong>Observação:</strong> ' +
-          escapeHtml(
-            item.observacao
-          ) +
-          '</div>'
-          :
-          ''
+
+            ?
+
+            '<div class="info">' +
+
+            '<strong>Observação:</strong> ' +
+
+            escapeHtml(
+              item.observacao
+            ) +
+
+            '</div>'
+
+            :
+
+            ''
+
         ) +
+
 
         '</div>';
 
@@ -3936,7 +4403,7 @@ function renderizarAgenda(
 
 
 /* =====================================================
-   CANCELAR
+   CANCELAR AGENDAMENTO
    ===================================================== */
 
 async function cancelarAgendamento(
@@ -3982,9 +4449,8 @@ async function cancelarAgendamento(
 
             })
 
-          }
-
-        );
+        }
+      );
 
 
     const resultado =
@@ -4061,6 +4527,7 @@ function horaParaMinutos(
       partes[0]
     );
 
+
   const m =
     Number(
       partes[1]
@@ -4068,8 +4535,11 @@ function horaParaMinutos(
 
 
   if (
+
     !Number.isFinite(h) ||
+
     !Number.isFinite(m)
+
   ) {
 
     return -1;
@@ -4102,15 +4572,19 @@ function minutosParaHora(
 
 
   return (
+
     String(
       Math.floor(
         valor / 60
       )
     ).padStart(2,'0') +
+
     ':' +
+
     String(
       valor % 60
     ).padStart(2,'0')
+
   );
 
 }
@@ -4136,11 +4610,17 @@ function formatarDataBR(
 
 
   return (
+
     partes[2] +
+
     '/' +
+
     partes[1] +
+
     '/' +
+
     partes[0]
+
   );
 
 }
@@ -4167,6 +4647,7 @@ function mostrarMensagem(
 
   elemento.textContent =
     texto;
+
 
   elemento.className =
     'mensagem ' +
@@ -4206,6 +4687,7 @@ function esconderMensagem(
 
   elemento.className =
     'mensagem';
+
 
   elemento.textContent =
     '';
@@ -4301,7 +4783,7 @@ document
 
 document
   .getElementById(
-    'modalServicos'
+    'modalServico'
   )
   .addEventListener(
     'click',
@@ -4311,7 +4793,7 @@ document
         event.target === this
       ) {
 
-        fecharGerenciadorServicos();
+        fecharModalServico();
 
       }
 
@@ -4319,24 +4801,29 @@ document
   );
 
 
-document
-  .getElementById(
-    'modalCadastroServico'
-  )
-  .addEventListener(
-    'click',
-    function(event) {
+/* =====================================================
+   ESC - FECHAR MODAIS
+   ===================================================== */
 
-      if (
-        event.target === this
-      ) {
+document.addEventListener(
+  'keydown',
+  function(event) {
 
-        fecharCadastroServico();
+    if (
+      event.key !== 'Escape'
+    ) {
 
-      }
+      return;
 
     }
-  );
+
+
+    fecharModal();
+
+    fecharModalServico();
+
+  }
+);
 
 </script>
 
