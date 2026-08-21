@@ -5,65 +5,37 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Agenda - Salão Janaina</title>
 
 <style>
 
 /* =====================================================
-   DESIGN SYSTEM
-   ===================================================== */
-
-:root {
-
-  --primary: #8b315f;
-  --primary-dark: #682344;
-  --primary-light: #b95782;
-  --primary-soft: #f8edf3;
-
-  --accent: #d69a3a;
-  --accent-soft: #fff7e8;
-
-  --background: #f5f3f6;
-  --surface: #ffffff;
-  --surface-soft: #faf9fb;
-
-  --text: #252129;
-  --text-light: #77717a;
-  --text-muted: #9a949d;
-
-  --border: #ece8ed;
-
-  --success: #23865a;
-  --success-bg: #eaf8f1;
-
-  --danger: #b23b4b;
-  --danger-bg: #fff0f2;
-
-  --shadow-sm:
-    0 2px 8px rgba(45, 25, 40, .05);
-
-  --shadow:
-    0 8px 30px rgba(45, 25, 40, .08);
-
-  --shadow-lg:
-    0 20px 60px rgba(45, 25, 40, .16);
-
-  --radius-sm: 10px;
-  --radius: 16px;
-  --radius-lg: 22px;
-
-}
-
-
-/* =====================================================
-   RESET
+   RESET / BASE
    ===================================================== */
 
 * {
   box-sizing: border-box;
+}
+
+:root {
+  --primary: #8e4168;
+  --primary-dark: #68304d;
+  --primary-light: #c66d9c;
+  --pink-soft: #f8edf3;
+  --pink-light: #fdf7fa;
+  --text: #2f2930;
+  --text-soft: #746d73;
+  --border: #eadfe5;
+  --white: #ffffff;
+  --success-bg: #eaf8ef;
+  --success: #18713a;
+  --error-bg: #fff0f0;
+  --error: #a52222;
+  --shadow-sm: 0 4px 16px rgba(76, 32, 56, .06);
+  --shadow-md: 0 12px 35px rgba(76, 32, 56, .10);
+  --shadow-lg: 0 24px 70px rgba(43, 20, 34, .18);
 }
 
 html {
@@ -71,11 +43,8 @@ html {
 }
 
 body {
-
   margin: 0;
-
   min-height: 100vh;
-
   font-family:
     Inter,
     -apple-system,
@@ -84,122 +53,113 @@ body {
     Arial,
     Helvetica,
     sans-serif;
-
   background:
     radial-gradient(
       circle at top left,
-      rgba(185,87,130,.08),
-      transparent 30%
+      rgba(198,109,156,.12),
+      transparent 32%
     ),
-    var(--background);
-
+    linear-gradient(
+      135deg,
+      #fbf8fa 0%,
+      #f8f4f7 50%,
+      #f5f0f4 100%
+    );
   color: var(--text);
-
   -webkit-font-smoothing: antialiased;
+}
 
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(198,109,156,.22);
+  outline-offset: 2px;
 }
 
 
 /* =====================================================
-   HEADER / TOPO PREMIUM
+   HEADER
    ===================================================== */
 
 header {
-
   position: relative;
-
   overflow: hidden;
-
   background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(255,255,255,.16),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(255,255,255,.10),
+      transparent 30%
+    ),
     linear-gradient(
       135deg,
-      #57203b 0%,
-      #7c2d54 45%,
-      #a84773 100%
+      #67304d 0%,
+      #8e4168 48%,
+      #c66d9c 100%
     );
-
   color: white;
-
-  padding: 34px 25px 38px;
-
+  padding: 34px 20px 38px;
+  text-align: center;
   box-shadow:
-    0 8px 30px rgba(85,30,60,.18);
-
+    0 8px 30px rgba(72, 29, 52, .18);
 }
 
 header::before {
-
   content: "";
-
   position: absolute;
-
-  width: 360px;
-  height: 360px;
-
-  right: -120px;
-  top: -180px;
-
+  width: 260px;
+  height: 260px;
+  right: -90px;
+  top: -150px;
   border-radius: 50%;
-
-  background:
-    rgba(255,255,255,.07);
-
+  background: rgba(255,255,255,.08);
 }
 
 header::after {
-
   content: "";
-
   position: absolute;
-
-  width: 220px;
-  height: 220px;
-
-  left: -100px;
-  bottom: -150px;
-
+  width: 180px;
+  height: 180px;
+  left: -80px;
+  bottom: -130px;
   border-radius: 50%;
-
-  background:
-    rgba(255,255,255,.05);
-
+  background: rgba(255,255,255,.06);
 }
 
 header h1 {
-
   position: relative;
-
   z-index: 1;
-
   margin: 0;
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size: 34px;
-
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(30px, 5vw, 42px);
   font-weight: 600;
-
   letter-spacing: -.5px;
-
 }
 
 header p {
-
   position: relative;
-
   z-index: 1;
-
   margin: 8px 0 0;
-
+  color: rgba(255,255,255,.88);
   font-size: 14px;
-
-  letter-spacing: .3px;
-
-  color: rgba(255,255,255,.78);
-
+  letter-spacing: .7px;
 }
 
 
@@ -208,76 +168,46 @@ header p {
    ===================================================== */
 
 .container {
-
   position: relative;
-
   width: 100%;
-
-  max-width: 1180px;
-
-  margin: -18px auto 50px;
-
-  padding: 0 22px;
-
-  z-index: 2;
-
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 30px 20px 60px;
 }
 
 
 /* =====================================================
-   TOPO DA AGENDA
+   TOPO
    ===================================================== */
 
 .topo {
-
   display: flex;
-
-  align-items: center;
-
   justify-content: space-between;
-
+  align-items: center;
   gap: 20px;
-
-  margin-bottom: 22px;
-
+  margin-bottom: 24px;
 }
 
 .topo h2 {
-
   margin: 0;
-
-  color: var(--text);
-
-  font-size: 26px;
-
-  font-weight: 700;
-
-  letter-spacing: -.5px;
-
+  color: var(--primary-dark);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  font-weight: 600;
 }
 
-.topo h2::before {
-
+.topo h2::after {
   content: "";
-
-  display: inline-block;
-
-  width: 5px;
-  height: 26px;
-
-  margin-right: 11px;
-
-  vertical-align: -4px;
-
-  border-radius: 5px;
-
-  background:
-    linear-gradient(
-      to bottom,
-      var(--primary-light),
-      var(--primary-dark)
-    );
-
+  display: block;
+  width: 42px;
+  height: 3px;
+  margin-top: 8px;
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    var(--primary),
+    var(--primary-light)
+  );
 }
 
 
@@ -285,73 +215,41 @@ header p {
    BOTÕES
    ===================================================== */
 
-button {
-
-  border: 0;
-
-  cursor: pointer;
-
-  font-family: inherit;
-
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease,
-    background .2s ease,
-    opacity .2s ease;
-
-}
-
-button:active {
-
-  transform: scale(.98);
-
-}
-
 .btn-principal {
-
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
-
-  gap: 9px;
-
+  gap: 8px;
+  min-height: 48px;
+  padding: 13px 20px;
+  border-radius: 12px;
   background:
     linear-gradient(
       135deg,
       var(--primary),
       var(--primary-light)
     );
-
   color: white;
-
-  padding: 14px 21px;
-
-  border-radius: 12px;
-
   font-size: 14px;
-
   font-weight: 700;
-
+  letter-spacing: .1px;
   box-shadow:
-    0 7px 18px rgba(139,49,95,.24);
-
+    0 8px 20px rgba(142,65,104,.22);
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    filter .2s ease;
 }
 
 .btn-principal:hover {
-
   transform: translateY(-2px);
-
   box-shadow:
-    0 11px 25px rgba(139,49,95,.30);
-
+    0 12px 26px rgba(142,65,104,.28);
+  filter: brightness(.98);
 }
 
-.btn-principal::first-letter {
-
-  font-size: 18px;
-
+.btn-principal:active {
+  transform: translateY(0);
 }
 
 
@@ -360,283 +258,130 @@ button:active {
    ===================================================== */
 
 .card {
-
   position: relative;
-
-  background:
-    rgba(255,255,255,.96);
-
-  border: 1px solid rgba(236,232,237,.9);
-
-  border-radius: var(--radius);
-
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(234,223,229,.85);
+  border-radius: 18px;
   padding: 24px;
-
   margin-bottom: 20px;
-
   box-shadow: var(--shadow-sm);
-
-  transition:
-    box-shadow .2s ease,
-    transform .2s ease;
-
-}
-
-.card:hover {
-
-  box-shadow: var(--shadow);
-
+  backdrop-filter: blur(10px);
 }
 
 .card h3 {
-
-  margin: 0 0 18px;
-
-  color: var(--text);
-
+  margin: 0 0 20px;
+  color: var(--primary-dark);
   font-size: 17px;
-
   font-weight: 700;
+}
 
-  letter-spacing: -.2px;
-
+.card h3::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 18px;
+  margin-right: 9px;
+  vertical-align: -3px;
+  border-radius: 5px;
+  background: linear-gradient(
+    180deg,
+    var(--primary-light),
+    var(--primary)
+  );
 }
 
 
 /* =====================================================
-   FILTRO / DATA
+   FILTRO
    ===================================================== */
 
 .filtro {
-
   display: flex;
-
   align-items: flex-end;
-
-  gap: 14px;
-
+  gap: 15px;
   flex-wrap: wrap;
-
 }
 
 .filtro > div {
-
   width: 100%;
-
   max-width: 280px !important;
-
 }
+
+
+/* =====================================================
+   LABEL
+   ===================================================== */
 
 label {
-
   display: block;
-
-  font-size: 12px;
-
-  font-weight: 700;
-
   margin-bottom: 8px;
-
-  color: var(--text-light);
-
+  color: #504950;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .3px;
   text-transform: uppercase;
-
-  letter-spacing: .5px;
-
 }
+
+
+/* =====================================================
+   CAMPOS
+   ===================================================== */
 
 input,
 select,
 textarea {
-
   width: 100%;
-
   padding: 13px 14px;
-
   border: 1px solid var(--border);
-
   border-radius: 11px;
-
-  font-size: 14px;
-
-  font-family: inherit;
-
-  color: var(--text);
-
   outline: none;
-
-  background:
-    var(--surface-soft);
-
+  background: #fff;
+  color: var(--text);
+  font-size: 14px;
   transition:
-    border .2s ease,
+    border-color .2s ease,
     box-shadow .2s ease,
     background .2s ease;
+}
 
+input::placeholder,
+textarea::placeholder {
+  color: #aaa2a8;
 }
 
 input:hover,
 select:hover,
 textarea:hover {
-
-  border-color: #d9cfd7;
-
+  border-color: #d9c7d1;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-
-  border-color:
-    var(--primary-light);
-
-  background: white;
-
+  border-color: var(--primary-light);
+  background: #fff;
   box-shadow:
-    0 0 0 4px rgba(185,87,130,.10);
-
+    0 0 0 4px rgba(198,109,156,.10);
 }
 
-input::placeholder,
-textarea::placeholder {
-
-  color: #aaa4ab;
-
+input[type="date"] {
+  color-scheme: light;
 }
 
 textarea {
-
   min-height: 100px;
-
   resize: vertical;
-
   line-height: 1.5;
-
 }
 
-
-/* =====================================================
-   MENSAGENS
-   ===================================================== */
-
-.mensagem {
-
-  padding: 14px 16px;
-
-  border-radius: 12px;
-
+.campo {
   margin-bottom: 18px;
-
-  display: none;
-
-  font-size: 14px;
-
-  font-weight: 600;
-
-  border: 1px solid transparent;
-
 }
 
-.mensagem.erro {
-
-  display: block;
-
-  background:
-    var(--danger-bg);
-
-  color:
-    var(--danger);
-
-  border-color:
-    #f4cbd1;
-
-}
-
-.mensagem.sucesso {
-
-  display: block;
-
-  background:
-    var(--success-bg);
-
-  color:
-    var(--success);
-
-  border-color:
-    #c8ead9;
-
-}
-
-
-/* =====================================================
-   LOADING
-   ===================================================== */
-
-.carregando {
-
-  text-align: center;
-
-  color: var(--text-muted);
-
-  padding: 32px 15px;
-
-  font-size: 14px;
-
-}
-
-.carregando::before {
-
-  content: "";
-
-  display: block;
-
-  width: 22px;
-  height: 22px;
-
-  margin: 0 auto 10px;
-
-  border: 3px solid #eee7eb;
-
-  border-top-color:
-    var(--primary);
-
-  border-radius: 50%;
-
-  animation:
-    girar .8s linear infinite;
-
-}
-
-@keyframes girar {
-
-  to {
-    transform: rotate(360deg);
-  }
-
-}
-
-.sem-horarios {
-
-  background:
-    linear-gradient(
-      135deg,
-      #fff8f9,
-      #fff2f4
-    );
-
-  color:
-    var(--danger);
-
-  padding: 18px;
-
-  border-radius: 12px;
-
-  text-align: center;
-
-  font-size: 14px;
-
-  border: 1px solid #f3d8dc;
-
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
 }
 
 
@@ -645,277 +390,203 @@ textarea {
    ===================================================== */
 
 .horarios {
-
   display: grid;
-
   grid-template-columns:
-    repeat(
-      auto-fill,
-      minmax(105px,1fr)
-    );
-
+    repeat(auto-fill, minmax(105px, 1fr));
   gap: 10px;
-
   margin-top: 10px;
-
 }
 
 .horario {
-
-  position: relative;
-
-  padding: 13px 8px;
-
   min-height: 48px;
-
+  padding: 12px 8px;
   border-radius: 11px;
-
-  background:
-    var(--primary-soft);
-
-  color:
-    var(--primary-dark);
-
-  border:
-    1px solid #efd9e4;
-
+  background: var(--pink-soft);
+  color: var(--primary-dark);
+  border: 1px solid #efd9e5;
   font-size: 14px;
-
   font-weight: 700;
-
   transition:
-    all .2s ease;
-
+    transform .18s ease,
+    background .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease;
 }
 
 .horario:hover {
-
-  background:
-    #f2dce7;
-
-  border-color:
-    #dfb8cb;
-
-  transform:
-    translateY(-2px);
-
+  transform: translateY(-1px);
+  background: #f2dce8;
+  border-color: #dcaec5;
   box-shadow:
-    0 5px 14px rgba(139,49,95,.10);
-
+    0 5px 12px rgba(142,65,104,.10);
 }
 
 .horario.selecionado {
-
   background:
     linear-gradient(
       135deg,
       var(--primary-dark),
       var(--primary)
     );
-
   color: white;
-
-  border-color:
-    var(--primary-dark);
-
+  border-color: var(--primary);
   box-shadow:
-    0 6px 16px rgba(139,49,95,.25);
-
-  transform:
-    translateY(-2px);
-
+    0 7px 18px rgba(142,65,104,.22);
 }
 
 .horario.ocupado {
-
-  background:
-    #f1f0f1;
-
-  color:
-    #aaa6aa;
-
-  cursor:
-    not-allowed;
-
-  text-decoration:
-    line-through;
-
+  background: #f1f0f1;
+  color: #aaa5a8;
+  border-color: #e7e4e6;
+  cursor: not-allowed;
+  text-decoration: line-through;
+  box-shadow: none;
 }
 
 .horario.informacao {
-
-  background:
-    var(--accent-soft);
-
-  color:
-    #916521;
-
-  border:
-    1px dashed #e8ca8f;
-
-  cursor:
-    default;
-
+  min-height: auto;
+  padding: 10px 13px;
+  background: #fff9fc;
+  color: var(--primary);
+  border: 1px dashed #d9a8c0;
+  cursor: default;
   font-size: 12px;
-
-  grid-column:
-    1 / -1;
-
-  text-decoration:
-    none;
-
-  font-weight: 600;
-
-  padding: 11px;
-
+  grid-column: 1 / -1;
+  text-decoration: none;
+  text-align: left;
 }
 
 .horario.informacao:hover {
-
   transform: none;
-
+  background: #fff9fc;
+  border-color: #d9a8c0;
   box-shadow: none;
-
 }
 
 
 /* =====================================================
-   AGENDAMENTOS
+   MENSAGENS
    ===================================================== */
 
-#listaAgendamentos {
-
-  min-height: 150px;
-
+.mensagem {
+  padding: 13px 15px;
+  border-radius: 11px;
+  margin-bottom: 18px;
+  display: none;
+  font-size: 14px;
+  line-height: 1.5;
+  border: 1px solid transparent;
 }
 
+.mensagem.erro {
+  display: block;
+  background: var(--error-bg);
+  color: var(--error);
+  border-color: #f4cccc;
+}
+
+.mensagem.sucesso {
+  display: block;
+  background: var(--success-bg);
+  color: var(--success);
+  border-color: #c8ead3;
+}
+
+.carregando {
+  text-align: center;
+  color: var(--text-soft);
+  padding: 25px 15px;
+  font-size: 14px;
+}
+
+.sem-horarios {
+  background: #fff5f5;
+  color: #a33;
+  padding: 16px;
+  border: 1px solid #f1d5d5;
+  border-radius: 11px;
+  text-align: center;
+  font-size: 14px;
+}
+
+
+/* =====================================================
+   AGENDA
+   ===================================================== */
+
 .agendamento {
-
   position: relative;
-
-  border:
-    1px solid var(--border);
-
-  border-left:
-    4px solid var(--primary);
-
-  padding: 17px 18px;
-
-  border-radius: 12px;
-
+  border: 1px solid #eee5e9;
+  border-left: 4px solid var(--primary);
+  padding: 17px;
+  border-radius: 13px;
   margin-bottom: 12px;
-
   background:
     linear-gradient(
       135deg,
-      #fff,
-      #fdfbfd
+      #fff 0%,
+      #fdf9fb 100%
     );
-
-  box-shadow:
-    0 2px 8px rgba(45,25,40,.03);
-
   transition:
-    transform .2s ease,
-    box-shadow .2s ease;
-
+    transform .18s ease,
+    box-shadow .18s ease,
+    border-color .18s ease;
 }
 
 .agendamento:hover {
-
-  transform:
-    translateX(2px);
-
+  transform: translateY(-1px);
+  border-color: #e5d2dc;
   box-shadow:
-    var(--shadow-sm);
+    0 8px 22px rgba(76,32,56,.07);
+}
 
+.agendamento:last-child {
+  margin-bottom: 0;
 }
 
 .agendamento-topo {
-
   display: flex;
-
   justify-content: space-between;
-
   align-items: center;
-
   gap: 12px;
-
   flex-wrap: wrap;
-
 }
 
 .agendamento strong {
-
-  color:
-    var(--primary-dark);
-
-  font-size: 14px;
-
+  color: var(--primary-dark);
 }
 
 .agendamento-topo strong {
-
   font-size: 15px;
-
 }
 
 .info {
-
   margin-top: 8px;
-
   font-size: 13px;
-
-  color:
-    var(--text-light);
-
   line-height: 1.5;
-
+  color: var(--text-soft);
 }
 
 .info strong {
-
-  color:
-    var(--text);
-
-  font-size: 13px;
-
+  color: #514950;
 }
 
-
-/* =====================================================
-   CANCELAR
-   ===================================================== */
-
 .btn-cancelar {
-
-  background:
-    var(--danger-bg);
-
-  color:
-    var(--danger);
-
+  background: #fff0f0;
+  color: #a00000;
   padding: 8px 12px;
-
+  border: 1px solid #f4d4d4;
   border-radius: 9px;
-
   font-size: 12px;
-
   font-weight: 700;
-
-  border:
-    1px solid #f4d4d8;
-
+  transition:
+    background .18s ease,
+    transform .18s ease;
 }
 
 .btn-cancelar:hover {
-
-  background:
-    #ffe1e5;
-
-  border-color:
-    #eabac1;
-
+  background: #ffe0e0;
+  transform: translateY(-1px);
 }
 
 
@@ -924,649 +595,289 @@ textarea {
    ===================================================== */
 
 .modal {
-
   display: none;
-
   position: fixed;
-
   inset: 0;
-
   background:
-    rgba(38,22,32,.68);
-
-  backdrop-filter:
-    blur(6px);
-
-  -webkit-backdrop-filter:
-    blur(6px);
-
+    rgba(36, 18, 29, .68);
   z-index: 999;
-
   padding: 20px;
-
   overflow-y: auto;
-
+  backdrop-filter: blur(5px);
 }
 
 .modal.ativo {
-
   display: flex;
-
   align-items: flex-start;
-
   justify-content: center;
-
 }
 
 .modal-conteudo {
-
   position: relative;
-
   background:
-    rgba(255,255,255,.98);
-
+    linear-gradient(
+      180deg,
+      #fff 0%,
+      #fffafd 100%
+    );
   width: 100%;
-
   max-width: 680px;
-
-  margin: 20px auto;
-
+  margin: 25px auto;
+  border: 1px solid rgba(255,255,255,.5);
   border-radius: 22px;
-
   padding: 28px;
-
-  box-shadow:
-    var(--shadow-lg);
-
-  border:
-    1px solid rgba(255,255,255,.7);
-
-  animation:
-    modalEntrada .25s ease;
-
+  box-shadow: var(--shadow-lg);
+  animation: aparecerModal .22s ease-out;
 }
 
-@keyframes modalEntrada {
-
+@keyframes aparecerModal {
   from {
-
     opacity: 0;
-
-    transform:
-      translateY(15px) scale(.98);
-
+    transform: translateY(15px) scale(.98);
   }
 
   to {
-
     opacity: 1;
-
-    transform:
-      translateY(0) scale(1);
-
+    transform: translateY(0) scale(1);
   }
-
 }
 
-
-/* =====================================================
-   CABEÇALHO MODAL
-   ===================================================== */
-
 .modal-header {
-
   display: flex;
-
   justify-content: space-between;
-
   align-items: center;
-
   gap: 15px;
-
-  margin-bottom: 24px;
-
+  margin-bottom: 25px;
   padding-bottom: 18px;
-
-  border-bottom:
-    1px solid var(--border);
-
+  border-bottom: 1px solid #eee3e9;
 }
 
 .modal-header h2 {
-
   margin: 0;
-
-  color:
-    var(--primary-dark);
-
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
+  color: var(--primary-dark);
+  font-family: Georgia, "Times New Roman", serif;
   font-size: 25px;
-
   font-weight: 600;
-
 }
 
 .fechar {
-
-  flex-shrink: 0;
-
+  flex: 0 0 auto;
   width: 38px;
   height: 38px;
-
-  border-radius: 11px;
-
-  background:
-    #f5eff3;
-
-  color:
-    var(--primary-dark);
-
+  border-radius: 50%;
+  background: #f5e9ef;
+  color: var(--primary-dark);
   font-size: 22px;
-
   line-height: 1;
-
+  transition:
+    background .18s ease,
+    transform .18s ease;
 }
 
 .fechar:hover {
-
-  background:
-    #ead9e3;
-
-  transform:
-    rotate(4deg);
-
+  background: #ead7e1;
+  transform: rotate(90deg);
 }
-
-
-/* =====================================================
-   CAMPOS
-   ===================================================== */
-
-.campo {
-
-  margin-bottom: 18px;
-
-}
-
-.campo:last-child {
-
-  margin-bottom: 0;
-
-}
-
-.grid {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
-  gap: 15px;
-
-}
-
-
-/* =====================================================
-   RESUMO
-   ===================================================== */
 
 .resumo {
-
-  position: relative;
-
   background:
     linear-gradient(
       135deg,
-      #fbf1f6,
-      #f8eaf1
+      #fbf0f6,
+      #fff8fb
     );
-
-  border:
-    1px solid #edd5e1;
-
+  border: 1px solid #efd9e5;
   border-radius: 12px;
-
-  padding: 15px 16px;
-
+  padding: 14px;
   margin-top: 15px;
-
-  color:
-    var(--primary-dark);
-
+  color: var(--primary-dark);
   font-size: 13px;
-
-  line-height: 1.7;
-
+  line-height: 1.65;
 }
-
-.resumo::before {
-
-  content: "✓";
-
-  display: inline-flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  width: 24px;
-  height: 24px;
-
-  margin-right: 7px;
-
-  border-radius: 50%;
-
-  background:
-    var(--primary);
-
-  color: white;
-
-  font-weight: 700;
-
-}
-
-
-/* =====================================================
-   AÇÕES MODAL
-   ===================================================== */
 
 .acoes {
-
   display: flex;
-
   gap: 10px;
-
   justify-content: flex-end;
-
-  margin-top: 24px;
-
+  margin-top: 25px;
   padding-top: 20px;
-
-  border-top:
-    1px solid var(--border);
-
+  border-top: 1px solid #eee3e9;
 }
 
 .btn-secundario {
-
-  background:
-    #f1eff1;
-
-  color:
-    #555057;
-
+  background: #f1eff0;
+  color: #4d484b;
   padding: 12px 18px;
-
+  border: 1px solid #e5e0e3;
   border-radius: 10px;
-
   font-weight: 700;
-
-  font-size: 13px;
-
+  transition:
+    background .18s ease,
+    transform .18s ease;
 }
 
 .btn-secundario:hover {
-
-  background:
-    #e7e4e7;
-
+  background: #e8e4e6;
+  transform: translateY(-1px);
 }
 
 .btn-salvar {
-
   background:
     linear-gradient(
       135deg,
       var(--primary-dark),
       var(--primary)
     );
-
   color: white;
-
-  padding: 12px 21px;
-
+  padding: 12px 20px;
   border-radius: 10px;
-
   font-weight: 700;
-
-  font-size: 13px;
-
   box-shadow:
-    0 6px 16px rgba(139,49,95,.20);
-
+    0 7px 18px rgba(142,65,104,.18);
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    filter .18s ease;
 }
 
 .btn-salvar:hover {
-
-  transform:
-    translateY(-1px);
-
+  transform: translateY(-1px);
   box-shadow:
-    0 9px 20px rgba(139,49,95,.26);
-
+    0 10px 22px rgba(142,65,104,.25);
+  filter: brightness(.98);
 }
 
 .btn-salvar:disabled {
-
-  background:
-    #aaa;
-
-  cursor:
-    not-allowed;
-
-  box-shadow:
-    none;
-
-  transform:
-    none;
-
+  background: #aaa;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
 }
 
 
 /* =====================================================
-   SCROLLBAR
+   RESPONSIVO
    ===================================================== */
 
-::-webkit-scrollbar {
-
-  width: 8px;
-
-}
-
-::-webkit-scrollbar-track {
-
-  background:
-    #f3f1f3;
-
-}
-
-::-webkit-scrollbar-thumb {
-
-  background:
-    #c9a9ba;
-
-  border-radius:
-    20px;
-
-}
-
-::-webkit-scrollbar-thumb:hover {
-
-  background:
-    var(--primary);
-
-}
-
-
-/* =====================================================
-   SELEÇÃO DE TEXTO
-   ===================================================== */
-
-::selection {
-
-  background:
-    rgba(139,49,95,.20);
-
-  color:
-    var(--primary-dark);
-
-}
-
-
-/* =====================================================
-   RESPONSIVO TABLET
-   ===================================================== */
-
-@media (max-width: 800px) {
-
-  .container {
-
-    padding:
-      0 16px;
-
-  }
+@media (max-width: 760px) {
 
   header {
-
-    padding:
-      28px 20px 34px;
-
-  }
-
-  header h1 {
-
-    font-size:
-      30px;
-
-  }
-
-  .card {
-
-    padding:
-      20px;
-
-  }
-
-}
-
-
-/* =====================================================
-   RESPONSIVO CELULAR
-   ===================================================== */
-
-@media (max-width: 600px) {
-
-  body {
-
-    background:
-      #f7f5f7;
-
-  }
-
-  header {
-
-    padding:
-      25px 18px 34px;
-
-  }
-
-  header h1 {
-
-    font-size:
-      27px;
-
-  }
-
-  header p {
-
-    font-size:
-      13px;
-
+    padding: 28px 18px 32px;
   }
 
   .container {
-
-    margin:
-      -12px auto 35px;
-
     padding:
-      0 12px;
-
+      22px 14px 45px;
   }
 
   .topo {
-
-    align-items:
-      stretch;
-
-    flex-direction:
-      column;
-
-    gap:
-      14px;
-
+    align-items: stretch;
+    flex-direction: column;
+    gap: 15px;
   }
 
   .topo h2 {
-
-    font-size:
-      23px;
-
+    font-size: 27px;
   }
 
   .topo .btn-principal {
-
-    width:
-      100%;
-
+    width: 100%;
   }
 
   .card {
-
-    padding:
-      17px;
-
-    border-radius:
-      14px;
-
-  }
-
-  .card h3 {
-
-    font-size:
-      16px;
-
-  }
-
-  .filtro > div {
-
-    max-width:
-      none !important;
-
+    padding: 18px;
+    border-radius: 15px;
   }
 
   .grid {
-
-    grid-template-columns:
-      1fr;
-
-    gap:
-      0;
-
-  }
-
-  .horarios {
-
-    grid-template-columns:
-      repeat(3,1fr);
-
-    gap:
-      8px;
-
-  }
-
-  .horario {
-
-    padding:
-      12px 5px;
-
-    font-size:
-      13px;
-
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .modal {
-
-    padding:
-      8px;
-
+    padding: 10px;
   }
 
   .modal-conteudo {
-
-    margin:
-      4px auto;
-
-    padding:
-      20px 16px;
-
-    border-radius:
-      18px;
-
+    margin: 5px auto;
+    padding: 20px 17px;
+    border-radius: 17px;
   }
 
   .modal-header h2 {
-
-    font-size:
-      22px;
-
+    font-size: 22px;
   }
 
   .acoes {
-
-    flex-direction:
-      column-reverse;
-
+    flex-direction: column-reverse;
   }
 
   .acoes button {
+    width: 100%;
+  }
 
-    width:
-      100%;
+}
 
+@media (max-width: 480px) {
+
+  header h1 {
+    font-size: 31px;
+  }
+
+  header p {
+    font-size: 13px;
+  }
+
+  .horarios {
+    grid-template-columns:
+      repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .horario {
+    min-height: 44px;
+    padding: 10px 5px;
+    font-size: 13px;
+  }
+
+  .horario.informacao {
+    font-size: 11px;
   }
 
   .agendamento {
+    padding: 14px;
+  }
 
-    padding:
-      15px;
+  .agendamento-topo {
+    align-items: flex-start;
+  }
 
+  .btn-cancelar {
+    width: 100%;
   }
 
 }
 
 
 /* =====================================================
-   CELULARES MUITO PEQUENOS
+   BARRA DE ROLAGEM
    ===================================================== */
 
-@media (max-width: 380px) {
-
-  .horarios {
-
-    grid-template-columns:
-      repeat(2,1fr);
-
-  }
-
+::-webkit-scrollbar {
+  width: 9px;
 }
 
+::-webkit-scrollbar-track {
+  background: #f5f0f3;
+}
 
-/* =====================================================
-   REDUÇÃO DE MOVIMENTO
-   ===================================================== */
+::-webkit-scrollbar-thumb {
+  background: #cda1b7;
+  border-radius: 20px;
+}
 
-@media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-
-    animation-duration:
-      .01ms !important;
-
-    animation-iteration-count:
-      1 !important;
-
-    transition-duration:
-      .01ms !important;
-
-  }
-
+::-webkit-scrollbar-thumb:hover {
+  background: #a96b8c;
 }
 
 </style>
@@ -1581,7 +892,7 @@ textarea {
 
 <h1>Salão Janaina</h1>
 
-<p>Gestão de agenda e atendimento</p>
+<p>Agenda de clientes</p>
 
 </header>
 
@@ -2260,10 +1571,6 @@ async function atualizarHorarios() {
 }
 
 
-/* =====================================================
-   RENDERIZA HORÁRIOS
-   ===================================================== */
-
 function renderizarHorarios(
   servico,
   agendamentos
@@ -2411,7 +1718,7 @@ function renderizarHorarios(
     'horario informacao';
 
   info.textContent =
-    'Duração do serviço: ' +
+    'Duração: ' +
     duracao +
     ' minutos';
 
@@ -2650,7 +1957,6 @@ async function salvarAgendamento() {
       'observacao'
     ).value.trim();
 
-
   if (!cliente) {
 
     mostrarMensagem(
@@ -2711,7 +2017,6 @@ async function salvarAgendamento() {
 
   }
 
-
   const servico =
     servicos.find(
       function(item) {
@@ -2721,7 +2026,6 @@ async function salvarAgendamento() {
 
       }
     );
-
 
   if (!servico) {
 
@@ -2735,16 +2039,13 @@ async function salvarAgendamento() {
 
   }
 
-
   let janelaWhatsApp = null;
-
 
   janelaWhatsApp =
     window.open(
       'about:blank',
       '_blank'
     );
-
 
   const btn =
     document.getElementById(
@@ -2757,14 +2058,12 @@ async function salvarAgendamento() {
   btn.textContent =
     'Verificando...';
 
-
   try {
 
     const agendaAtual =
       await buscarAgendamentos(
         data
       );
-
 
     const inicioNovo =
       horaParaMinutos(
@@ -2776,7 +2075,6 @@ async function salvarAgendamento() {
       Number(
         servico.duracao
       );
-
 
     const conflito =
       encontrarConflito(
@@ -2809,7 +2107,6 @@ async function salvarAgendamento() {
         )
       );
 
-
     if (conflito) {
 
       throw new Error(
@@ -2818,10 +2115,8 @@ async function salvarAgendamento() {
 
     }
 
-
     btn.textContent =
       'Agendando...';
-
 
     const dados = {
 
@@ -2856,7 +2151,6 @@ async function salvarAgendamento() {
 
     };
 
-
     const resposta =
       await fetch(
         API_URL,
@@ -2880,7 +2174,6 @@ async function salvarAgendamento() {
         }
       );
 
-
     if (!resposta.ok) {
 
       throw new Error(
@@ -2890,10 +2183,8 @@ async function salvarAgendamento() {
 
     }
 
-
     const resultado =
       await resposta.json();
-
 
     if (
       !resultado.sucesso
@@ -2906,10 +2197,8 @@ async function salvarAgendamento() {
 
     }
 
-
     const dataFormatada =
       formatarDataBR(data);
-
 
     const termino =
       minutosParaHora(
@@ -2918,7 +2207,6 @@ async function salvarAgendamento() {
           servico.duracao
         )
       );
-
 
     let mensagem =
 
@@ -2950,7 +2238,6 @@ async function salvarAgendamento() {
       servico.duracao +
       ' minutos';
 
-
     if (
       servico.preco > 0
     ) {
@@ -2964,7 +2251,6 @@ async function salvarAgendamento() {
 
     }
 
-
     if (observacao) {
 
       mensagem +=
@@ -2974,7 +2260,6 @@ async function salvarAgendamento() {
 
     }
 
-
     mensagem +=
 
       '\n\n' +
@@ -2983,12 +2268,10 @@ async function salvarAgendamento() {
 
       NOME_SALAO;
 
-
     const numero =
       prepararWhatsApp(
         whatsapp
       );
-
 
     if (!numero) {
 
@@ -3014,7 +2297,6 @@ async function salvarAgendamento() {
           mensagem
         );
 
-
       if (janelaWhatsApp) {
 
         janelaWhatsApp.location.href =
@@ -3029,25 +2311,20 @@ async function salvarAgendamento() {
 
     }
 
-
     mostrarMensagem(
       'mensagemPrincipal',
       'Agendamento realizado com sucesso.',
       'sucesso'
     );
 
-
     fecharModal();
-
 
     document.getElementById(
       'dataAgenda'
     ).value =
       data;
 
-
     carregarAgenda();
-
 
   } catch (erro) {
 
@@ -3056,13 +2333,11 @@ async function salvarAgendamento() {
       erro
     );
 
-
     if (janelaWhatsApp) {
 
       janelaWhatsApp.close();
 
     }
-
 
     mostrarMensagem(
       'mensagemModal',
@@ -3070,7 +2345,6 @@ async function salvarAgendamento() {
       'Erro ao realizar agendamento.',
       'erro'
     );
-
 
   } finally {
 
@@ -3101,13 +2375,11 @@ function prepararWhatsApp(
       ''
     );
 
-
   if (!telefone) {
 
     return '';
 
   }
-
 
   if (
     telefone.length === 10 ||
@@ -3120,7 +2392,6 @@ function prepararWhatsApp(
 
   }
 
-
   if (
     telefone.startsWith('55') &&
     (
@@ -3132,7 +2403,6 @@ function prepararWhatsApp(
     return telefone;
 
   }
-
 
   return '';
 
@@ -3155,7 +2425,6 @@ async function buscarAgendamentos(
     '&_=' +
     Date.now();
 
-
   const resposta =
     await fetch(
       url,
@@ -3163,7 +2432,6 @@ async function buscarAgendamentos(
         cache: 'no-store'
       }
     );
-
 
   if (!resposta.ok) {
 
@@ -3174,10 +2442,8 @@ async function buscarAgendamentos(
 
   }
 
-
   const dados =
     await resposta.json();
-
 
   if (
     Array.isArray(dados)
@@ -3186,7 +2452,6 @@ async function buscarAgendamentos(
     return dados;
 
   }
-
 
   if (
     dados &&
@@ -3198,7 +2463,6 @@ async function buscarAgendamentos(
     return dados.agendamentos;
 
   }
-
 
   throw new Error(
     'Resposta inválida dos agendamentos.'
@@ -3214,12 +2478,10 @@ async function carregarAgenda() {
       'dataAgenda'
     ).value;
 
-
   const area =
     document.getElementById(
       'listaAgendamentos'
     );
-
 
   if (!data) {
 
@@ -3227,12 +2489,10 @@ async function carregarAgenda() {
 
   }
 
-
   area.innerHTML =
     '<div class="carregando">' +
     'Carregando agendamentos...' +
     '</div>';
-
 
   try {
 
@@ -3271,7 +2531,6 @@ function renderizarAgenda(
       'listaAgendamentos'
     );
 
-
   if (
     !agendamentos ||
     agendamentos.length === 0
@@ -3287,7 +2546,6 @@ function renderizarAgenda(
 
   }
 
-
   agendamentos.sort(
     function(a,b) {
 
@@ -3299,10 +2557,8 @@ function renderizarAgenda(
     }
   );
 
-
   let html =
     '<h3>Agendamentos do dia</h3>';
-
 
   agendamentos.forEach(
     function(item) {
@@ -3312,17 +2568,14 @@ function renderizarAgenda(
           item.hora
         );
 
-
       const duracao =
         Number(
           item.duracao || 0
         );
 
-
       const fim =
         inicio +
         duracao;
-
 
       html +=
 
@@ -3420,7 +2673,6 @@ function renderizarAgenda(
     }
   );
 
-
   area.innerHTML =
     html;
 
@@ -3444,7 +2696,6 @@ async function cancelarAgendamento(
     return;
 
   }
-
 
   try {
 
@@ -3477,10 +2728,8 @@ async function cancelarAgendamento(
         }
       );
 
-
     const resultado =
       await resposta.json();
-
 
     if (
       !resultado.sucesso
@@ -3493,16 +2742,13 @@ async function cancelarAgendamento(
 
     }
 
-
     mostrarMensagem(
       'mensagemPrincipal',
       'Agendamento cancelado com sucesso.',
       'sucesso'
     );
 
-
     carregarAgenda();
-
 
   } catch (erro) {
 
@@ -3531,12 +2777,10 @@ function horaParaMinutos(
 
   }
 
-
   const partes =
     String(
       hora
     ).split(':');
-
 
   if (
     partes.length < 2
@@ -3545,7 +2789,6 @@ function horaParaMinutos(
     return -1;
 
   }
-
 
   const h =
     Number(
@@ -3557,7 +2800,6 @@ function horaParaMinutos(
       partes[1]
     );
 
-
   if (
     !Number.isFinite(h) ||
     !Number.isFinite(m)
@@ -3566,7 +2808,6 @@ function horaParaMinutos(
     return -1;
 
   }
-
 
   return h * 60 + m;
 
@@ -3582,7 +2823,6 @@ function minutosParaHora(
       minutos
     );
 
-
   if (
     !Number.isFinite(valor)
   ) {
@@ -3590,7 +2830,6 @@ function minutosParaHora(
     return '';
 
   }
-
 
   return (
     String(
@@ -3616,7 +2855,6 @@ function formatarDataBR(
       data
     ).split('-');
 
-
   if (
     partes.length !== 3
   ) {
@@ -3624,7 +2862,6 @@ function formatarDataBR(
     return data;
 
   }
-
 
   return (
     partes[2] +
@@ -3648,13 +2885,11 @@ function mostrarMensagem(
       id
     );
 
-
   if (!elemento) {
 
     return;
 
   }
-
 
   elemento.textContent =
     texto;
@@ -3662,7 +2897,6 @@ function mostrarMensagem(
   elemento.className =
     'mensagem ' +
     tipo;
-
 
   setTimeout(
     function() {
@@ -3674,7 +2908,6 @@ function mostrarMensagem(
     },
     5000
   );
-
 
 }
 
@@ -3688,13 +2921,11 @@ function esconderMensagem(
       id
     );
 
-
   if (!elemento) {
 
     return;
 
   }
-
 
   elemento.className =
     'mensagem';
