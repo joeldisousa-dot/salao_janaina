@@ -1119,187 +1119,182 @@ GERAR HORÁRIOS
 ========================================================= */
 
 function renderizarHorariosPorDuracao(
-duracaoServico,
-agendamentos
+  duracaoServico,
+  agendamentos
 ) {
 
-const area =
-document.getElementById(
-'areaHorarios'
-);
+  const area =
+    document.getElementById('areaHorarios');
+
+  const duracao =
+    Number(duracaoServico);
 
 
-const duracao =
-Number(duracaoServico);
+  if (!duracao || duracao <= 0) {
+
+    area.innerHTML =
+      '<div class="sem-horarios">' +
+      'Duração do serviço inválida.' +
+      '</div>';
+
+    return;
+  }
 
 
-if (!duracao || duracao <= 0) {
+  /*
+   * ========================================================
+   * HORÁRIO DE FUNCIONAMENTO
+   * ========================================================
+   */
 
-area.innerHTML =
-'<div class="sem-horarios">' +
-'Duração do serviço inválida.' +
-'</div>';
-
-return;
-
-}
+  const inicioExpediente = 8 * 60;
+  const fimExpediente = 18 * 60;
 
 
-/*
-HORÁRIO DE FUNCIONAMENTO
+  /*
+   * ========================================================
+   * IMPORTANTE
+   *
+   * NÃO usar 30 minutos.
+   *
+   * O intervalo entre os horários é exatamente
+   * a duração do serviço selecionado.
+   *
+   * Exemplo:
+   *
+   * duração = 40
+   *
+   * 08:00
+   * 08:40
+   * 09:20
+   * 10:00
+   * 10:40
+   *
+   * ========================================================
+   */
 
-Altere aqui caso o salão tenha
-outro horário.
-
-08:00 até 18:00.
-
-Os botões continuam em intervalos
-de 30 minutos, MAS a duração do
-serviço NÃO é 30 minutos.
-
-Exemplo:
-
-Serviço = 50 min
-14:00 + 50 = 14:50
-
-Serviço = 90 min
-14:00 + 90 = 15:30
-*/
-
-const inicioExpediente =
-8 * 60;
-
-const fimExpediente =
-18 * 60;
-
-const intervaloBotoes =
-30;
+  const intervalo = duracao;
 
 
-const horarios = [];
+  const horarios = [];
 
 
-/*
-Gera os horários possíveis.
-*/
+  /*
+   * Gera os horários usando a duração do serviço.
+   */
 
-for (
-let minutos = inicioExpediente;
-minutos < fimExpediente;
-minutos += intervaloBotoes
-) {
+  for (
+    let inicio = inicioExpediente;
 
-const fimServico =
-minutos + duracao;
+    inicio + duracao <= fimExpediente;
 
+    inicio += intervalo
+  ) {
 
-/*
-O serviço precisa terminar
-antes ou exatamente no final
-do expediente.
-*/
-
-if (
-fimServico <= fimExpediente
-) {
-
-horarios.push(
-{
-hora:minutosParaHora(minutos),
-disponivel:
-verificarDisponibilidade(
-minutos,
-fimServico,
-agendamentos
-)
-}
-);
-
-}
-
-}
+    const fim =
+      inicio + duracao;
 
 
-const disponiveis =
-horarios.filter(
-function(item) {
-
-return item.disponivel;
-
-}
-);
+    const disponivel =
+      verificarDisponibilidade(
+        inicio,
+        fim,
+        agendamentos
+      );
 
 
-if (
-disponiveis.length === 0
-) {
+    horarios.push({
 
-area.innerHTML =
-'<div class="sem-horarios">' +
-'Não há horários disponíveis para este serviço nesta data.' +
-'</div>';
+      hora:
+        minutosParaHora(inicio),
 
-return;
+      disponivel:
+        disponivel
 
-}
+    });
 
-
-area.innerHTML = '';
+  }
 
 
-horarios.forEach(
-function(item) {
+  /*
+   * ========================================================
+   * VERIFICA SE EXISTE ALGUM HORÁRIO
+   * ========================================================
+   */
 
-const botao =
-document.createElement(
-'button'
-);
+  if (horarios.length === 0) {
 
-botao.type = 'button';
+    area.innerHTML =
+      '<div class="sem-horarios">' +
+      'Não há horários disponíveis para este serviço nesta data.' +
+      '</div>';
 
-botao.textContent =
-item.hora;
-
-botao.className =
-'horario';
-
-
-if (
-item.disponivel
-) {
-
-botao.onclick =
-function() {
-
-selecionarHorario(
-item.hora,
-botao
-);
-
-};
-
-} else {
-
-botao.classList.add(
-'ocupado'
-);
-
-botao.disabled = true;
-
-botao.title =
-'Este horário conflita com outro agendamento.';
-
-}
+    return;
+  }
 
 
-area.appendChild(
-botao
-);
+  area.innerHTML = '';
+
+
+  /*
+   * ========================================================
+   * DESENHA OS BOTÕES
+   * ========================================================
+   */
+
+  horarios.forEach(
+    function(item) {
+
+      const botao =
+        document.createElement('button');
+
+
+      botao.type = 'button';
+
+
+      botao.textContent =
+        item.hora;
+
+
+      botao.className =
+        'horario';
+
+
+      if (item.disponivel) {
+
+        botao.onclick =
+          function() {
+
+            selecionarHorario(
+              item.hora,
+              botao
+            );
+
+          };
+
+      } else {
+
+        botao.classList.add(
+          'ocupado'
+        );
+
+        botao.disabled = true;
+
+        botao.title =
+          'Este horário conflita com outro agendamento.';
+
+      }
+
+
+      area.appendChild(
+        botao
+      );
+
+    }
+  );
 
 }
-);
 
-}
 
 
 /* =========================================================
